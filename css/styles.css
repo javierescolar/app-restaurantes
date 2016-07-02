@@ -79,19 +79,3 @@ form[role=login]> div {
     color: #fff;
 }
 
-.check1 {
-    display:none !important;
-    width: 1.5em;
-    width: 1.5em;
-    position:absolute;
-    right:4em;
-    top:16.8em;
-}
-
-.check2 {
-    display:none !important;
-    width: 1.5em;
-    position:absolute;
-    right:4em;
-    top:21.4em;
-}

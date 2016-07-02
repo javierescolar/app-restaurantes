@@ -18,15 +18,17 @@
     
     <div class="col-md-6 col-xs-12 col-md-offset-3">
       
-        <form  class="login-form" method="post" action="index.php" role="login">
+        <form  class="login-form" method="post" action="index.php" role="login" id="formLogin">
           <img src="http://i.imgur.com/RcmcLv4.png" class="img-responsive" alt="" />
           
           <input type="email" name="email" id="email" placeholder="example@example.com" required class="form-control input-lg"/>
-          <img src="img/check.png" class="img-responsive check1"  />
-          <input type="password" class="form-control input-lg" id="password" placeholder="Password" required />
-          <img src="img/check.png" class="img-responsive check2"  />
           
-          <button type="submit" name="go" class="btn btn-lg btn-primary btn-block">Sign in</button>
+          <input type="password" name="password" class="form-control input-lg" id="password" placeholder="Password" required />
+          
+          <?php
+          echo $mensajeLogin;
+          ?>
+          <input type="submit" class="btn btn-lg btn-primary btn-block" name="botonLogin" value="Sing in"/>
           
         </form>
         
