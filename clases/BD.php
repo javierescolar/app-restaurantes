@@ -2,10 +2,10 @@
 
 class BD {
 
-    private $basedatos = '';
+    private $basedatos = 'apprestaurante';
     private $usuario = 'root';
     private $contrasenya = '';
-    private $equipo = 'localhost';
+    private $equipo = '127.0.0.1';
     
     protected static $bd = null;
     private function __construct() {
