@@ -24,19 +24,18 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="#">Brand</a>
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-      <ul class="nav navbar-nav">
-        <li class="active"><a href="#">Home <span class="sr-only">(current)</span></a></li>
+      <ul class="nav navbar-nav menu">
+        <li><a href="#">Home <span class="sr-only">(current)</span></a></li>
         <li><a href="#">Platos</a></li>
         <li><a href="#">Productos</a></li>
         <li><a href="#">Inventario</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        <form class="navbar-form navbar-left" role="search">
+        <form class="navbar-form navbar-left" id="search"role="search">
         <div class="form-group">
           <input type="text" class="form-control" placeholder="Search">
         </div>

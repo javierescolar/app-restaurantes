@@ -6,3 +6,19 @@ nav[role=navigation] {
     width:18em;
     margin:1em;
 }
+
+.menu li {
+    padding:0em 3em 0em 3em;
+}
+
+nav li a{
+   color:white !important;
+}
+
+nav li:hover{
+   background-color:black !important;
+}
+
+.dropdown-menu a{
+    color:black !important;
+}
