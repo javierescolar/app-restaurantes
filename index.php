@@ -1,12 +1,14 @@
 
 <?php
+session_start();
 $mensajeLogin = "";
 
 
-if($_SESSION['user']){
-    if(isset($_POST['cerrarSession'])){
+if(isset($_SESSION['user'])){
+    if(isset($_POST['cerrarSesion'])){
         unset($_SESSION['user']);
         session_destroy();
+        include 'restaurante/login.php';
     }elseif (isset($_POST['datosUsuario'])) {
        include 'restaurante/editProfile.php';
     } else {
