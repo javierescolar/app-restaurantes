@@ -17,10 +17,6 @@ window.onload = function(){
       (validateEmail($('email').value) && validatePassword($('password').value)) ? true : event.preventDefault();
     });
     
-    $('.li').click(function(){
-        $('.li.active').removeClass('active');
-        $(this).addClass('active');
-    });
 }
 
     

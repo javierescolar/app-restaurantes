@@ -46,10 +46,8 @@
                 aria-expanded="false"><span class="glyphicon glyphicon-user"></span><?php echo " ".$_SESSION['user']['email']." "; ?><span class="caret"></span>
           </a>
           <ul class="dropdown-menu" role="menu">
-            <li>
-              <form action="index.php" method="POST">
+            <li><form action="index.php" method="POST">
                <button class="btn-link" type="submit" name="datosUsuario">Datos usuario <span class="glyphicon glyphicon-pencil"></span></button>
-               </form>
             </li>
             <li>
               <form action="index.php" method="POST">
@@ -63,7 +61,15 @@
   </div><!-- /.container-fluid -->
 </nav>
   <section class="cuerpo">
-    
+    <form action="index.php" method="POST">
+        <div class="form-group row">
+            <label for="newEmail" class="col-sm-2 form-control-label">Email:</label>
+            <div class="col-sm-10">
+              <input type="email" name="newEmail" class="form-control" required>
+            </div>
+        </div>
+        <input type="submit" name="editarPerfil" value="Guardar"/>
+    </form>
     
   </section>
   <footer class="pie col-md-12 text-center col-xs-12">

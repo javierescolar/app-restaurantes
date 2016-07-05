@@ -1,0 +1,11 @@
+@media (max-width: 480px){
+    .pie li {
+      margin:0em 1em 0em 1em;
+      list-style:none;
+      display:inline-block;
+      color:white;
+    }
+    .cuerpo{
+        min-height: 10em;
+    }
+}

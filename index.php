@@ -4,7 +4,14 @@ $mensajeLogin = "";
 
 
 if($_SESSION['user']){
-    include 'restaurante/menu.php';
+    if(isset($_POST['cerrarSession'])){
+        unset($_SESSION['user']);
+        session_destroy();
+    }elseif (isset($_POST['datosUsuario'])) {
+       include 'restaurante/editProfile.php';
+    } else {
+        include 'restaurante/menu.php';
+    }
 } else {
     
     if(isset($_POST['botonLogin'])){

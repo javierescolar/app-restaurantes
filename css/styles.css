@@ -19,6 +19,41 @@ nav li:hover{
    background-color:black !important;
 }
 
-.dropdown-menu a{
+.dropdown-menu button{
     color:black !important;
+    margin-left:1.2em;
 }
+
+.dropdown-menu button:hover{
+    color:white !important;
+    text-decoration:none;
+}
+
+.pie{
+    background-color:grey;
+    clear:both;
+    height: 5em;
+}
+
+.pie li {
+    margin:1.8em 5em 1.8em 5em;
+      list-style:none;
+      display:inline-block;
+      
+}
+.pie li a{
+    color:white;
+}
+.pie li a:hover{
+    text-decoration:none;
+}
+.cuerpo{
+    min-height: 30em;
+}
+
+#marcaLegal{
+    background-color:black;
+    color:white;
+    font-size:0.7em;
+}
+
