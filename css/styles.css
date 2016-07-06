@@ -8,16 +8,18 @@ nav[role=navigation] {
 }
 
 .menu li {
-    padding:0em 3em 0em 3em;
+    padding:1em 3em 1em 3em;
 }
 
-nav li a{
+nav li button{
    color:white !important;
 }
 
-nav li:hover{
+nav li button:hover{
+    text-decoration:none !important;
    background-color:black !important;
 }
+
 
 .dropdown-menu button{
     color:black !important;

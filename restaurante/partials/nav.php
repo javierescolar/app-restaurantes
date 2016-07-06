@@ -15,10 +15,26 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav menu">
-        <li><a href="index.php">Home</a></li>
-        <li><a href="#">Platos</a></li>
-        <li><a href="#">Productos</a></li>
-        <li><a href="#">Inventario</a></li>
+        <li>
+          <form action="index.php" method="POST">
+            <button type="submit" class="btn-link" name="home">Home</button>
+          </form>
+        </li>
+        <li>
+          <form action="index.php" method="POST">
+            <button type="submit" class="btn-link" name="platos">Platos</button>
+          </form>
+        </li>
+        <li>
+          <form action="index.php" method="POST">
+            <button type="submit" class="btn-link" name="productos">Productos</button>
+          </form>
+        </li>
+        <li>
+          <form action="index.php" method="POST">
+            <button type="submit" class="btn-link" name="inventario">Inventario</button>
+          </form>
+        </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <form class="navbar-form navbar-left" id="search"role="search">

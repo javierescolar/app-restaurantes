@@ -16,7 +16,9 @@ if(isset($_SESSION['user'])){
         echo "<script type='text/javascript'>
             swal('Guardado!', 'Se han sobreescrito los datos', 'success');
         </script>";
-    } else {
+    } elseif (isset($_POST['productos'])) {
+         include 'restaurante/products.php';
+    }else {
         include 'restaurante/menu.php';
     }
 } else {
