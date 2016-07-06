@@ -13,10 +13,17 @@ function validatePassword(pass){
 }
 
 window.onload = function(){
-    $('formLogin').addEventListener("submit",function(event){
-      (validateEmail($('email').value) && validatePassword($('password').value)) ? true : event.preventDefault();
-    });
-    
+    if($('formLogin')){
+        $('formLogin').addEventListener("submit",function(event){
+            (validateEmail($('email').value) && validatePassword($('password').value)) ? true : event.preventDefault();
+        });
+    }
+    if($('formEditProfile')){
+        $('formEditProfile').addEventListener("submit",function(event){
+            (validateEmail($('newEmail').value))?true : event.preventDefault();
+        });
+    }
+   
 }
 
     

@@ -11,6 +11,11 @@ if(isset($_SESSION['user'])){
         include 'restaurante/login.php';
     }elseif (isset($_POST['datosUsuario'])) {
        include 'restaurante/editProfile.php';
+    } elseif(isset($_POST['editarPerfil'])){
+        include 'restaurante/editProfile.php';
+        echo "<script type='text/javascript'>
+            swal('Guardado!', 'Se han sobreescrito los datos', 'success');
+        </script>";
     } else {
         include 'restaurante/menu.php';
     }

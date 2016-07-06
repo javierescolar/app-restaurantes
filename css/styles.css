@@ -1,5 +1,5 @@
 nav[role=navigation] {
-    background:#DF5C5C;
+    background:#c9302c;
 }
 
 .logo{
@@ -70,4 +70,8 @@ nav li:hover{
     border-radius:3em 3em 2em 2em;
     border:solid 0.1em #BDBDBD;
     margin-top:2em;
+}
+
+#search input[type=text]{
+    width:104%;
 }

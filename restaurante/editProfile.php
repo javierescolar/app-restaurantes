@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css" />
     <link rel="stylesheet" href="css/styles.css" type="text/css" />
     <link rel="stylesheet" href="css/styles-mobile.css" type="text/css" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css" type="text/css" />
+    <link rel="stylesheet" href="css/sweetalert.css" type="text/css" />
 </head>
 
 <body>
@@ -19,7 +19,7 @@
   <section class="cuerpo">
       <div class="formularios row col-xs-12 col-md-8 col-md-offset-2">
            <div class="text-center cabeceraForm">Datos Usuario</div>
-            <form action="index.php" method="POST" class="form col-xs-12 col-md-12 " role="form">
+            <form action="index.php" method="POST" class="form col-xs-12 col-md-12 " id="formEditProfile" role="form">
                 
                 <div class="form-group row">
                     <label for="newDni" class="col-xs-1 col-md-1 form-control-label">Dni:</label>
@@ -44,7 +44,7 @@
                 <div class="form-group row">
                     <label for="newEmail" class="col-xs-1 col-md-1 form-control-label">Email:</label>
                     <div class="col-xs-12 col-md-7">
-                      <input type="email" name="newEmail" class="form-control" required>
+                      <input type="email" id="newEmail" name="newEmail" class="form-control" required>
                     </div>
                     <label for="newPerfil" class="col-xs-1 col-md-1 form-control-label">Perfil:</label>
                     <div class="col-xs-12 col-md-3">
@@ -62,5 +62,7 @@
     <script type="text/javascript" src="js/jquery-1.12.1.min.js"></script>
     <script type="text/javascript" src="js/bootstrap.min.js"></script>
     <script type="text/javascript" src="js/main.js"></script>
-     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
+    <script type="text/javascript" src="js/login.js"></script> 
+    <script type="text/javascript" src="js/sweetalert.min.js"></script>    
+     
 </html>
