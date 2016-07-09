@@ -7,7 +7,7 @@ nav[role=navigation] {
     margin:1em;
 }
 
-.menu li {
+.menu li button{
     padding:1em 3em 1em 3em;
 }
 
@@ -30,6 +30,17 @@ nav li button:hover{
     color:white !important;
     text-decoration:none;
 }
+
+.userNav {
+   
+    color:white !important;
+}
+
+.userNav:hover {
+     padding:1.15em 1.08em 1.15em 1.08em;
+    background-color:black !important;
+}
+
 
 .pie{
     background-color:grey;
@@ -76,4 +87,17 @@ nav li button:hover{
 
 #search input[type=text]{
     width:104%;
+}
+
+#nuevoProducto{
+    margin-top:-1.2em;
+    margin-left:0.8em;
+}
+
+.save:hover{
+    color:#64FE2E;
+}
+
+.drop:hover{
+    color:#FF0000;
 }

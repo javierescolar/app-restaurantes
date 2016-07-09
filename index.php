@@ -25,8 +25,13 @@ if(isset($_SESSION['user'])){
     
     if(isset($_POST['botonLogin'])){
         $_SESSION['user'] = [
+            "dni" => "53214567P",
             "email" => $_POST['email'],
-            "password" => $_POST['password']
+            "password" => $_POST['password'],
+            "nombre" => "Administrador",
+            "apellidos" => "Admin Admin",
+            "telefono" => 666999666,
+            "perfil" => "Admin.Plataforma"
         ];
         include 'restaurante/menu.php';
     } else {

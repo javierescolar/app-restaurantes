@@ -1,40 +1,56 @@
 <?php
 
+require_once 'Conexion.php';
+
 class Coste {
     
-    private $coste=0;
-    private $beneficio=0;
+    private $coste;
+    private $beneficio;
     
-    $mysqli = new mysqli("127.0.0.1", "root", "", "apprestaurante");
-    if ($mysqli->connect_errno) {
-        printf("Falló la conexión: %s\n", $mysqli->connect_error);
-        exit();
+    
+    public function __construct($coste,$beneficio){
+        $this->beneficio = $beneficio;
+        $this->coste = $coste
     }
-    
-    function sumaBeneficioCoste($b, $c){
-        $beneficio= ($beneficio + $b)-$coste;
-        $coste = $coste + $c
-        $consulta = "INSERT INTO costes (beneficio,coste)
-        VALUES ($beneficio, $coste);";
-        if($mysqli->query($consulta) == TRUE){
-            
-        }else{
-            echo "Error: ".$consulta."<br>".$mysqli->error;
-        }
-    }
-    
-    function muestraCosteBeneficio(){
+    public function sumaBeneficioCoste($b, $c){
+       
+        $this->coste = $this->coste + $c;
+        $this->beneficio = ($this->beneficio + $b)-$coste;
         
-        $consulta = "SELECT * FROM costes;";
-        $resultado = $mysqli->query($consulta);
-        while ($registro = $resultado->fetch_field()){
-            $coste = $registro->coste;
-            $beneficio = $registro->beneficio;
-            
-        }
-        $resultado->close();
     }
     
-    $mysqli->close();
+    public function guardarCosteBeneficio(){
+        $conexion = new Conexion();
+        $consulta = $conexion->prepare('INSERT INTO costes(coste,beneficio) VALUES ('.$this->coste.','.$this->beneficio.')');
+        $consulta->execute();
+        $conexion = null;
+    }
     
+    public function muestraCosteBeneficio(){
+        
+        $conexion = new Conexion();
+        $consulta = $conexion->prepare('SELECT coste, beneficio FROM costes');
+        $consulta->execute();
+        $registro = $consulta->fetch();
+        if($registro){
+            return new self($registro['coste'],$registro['beneficio']);
+        }else{
+            return false;
+        }
+    
+    }
+    
+    public function getCoste() {
+       return $this->coste;
+    }
+    public function getBeneficio() {
+       return $this->beneficio;
+    }
+    public function setCoste($coste) {
+       $this->coste = $coste;
+    }
+    public function setBeneficio($beneficio) {
+       $this->beneficio = $beneficio;
+    }
 }
+?>
