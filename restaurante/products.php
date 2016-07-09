@@ -17,7 +17,20 @@
     include 'restaurante/partials/nav.php'
   ?>
   <section class="cuerpo">
+      <div class="row col-xs-12 col-md-8 col-md-offset-2">
+          <div id="imaginary_container"> 
+                <div class="input-group stylish-input-group">
+                    <input type="text" class="form-control"  placeholder="Buscar producto ..." >
+                    <span class="input-group-addon">
+                        <button type="submit">
+                            <span class="glyphicon glyphicon-search"></span>
+                        </button>  
+                    </span>
+                </div>
+            </div>
+      </div>
       <div class="formularios row col-xs-12 col-md-8 col-md-offset-2">
+          
           <div class="text-center cabeceraForm">Productos</div>
           <form action='index.php' method='POST'>
            <table class="table table-resposive table-condensed table-hover" id="tablaProductos">
