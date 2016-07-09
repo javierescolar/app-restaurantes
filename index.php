@@ -18,11 +18,21 @@ if(isset($_SESSION['user'])){
         </script>";
     } elseif (isset($_POST['productos'])) {
          include 'restaurante/products.php';
+    } elseif (isset($_POST['saveProduct'])) { 
+      include 'restaurante/products.php';
+       echo "<script type='text/javascript'>
+          swal('Guardado!', 'Producto guardado', 'success');
+      </script>";
+    }elseif (isset($_POST['dropProduct'])) { 
+      include 'restaurante/products.php';
+       echo "<script type='text/javascript'>
+          swal('Borrado!', 'Producto borrado', 'success');
+      </script>";
     }else {
         include 'restaurante/menu.php';
     }
 } else {
-    
+
     if(isset($_POST['botonLogin'])){
         $_SESSION['user'] = [
             "dni" => "53214567P",
