@@ -8,4 +8,7 @@
     .cuerpo{
         min-height: 10em;
     }
+    .cabeceraProductos{
+        display: none;
+    }
 }

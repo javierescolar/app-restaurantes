@@ -75,21 +75,31 @@ function createInput(name) {
     input.setAttribute("name", name);
     return input;
 }
-function addRowTabla(tabla) {
-    var fila = tabla.insertRow(),
-            celdaEan = fila.insertCell(),
-            celdaNombre = fila.insertCell(),
-            celdaCantidad = fila.insertCell(),
-            celdaCaducidad = fila.insertCell(),
-            celdaAccion1 = fila.insertCell(),
-            celdaAccion2 = fila.insertCell();
+function addRowForm(form) {
+    var fila = document.createElement('div'),
+            celdaEan = document.createElement('div'),
+            celdaNombre = document.createElement('div'),
+            celdaCantidad = document.createElement('div'),
+            celdaCaducidad = document.createElement('div'),
+            celdaAccion = document.createElement('div');
+    fila.setAttribute('class', 'form-group row col-md-offset-1');
+    celdaEan.setAttribute('class', 'col-xs-12 col-md-2');
+    celdaNombre.setAttribute('class', 'col-xs-12 col-md-2');
+    celdaCantidad.setAttribute('class', 'col-xs-12 col-md-2');
+    celdaCaducidad.setAttribute('class', 'col-xs-12 col-md-2');
+    celdaAccion.setAttribute('class', 'col-xs-12 col-md-2');
     celdaEan.appendChild(createInput('EAN'));
     celdaNombre.appendChild(createInput('Nombre'));
     celdaCantidad.appendChild(createInput('Cantidad'));
     celdaCaducidad.appendChild(createInput('Caducidad'));
-    celdaAccion1.appendChild(createButtonSave());
-    celdaAccion2.appendChild(createButtonDrop());
-
+    celdaAccion.appendChild(createButtonSave());
+    celdaAccion.appendChild(createButtonDrop());
+    fila.appendChild(celdaEan);
+    fila.appendChild(celdaNombre);
+    fila.appendChild(celdaCantidad);
+    fila.appendChild(celdaCaducidad);
+    fila.appendChild(celdaAccion);
+    form.appendChild(fila);
 }
 
 
@@ -111,7 +121,7 @@ window.onload = function () {
         $('nuevoProducto').addEventListener("click", function () {
             if (nuevoProducto === 0) {
                 nuevoProducto++;
-                addRowTabla($("tablaProductos"));
+                addRowForm($("formProductos"));
             } else {
                 swal('Atención', 'Debe guardar un producto antes de añadir otro', 'warning');
             }

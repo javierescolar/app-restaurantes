@@ -21,6 +21,7 @@ nav li button:hover{
 }
 
 
+
 .dropdown-menu button{
     color:black !important;
     margin-left:1.2em;
@@ -32,15 +33,15 @@ nav li button:hover{
 }
 
 .userNav {
-   
+    margin-top: 0.1em;
     color:white !important;
 }
 
 .userNav:hover {
-     padding:1.15em 1.08em 1.15em 1.08em;
+    padding:1.15em 1.08em 1.15em 1.08em;
+    margin-top: 0em;
     background-color:black !important;
 }
-
 
 .pie{
     background-color:grey;
@@ -113,4 +114,8 @@ nav li button:hover{
 .stylish-input-group button{
     border:0;
     background:transparent;
+}
+
+.cabeceraProductos{
+       border-bottom: #BDBDBD 0.2em solid;
 }
