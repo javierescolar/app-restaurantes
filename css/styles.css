@@ -12,12 +12,12 @@ nav[role=navigation] {
 }
 
 nav li button{
-   color:white !important;
+    color:white !important;
 }
 
 nav li button:hover{
     text-decoration:none !important;
-   background-color:black !important;
+    background-color:black !important;
 }
 
 
@@ -51,9 +51,9 @@ nav li button:hover{
 
 .pie li {
     margin:1.8em 5em 1.8em 5em;
-      list-style:none;
-      display:inline-block;
-      
+    list-style:none;
+    display:inline-block;
+
 }
 .pie li a{
     color:white;
@@ -107,9 +107,9 @@ nav li button:hover{
     background: white !important; 
 }
 .stylish-input-group .form-control{
-	border-right:0; 
-	box-shadow:0 0 0; 
-	border-color:#ccc;
+    border-right:0; 
+    box-shadow:0 0 0; 
+    border-color:#ccc;
 }
 .stylish-input-group button{
     border:0;
@@ -117,5 +117,5 @@ nav li button:hover{
 }
 
 .cabeceraProductos{
-       border-bottom: #BDBDBD 0.2em solid;
+    border-bottom: #BDBDBD 0.2em solid;
 }

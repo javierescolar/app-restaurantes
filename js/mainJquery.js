@@ -1,12 +1,12 @@
 /*global $*/
 
 window.onload = function(){
-    if($('#nuevoProducto')){
-        $('#nuevoProducto').click(funciton(){
-        });
-    }
-  
+if ($('#nuevoProducto')){
+    $('#nuevoProducto').click(funciton(){
+    });
 }
 
-    
-    
+}
+
+
+
