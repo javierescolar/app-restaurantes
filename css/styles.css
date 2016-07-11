@@ -119,3 +119,23 @@ nav li button:hover{
 .cabeceraProductos{
     border-bottom: #BDBDBD 0.2em solid;
 }
+
+#formProductos{
+    max-height: 25em;
+	overflow-y: auto;
+	overflow-x: hidden;
+}
+
+.platoMenu{
+    height:13em;
+    overflow:hidden;
+    margin-bottom:1em;
+}
+
+.platoMenu img{
+    margin-top:1em;
+}
+
+.platoMenu:hover{
+   border:solid #c9302c 0.1em;
+}

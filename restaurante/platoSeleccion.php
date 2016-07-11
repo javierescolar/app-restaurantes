@@ -20,32 +20,9 @@
             ?>
 
             <section class="cuerpo">
-            <?php
-            foreach($datosPlatos as $fila){
-            echo $datosPlatos[$x]['Nombre'];
-            echo '<div class="col-md-4 col-xs-6 platoMenu">'
-                   .'<div class="col-md-6 col-xs-6">'
-                   .'<img class="img-responsive" src="img/'.$fila["imagen"].'"/>'
-                .'</div>'
-                .'<div class="col-md-6 col-xs-6">'
-                    .'<h4>'.$fila["Nombre"].'</h4>'
-                    .'<p>'.$fila["Descripcion"].'</p>'
-                .'</div>'
-            .'</div>';
-            }
-            ?>
+            
             </section>
-            <footer class="pie col-md-12 text-center col-xs-12">
-            <!--
-                <ul>
-                    <li><a href="#">Elemento del footer</a></li>
-                    <li><a href="#">Elemento del footer</a></li>
-                    <li><a href="#">Elemento del footer</a></li>
-                    <li><a href="#">Elemento del footer</a></li>
-                </ul>
-            -->
-            </footer>
-            <!--<div id="marcaLegal"><p>@copyright 2016</p></div>-->
+            
         </div>
     </body>
     <script type="text/javascript" src="js/jquery-1.12.1.min.js"></script>

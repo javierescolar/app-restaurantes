@@ -17,7 +17,7 @@
             <ul class="nav navbar-nav menu">
                 <li>
                     <form action="index.php" method="POST">
-                        <button type="submit" class="btn-link" name="home">Home</button>
+                        <button id="navHome"  type="submit" class="btn-link" name="home">Home</button>
                     </form>
                 </li>
                 <li>
@@ -27,7 +27,7 @@
                 </li>
                 <li>
                     <form action="index.php" method="POST">
-                        <button type="submit" class="btn-link" name="productos">Productos</button>
+                        <button id="navProductos" type="submit" class="btn-link" name="productos">Productos</button>
                     </form>
                 </li>
                 <li>

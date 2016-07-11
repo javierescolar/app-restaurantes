@@ -1,7 +1,8 @@
 
 <?php
-
+$descripcion = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.";
 session_start();
+//variables para pruebas
 $mensajeLogin = "";
 $datosProductos = [
     ["EAN" => "EAN1", "Nombre" => "Nombre1", "Cantidad" => "Cantidad1", "Caducidad" => "Caducidad1"],
@@ -13,6 +14,25 @@ $datosProductos = [
     ["EAN" => "EAN7", "Nombre" => "Nombre7", "Cantidad" => "Cantidad7", "Caducidad" => "Caducidad7"],
     ["EAN" => "EAN8", "Nombre" => "Nombre8", "Cantidad" => "Cantidad8", "Caducidad" => "Caducidad8"],
 ];
+
+$datosPlatos = [
+    ["imagen" => "brochetas.jpg", "Nombre" => "Nombre1", "Descripcion" => $descripcion],
+    ["imagen" => "combo.jpg", "Nombre" => "Nombre2", "Descripcion" => $descripcion],
+    ["imagen" => "pasta.jpg", "Nombre" => "Nombre3", "Descripcion" => $descripcion],
+    ["imagen" => "pollito.jpg", "Nombre" => "Nombre4","Descripcion" => $descripcion],
+    ["imagen" => "brochetas.jpg", "Nombre" => "Nombre1", "Descripcion" => $descripcion],
+    ["imagen" => "combo.jpg", "Nombre" => "Nombre2", "Descripcion" => $descripcion],
+    ["imagen" => "pasta.jpg", "Nombre" => "Nombre3", "Descripcion" => $descripcion],
+    ["imagen" => "pollito.jpg", "Nombre" => "Nombre4","Descripcion" => $descripcion],
+    ["imagen" => "brochetas.jpg", "Nombre" => "Nombre1", "Descripcion" => $descripcion],
+    ["imagen" => "combo.jpg", "Nombre" => "Nombre2", "Descripcion" => $descripcion],
+    ["imagen" => "pasta.jpg", "Nombre" => "Nombre3", "Descripcion" => $descripcion],
+    ["imagen" => "pollito.jpg", "Nombre" => "Nombre4","Descripcion" => $descripcion],
+    ["imagen" => "brochetas.jpg", "Nombre" => "Nombre1", "Descripcion" => $descripcion],
+    ["imagen" => "combo.jpg", "Nombre" => "Nombre2", "Descripcion" => $descripcion],
+    ["imagen" => "pasta.jpg", "Nombre" => "Nombre3", "Descripcion" => $descripcion]
+];
+
 
 if (isset($_SESSION['user'])) {
     if (isset($_POST['cerrarSesion'])) {
@@ -28,18 +48,22 @@ if (isset($_SESSION['user'])) {
         </script>";
     } elseif (isset($_POST['productos'])) {
         include 'restaurante/products.php';
+        echo "<script type='text/javascript'> $('navProductos').style.background = 'black'; </script>";
     } elseif (isset($_POST['saveProduct'])) {
         include 'restaurante/products.php';
+        echo "<script type='text/javascript'> $('navProductos').style.background = 'black'; </script>";
         echo "<script type='text/javascript'>
           swal('Guardado!', 'Producto guardado', 'success');
       </script>";
     } elseif (isset($_POST['dropProduct'])) {
         include 'restaurante/products.php';
+        echo "<script type='text/javascript'> $('navProductos').style.background = 'black'; </script>";
         echo "<script type='text/javascript'>
           swal('Borrado!', 'Producto borrado', 'success');
       </script>";
     } else {
         include 'restaurante/menu.php';
+        echo "<script type='text/javascript'> $('navHome').style.background = 'black'; </script>";
     }
 } else {
     if (isset($_POST['botonLogin'])) {
@@ -53,6 +77,7 @@ if (isset($_SESSION['user'])) {
             "perfil" => "Admin.Plataforma"
         ];
         include 'restaurante/menu.php';
+        echo "<script type='text/javascript'> $('navHome').style.background = 'black'; </script>";
     } else {
         include 'restaurante/login.php';
     }
