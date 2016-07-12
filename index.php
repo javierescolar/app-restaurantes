@@ -61,6 +61,11 @@ if (isset($_SESSION['user'])) {
         echo "<script type='text/javascript'>
           swal('Borrado!', 'Producto borrado', 'success');
       </script>";
+    } elseif (isset($_POST['platos'])) {
+       include 'restaurante/platos.php';
+        echo "<script type='text/javascript'> $('navPlatos').style.background = 'black'; </script>";
+    } elseif (isset($_POST['idPlato'])) {
+       include 'restaurante/platoSeleccion.php';
     } else {
         include 'restaurante/menu.php';
         echo "<script type='text/javascript'> $('navHome').style.background = 'black'; </script>";

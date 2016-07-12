@@ -139,3 +139,16 @@ nav li button:hover{
 .platoMenu:hover{
    border:solid #c9302c 0.1em;
 }
+
+.platoFoto{
+    float:left;
+    margin-right:1em;;
+}
+
+.textDescripcion{
+    margin:1em;
+}
+
+.formularios input[type=text],input[type=email],input[type=date],input[type=number]{
+    height:2em !important;
+}

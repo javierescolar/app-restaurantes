@@ -1,4 +1,4 @@
-<div class="formularios row col-xs-12 col-md-8 col-md-offset-2">
+<div class="formularios row col-xs-12 col-xs-12 col-md-10 col-md-offset-1">
     <div class="text-center cabeceraForm">Datos Usuario</div>
     <form action="index.php" method="POST" class="form col-xs-12 col-md-12 " id="formEditProfile" role="form">
 

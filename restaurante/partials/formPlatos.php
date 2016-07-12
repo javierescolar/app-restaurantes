@@ -1,40 +1,39 @@
-<div class="formularios row col-xs-12 col-md-8 col-md-offset-2">
+<div class="formularios row col-xs-12 col-xs-12 col-md-10 col-md-offset-1">
+    <div class="text-center cabeceraForm">Datos Plato</div>
+    <form action="index.php" method="POST" class="form col-xs-12 col-md-12 " id="formEditProfile" role="form">
 
-    <div class="text-center cabeceraForm">Productos</div>
-    <form action='index.php' method='POST' id="formProductos">
-        <div class="form-group row col-md-offset-1 col-md-10 cabeceraProductos">
-            <div class="col-xs-12 col-md-1 col-md-offset-1">
-                <h4>EAN</h4>
+        <div class="form-group row">
+            <label for="newDni" class="col-xs-1 col-md-1 form-control-label">Dni:</label>
+            <div class="col-xs-12 col-md-3">
+                <input type="text" name="newDni" class="form-control" required value="<?php echo $_SESSION['user']['dni']; ?>">
             </div>
-            <div class="col-xs-12 col-md-1 col-md-offset-1">
-                <h4>Nombre</h4>
-            </div>
-            <div class="col-xs-12 col-md-1 col-md-offset-1">
-                <h4>Cantidad</h4>
-            </div>
-            <div class="col-xs-12 col-md-1 col-md-offset-1">
-                <h4>Caducidad</h4>
-            </div>
-            <div class="col-xs-12 col-md-1 col-md-offset-1">
-                <h4>Acción</h4>
+            <label for="newNombre" class="col-xs-1 col-md-1 form-control-label">Nombre:</label>
+            <div class="col-xs-12 col-md-7">
+                <input type="text" name="newNombre" class="form-control" required value="<?php echo $_SESSION['user']['nombre']; ?>">
             </div>
         </div>
-
-        <?php
-        foreach ($datosInventario as $fila) {
-            echo '<div class="form-group row col-md-offset-1">';
-            foreach ($fila as $columna => $celda) {
-                echo '<div class="col-xs-12 col-md-3">';
-                echo "<input name='$columna' class='form-control' type='text' value='$celda'/>";
-                echo '</div>';
-            }
-            echo '<div class="col-xs-12 col-md-3">';
-            echo "<button type='submit' name='saveProduct' class='btn-link save'><span class='glyphicon glyphicon-ok'></span></button>"
-            . "<button type='submit' name='dropProduct' class='btn-link drop'><span class='glyphicon glyphicon-remove'></span></button>";
-            echo '</div>';
-            echo '</div>';
-        }
-        ?>
+        <div class="form-group row">
+            <label for="newApellidos" class="col-xs-1 col-md-1 form-control-label">Apellidos:</label>
+            <div class="col-xs-12 col-md-7">
+                <input type="text" name="newApellidos" class="form-control" required value="<?php echo $_SESSION['user']['apellidos']; ?>">
+            </div>
+            <label for="newTelefono" class="col-xs-1 col-md-1 form-control-label">Teléfono:</label>
+            <div class="col-xs-12 col-md-3">
+                <input type="text" name="newTelefono" class="form-control" required value="<?php echo $_SESSION['user']['telefono']; ?>">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="newEmail" class="col-xs-1 col-md-1 form-control-label">Email:</label>
+            <div class="col-xs-12 col-md-7">
+                <input type="email" id="newEmail" name="newEmail" class="form-control" required value="<?php echo $_SESSION['user']['email']; ?>">
+            </div>
+            <label for="newPerfil" class="col-xs-1 col-md-1 form-control-label">Perfil:</label>
+            <div class="col-xs-12 col-md-3">
+                <input type="text" name="newPerfil" class="form-control" required disabled value="<?php echo $_SESSION['user']['perfil']; ?>">
+            </div>
+        </div>
+        <div class="form-group row ">
+            <input type="submit" name="guardarPlato" id="guardarPlato" value="Guardar" class="btn btn-danger col-md-offset-11"/>
+        </div>
     </form>
-    <button class="btn-link" id="nuevoProducto">añadir nuevo producto</button>
 </div>

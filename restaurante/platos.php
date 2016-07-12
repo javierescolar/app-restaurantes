@@ -20,7 +20,7 @@
                 <div class="row col-xs-12 col-md-8 col-md-offset-2">
                     <div id="imaginary_container"> 
                         <div class="input-group stylish-input-group">
-                            <input type="text" class="form-control"  placeholder="Buscar producto ..." >
+                            <input type="text" class="form-control"  placeholder="Buscar Plato ..." >
                             <span class="input-group-addon">
                                 <button type="submit">
                                     <span class="glyphicon glyphicon-search"></span>

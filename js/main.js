@@ -83,11 +83,11 @@ function addRowForm(form) {
             celdaCaducidad = document.createElement('div'),
             celdaAccion = document.createElement('div');
     fila.setAttribute('class', 'form-group row col-md-offset-1');
-    celdaEan.setAttribute('class', 'col-xs-12 col-md-2');
-    celdaNombre.setAttribute('class', 'col-xs-12 col-md-2');
+    celdaEan.setAttribute('class', 'col-xs-12 col-md-3');
+    celdaNombre.setAttribute('class', 'col-xs-12 col-md-3');
     celdaCantidad.setAttribute('class', 'col-xs-12 col-md-2');
-    celdaCaducidad.setAttribute('class', 'col-xs-12 col-md-2');
-    celdaAccion.setAttribute('class', 'col-xs-12 col-md-2');
+    celdaCaducidad.setAttribute('class', 'col-xs-12 col-md-3');
+    celdaAccion.setAttribute('class', 'col-xs-12 col-md-1');
     celdaEan.appendChild(createInput('EAN'));
     celdaNombre.appendChild(createInput('Nombre'));
     celdaCantidad.appendChild(createInput('Cantidad'));

@@ -20,9 +20,11 @@
             ?>
 
             <section class="cuerpo">
+                
             <?php
+            $x=0;
             foreach($datosPlatos as $fila){
-            echo $datosPlatos[$x]['Nombre'];
+            echo "<form action='index.php' method='POST' onClick='this.submit()'>"; 
             echo '<div class="col-md-4 col-xs-6 platoMenu">'
                    .'<div class="col-md-6 col-xs-6">'
                    .'<img class="img-responsive" src="img/'.$fila["imagen"].'"/>'
@@ -32,6 +34,9 @@
                     .'<p>'.$fila["Descripcion"].'</p>'
                 .'</div>'
             .'</div>';
+            echo "<input type='hidden' name='idPlato' value='$x'/>";
+            echo "</form>";
+            $x++;
             }
             ?>
             </section>

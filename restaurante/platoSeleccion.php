@@ -20,6 +20,19 @@
             ?>
 
             <section class="cuerpo">
+               <div class="col-md-12 col-xs-12">
+                   <?php
+                    echo "<h1 class='text-center'>".$datosPlatos[$_POST['idPlato']]['Nombre']."</h1>";
+                    ?>
+                   <div class="col-md-12 col-xs-12">
+                       
+                    <?php
+                        echo  "<img src='img/".$datosPlatos[$_POST["idPlato"]]["imagen"]."' class='img-responsive platoFoto'></img>";
+                        echo "<p class='textDescripcion'>".$datosPlatos[$_POST["idPlato"]]["Descripcion"]."</p>";
+                    ?> 
+                   </div>
+                       
+               </div>
             
             </section>
             
