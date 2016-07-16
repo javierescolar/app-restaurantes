@@ -33,6 +33,17 @@ $datosPlatos = [
     ["imagen" => "pasta.jpg", "Nombre" => "Nombre3", "Descripcion" => $descripcion]
 ];
 
+$tickets = [
+    ["id" => 1,"Mesa" => 5, "Fecha" => "","Camarero" => $_SESSION["user"]["nombre"], "Total" => 75],
+    ["id" => 2,"Mesa" => 7,"Fecha" => "","Camarero" => $_SESSION["user"]["nombre"],"Total" => 90],
+    ["id" => 3,"Mesa" => 7,"Fecha" => "","Camarero" => $_SESSION["user"]["nombre"],"Total" => 90],
+    ["id" => 4,"Mesa" => 7,"Fecha" => "","Camarero" => $_SESSION["user"]["nombre"],"Total" => 90],
+    ["id" => 5,"Mesa" => 7,"Fecha" => "","Camarero" => $_SESSION["user"]["nombre"],"Total" => 90],
+    ["id" => 6,"Mesa" => 7,"Fecha" => "","Camarero" => $_SESSION["user"]["nombre"],"Total" => 90],
+    ["id" => 7,"Mesa" => 7,"Fecha" => "","Camarero" => $_SESSION["user"]["nombre"],"Total" => 90],
+    ["id" => 8,"Mesa" => 7,"Fecha" => "","Camarero" => $_SESSION["user"]["nombre"],"Total" => 90],
+    ["id" => 9,"Mesa" => 7,"Fecha" => "","Camarero" => $_SESSION["user"]["nombre"],"Total" => 90]
+];
 
 if (isset($_SESSION['user'])) {
     if (isset($_POST['cerrarSesion'])) {
@@ -66,8 +77,19 @@ if (isset($_SESSION['user'])) {
         echo "<script type='text/javascript'> $('navPlatos').style.background = 'black'; </script>";
     } elseif (isset($_POST['idPlato'])) {
        include 'restaurante/platoSeleccion.php';
-    } else {
-        include 'restaurante/menu.php';
+    } elseif (isset($_POST['crearTicket'])) {
+       include 'restaurante/menu.php';
+    } elseif (isset($_POST['idTicket'])) {
+       include 'restaurante/ticket.php';
+    } elseif (isset($_POST['volverMenu'])) {
+       include 'restaurante/menu.php';
+    } elseif (isset($_POST['anadirPlato'])) {
+       include 'restaurante/menu.php';
+       echo "<script type='text/javascript'>
+            swal('Añadido!', 'Plato añadido al ticket', 'success');
+        </script>";
+    }  else {
+        include 'restaurante/home.php';
         echo "<script type='text/javascript'> $('navHome').style.background = 'black'; </script>";
     }
 } else {
@@ -81,7 +103,7 @@ if (isset($_SESSION['user'])) {
             "telefono" => 666999666,
             "perfil" => "Admin.Plataforma"
         ];
-        include 'restaurante/menu.php';
+        include 'restaurante/home.php';
         echo "<script type='text/javascript'> $('navHome').style.background = 'black'; </script>";
     } else {
         include 'restaurante/login.php';

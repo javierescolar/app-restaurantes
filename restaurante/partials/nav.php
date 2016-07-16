@@ -27,12 +27,12 @@
                 </li>
                 <li>
                     <form action="index.php" method="POST">
-                        <button id="navProductos" type="submit" class="btn-link" name="productos">Productos</button>
+                        <button id="navProductos" type="submit" class="btn-link" name="productos">Ingredientes</button>
                     </form>
                 </li>
                 <li>
                     <form action="index.php" method="POST">
-                        <button type="submit" class="btn-link" name="inventario">Inventario</button>
+                        <button type="submit" class="btn-link" name="inventario">Facturación</button>
                     </form>
                 </li>
                 <li>

@@ -20,28 +20,22 @@
             ?>
 
             <section class="cuerpo">
-               <div class="col-md-12 col-xs-12">
-                   <?php
-                    echo "<h1 class='text-center'>".$datosPlatos[$_POST['idPlato']]['Nombre']."</h1>";
-                    ?>
-                   <div class="col-md-12 col-xs-12">
-                       
-                    <?php
-                        echo  "<img src='img/".$datosPlatos[$_POST["idPlato"]]["imagen"]."' class='img-responsive platoFoto'></img>";
-                        echo "<p class='textDescripcion'>".$datosPlatos[$_POST["idPlato"]]["Descripcion"]."</p>";
-                    ?> 
-                   </div>
-                       
-               </div>
-                <div class="row col-md-12 col-xs-12">
-                    <form action="index.php" method="POST">
-                        <input type="submit" name="volverMenu" value="Volver" class="btn btn-danger col-md-offset-4 col-md-2"/>
-                        <input type="submit" name="anadirPlato" value="Añadir al ticket" class="btn btn-danger col-md-offset-1 col-md-2"/>
-                    </form>
-                </div>
-            
+                
+            <?php
+                include 'restaurante/partials/formHome.php';
+            ?>
             </section>
-            
+            <footer class="pie col-md-12 text-center col-xs-12">
+            <!--
+                <ul>
+                    <li><a href="#">Elemento del footer</a></li>
+                    <li><a href="#">Elemento del footer</a></li>
+                    <li><a href="#">Elemento del footer</a></li>
+                    <li><a href="#">Elemento del footer</a></li>
+                </ul>
+            -->
+            </footer>
+            <!--<div id="marcaLegal"><p>@copyright 2016</p></div>-->
         </div>
     </body>
     <script type="text/javascript" src="js/jquery-1.12.1.min.js"></script>

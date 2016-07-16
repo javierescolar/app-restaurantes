@@ -82,7 +82,7 @@ function addRowForm(form) {
             celdaCantidad = document.createElement('div'),
             celdaCaducidad = document.createElement('div'),
             celdaAccion = document.createElement('div');
-    fila.setAttribute('class', 'form-group row col-md-offset-1');
+    fila.setAttribute('class', 'form-group row');
     celdaEan.setAttribute('class', 'col-xs-12 col-md-3');
     celdaNombre.setAttribute('class', 'col-xs-12 col-md-3');
     celdaCantidad.setAttribute('class', 'col-xs-12 col-md-2');

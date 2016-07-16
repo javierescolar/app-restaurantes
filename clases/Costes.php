@@ -7,7 +7,7 @@ class Coste {
     private $coste;
     private $beneficio;
     
-    
+        
     public function __construct($coste,$beneficio){
         $this->beneficio = $beneficio;
         $this->coste = $coste

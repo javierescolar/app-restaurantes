@@ -152,3 +152,7 @@ nav li button:hover{
 .formularios input[type=text],input[type=email],input[type=date],input[type=number]{
     height:2em !important;
 }
+
+.formTickets:hover{
+    cursor:pointer; cursor: hand;	
+}
