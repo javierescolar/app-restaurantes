@@ -25,7 +25,7 @@
             $x=0;
             foreach($datosPlatos as $fila){
             echo "<form action='index.php' method='POST' onClick='this.submit()'>"; 
-            echo '<div class="col-md-4 col-xs-6 platoMenu">'
+            echo '<div class="col-md-4 col-xs-12 platoMenu">'
                    .'<div class="col-md-6 col-xs-6">'
                    .'<img class="img-responsive" src="img/'.$fila["imagen"].'"/>'
                 .'</div>'
