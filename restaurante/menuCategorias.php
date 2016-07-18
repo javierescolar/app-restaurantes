@@ -16,14 +16,24 @@
         <div class="container-fluid">
 
             <?php
+
             include ($_SESSION['user']['perfil'] == 3)? 'restaurante/partials/navCamarero.php':'restaurante/partials/nav.php';
             ?>
 
-            <section class="cuerpo container">
+            <section class="cuerpo">
                 
-            <?php
-                include 'restaurante/partials/formHome.php';
-            ?>
+                <?php
+                $colores = ["btn-primary", "btn-success", "btn-info", "btn-warning", "btn-danger", "btn-default"];
+                   foreach ($categorias as $key=>$categoria) {
+                       echo '<form action="index.php" method="POST">';
+                        echo '<button type=submit name="seleccionCategoria" class="categoria col-md-5 col-xs-5 col-xs-6 text-center btn '.$colores[$key] .'">';
+                            echo '<h4>'.$categoria.'</h4>';
+                        echo '</button>';
+                        echo '<input type="hidden" name="categoriaSeleccionada" value="'.$key.'"/>';
+                        echo '</form>';
+                   }
+                ?>
+                
             </section>
             <footer class="pie col-md-12 text-center col-xs-12">
             <!--

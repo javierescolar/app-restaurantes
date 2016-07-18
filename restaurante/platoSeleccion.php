@@ -16,9 +16,13 @@
         <div class="container-fluid">
 
             <?php
-            include 'restaurante/partials/nav.php'
-            ?>
 
+            include ($_SESSION['user']['perfil'] == 3)? 'restaurante/partials/navCamarero.php':'restaurante/partials/nav.php';
+
+
+            include 'restaurante/partials/subNav.php';
+            ?>
+           
             <section class="cuerpo">
                <div class="col-md-12 col-xs-12">
                    <?php
@@ -35,8 +39,7 @@
                </div>
                 <div class="row col-md-12 col-xs-12">
                     <form action="index.php" method="POST">
-                        <input type="submit" name="volverMenu" value="Volver" class="btn btn-danger col-md-offset-4 col-md-2"/>
-                        <input type="submit" name="anadirPlato" value="Añadir al ticket" class="btn btn-danger col-md-offset-1 col-md-2"/>
+                        <input type="submit" name="anadirPlato" value="Añadir al ticket" class="btn btn-danger col-md-offset-10 col-md-2 col-xs-offset-1 col-xs-11"/>
                     </form>
                 </div>
             

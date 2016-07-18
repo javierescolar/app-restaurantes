@@ -3,7 +3,7 @@
 
 require_once('clases/Conexion.php');
 
-class Usuario {
+class Usuario extends Restaurante{
 
     private $id;
     private $restaurante;

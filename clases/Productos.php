@@ -2,7 +2,7 @@
 
 require_once 'Conexion.php';
 
-class Productos {
+class Productos extends Restaurante{
     
     private $ean;
     private $nombre;

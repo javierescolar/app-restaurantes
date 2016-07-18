@@ -13,8 +13,8 @@
 
     <body>
         <div class="container-fluid">
-            <?php
-            include 'restaurante/partials/nav.php'
+           <?php
+            include ($_SESSION['user']['perfil'] == 3)? 'restaurante/partials/navCamarero.php':'restaurante/partials/nav.php';
             ?>
             <section class="cuerpo">
                 <div class="row col-xs-12 col-md-8 col-md-offset-2">

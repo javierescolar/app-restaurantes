@@ -19,14 +19,14 @@
             </div>
         </div>
          <?php
-         $x=0;
+         $x=0;//SESION/ $tickets=consulta por el vendedor y si esta abierto o no 
          foreach($tickets as $ticket){
              echo '<div class="form-group row formTickets">';
              echo "<form action='index.php' method='POST' onClick='this.submit()'>"; 
              foreach($ticket as $columna => $dato){
                 echo ($columna != "Fecha" )?'<div class="col-xs-3 col-md-3 text-center">'.$dato.'</div>':'';
              }
-            echo "<input type='hidden' value='".$x."'name='idTicket'/>";
+            echo "<input type='hidden' value='".$ticket['id']."'name='idTicket'/>";
             echo "</form>";
             echo "</div>";
             $x++;

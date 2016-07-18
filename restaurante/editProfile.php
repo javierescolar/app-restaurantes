@@ -14,7 +14,7 @@
     <body>
         <div class="container-fluid">
             <?php
-            include 'restaurante/partials/nav.php'
+            include ($_SESSION['user']['perfil'] == 3)? 'restaurante/partials/navCamarero.php':'restaurante/partials/nav.php';
             ?>
             <section class="cuerpo">
                 <?php

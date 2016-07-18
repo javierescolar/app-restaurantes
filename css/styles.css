@@ -156,3 +156,30 @@ nav li button:hover{
 .formTickets:hover{
     cursor:pointer; cursor: hand;	
 }
+
+.categoria{
+    margin-left:5.4em;
+    margin-top:2em;
+}
+
+.subNav{
+    background-color:#E6E6E6;
+    margin-top:-1.25em;
+    border-top:solid #BDBDBD 0.1em;
+    border-bottom:solid #BDBDBD 0.1em;
+    height:1.7em;
+}
+.subNav ul li{
+    margin-top:-1em;
+    display:inline-block;
+    list-style:none;
+    text-decoration:none;
+    color:#A4A4A4;
+}
+.subNav ul li button{
+    color:#A4A4A4;
+}
+.subNav ul li button:hover{
+    text-decoration:none;
+    color:white;
+}

@@ -2,7 +2,7 @@
 
 require_once 'Conexion.php';
 
-class Platos {
+class Platos extends Restaurante{
     
     private $id;
     private $nombre;
@@ -10,16 +10,19 @@ class Platos {
     private $ingredientes;
     private $descripcion;
     private $imagen;
+    private $valoracion;
     
     
     
-    public function __construct($id,$nombre,$precio,$ingredientes,$descripcion,$imagen){
+    
+    public function __construct($id,$nombre,$precio,$ingredientes,$descripcion,$imagen,$valoracion){
         $this->id = $id;
         $this->nombre = $nombre;
         $this->precio = $precio;
         $this->ingredientes = $ingredientes;
         $this->descripcion = $descripcion;
         $this->imagen = $imagen;
+        $this->valoracion = $valoracion;
     }
     
     

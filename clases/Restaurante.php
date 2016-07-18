@@ -4,10 +4,11 @@ require_once 'Conexion.php';
 
 class Restaurante {
     
-    private $cif;
-    private $nombre;
-    private $email;
-    private $telefono;
+    
+    protected $cif;
+    protected $nombre;
+    protected $email;
+    protected $telefono;
     
     
     public function __construct($cif,$nombre,$email,$telefono){
@@ -24,7 +25,7 @@ class Restaurante {
         $conexion = null;
     }
     
-    public function muestraCosteBeneficio(){
+    public function muestraRestaurante(){
         
         $conexion = new Conexion();
         $consulta = $conexion->prepare('SELECT * FROM restaurantes');

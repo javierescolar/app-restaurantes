@@ -16,7 +16,8 @@
         <div class="container-fluid">
 
             <?php
-            include 'restaurante/partials/nav.php'
+            include ($_SESSION['user']['perfil'] == 3)? 'restaurante/partials/navCamarero.php':'restaurante/partials/nav.php';
+            include 'restaurante/partials/subNav.php';
             ?>
 
             <section class="cuerpo">
@@ -24,33 +25,25 @@
             <?php
             $x=0;
             foreach($datosPlatos as $fila){
-            echo "<form action='index.php' method='POST' onClick='this.submit()'>"; 
-            echo '<div class="col-md-4 col-xs-12 platoMenu">'
-                   .'<div class="col-md-6 col-xs-6">'
-                   .'<img class="img-responsive" src="img/'.$fila["imagen"].'"/>'
-                .'</div>'
-                .'<div class="col-md-6 col-xs-6">'
-                    .'<h4>'.$fila["Nombre"].'</h4>'
-                    .'<p>'.$fila["Descripcion"].'</p>'
-                .'</div>'
-            .'</div>';
-            echo "<input type='hidden' name='idPlato' value='$x'/>";
-            echo "</form>";
-            $x++;
+                if($fila["Categoria"] == $_POST["categoriaSeleccionada"]){
+                    echo "<form action='index.php' method='POST' onClick='this.submit()'>"; 
+                    echo '<div class="col-md-4 col-xs-12 platoMenu">'
+                           .'<div class="col-md-6 col-xs-6">'
+                           .'<img class="img-responsive" src="img/'.$fila["imagen"].'"/>'
+                        .'</div>'
+                        .'<div class="col-md-6 col-xs-6">'
+                            .'<h4>'.$fila["Nombre"].'</h4>'
+                            .'<p>'.$fila["Descripcion"].'</p>'
+                        .'</div>'
+                    .'</div>';
+                    echo "<input type='hidden' name='idPlato' value='$x'/>";
+                    echo "</form>";
+                    $x++;
+                }
             }
             ?>
             </section>
-            <footer class="pie col-md-12 text-center col-xs-12">
-            <!--
-                <ul>
-                    <li><a href="#">Elemento del footer</a></li>
-                    <li><a href="#">Elemento del footer</a></li>
-                    <li><a href="#">Elemento del footer</a></li>
-                    <li><a href="#">Elemento del footer</a></li>
-                </ul>
-            -->
-            </footer>
-            <!--<div id="marcaLegal"><p>@copyright 2016</p></div>-->
+            
         </div>
     </body>
     <script type="text/javascript" src="js/jquery-1.12.1.min.js"></script>

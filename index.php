@@ -4,6 +4,14 @@ $descripcion = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do 
 session_start();
 //variables para pruebas
 $mensajeLogin = "";
+$categorias = [ 
+    1 => "Entrantes",
+    2 => "Combos",
+    3 => "Primeros",
+    4 => "Segundos",
+    5 => "Postres"
+];
+
 $datosProductos = [
     ["EAN" => "EAN1", "Nombre" => "Nombre1", "Cantidad" => "Cantidad1", "Caducidad" => "Caducidad1"],
     ["EAN" => "EAN2", "Nombre" => "Nombre2", "Cantidad" => "Cantidad2", "Caducidad" => "Caducidad2"],
@@ -16,21 +24,21 @@ $datosProductos = [
 ];
 
 $datosPlatos = [
-    ["imagen" => "brochetas.jpg", "Nombre" => "Nombre1", "Descripcion" => $descripcion],
-    ["imagen" => "combo.jpg", "Nombre" => "Nombre2", "Descripcion" => $descripcion],
-    ["imagen" => "pasta.jpg", "Nombre" => "Nombre3", "Descripcion" => $descripcion],
-    ["imagen" => "pollito.jpg", "Nombre" => "Nombre4","Descripcion" => $descripcion],
-    ["imagen" => "brochetas.jpg", "Nombre" => "Nombre1", "Descripcion" => $descripcion],
-    ["imagen" => "combo.jpg", "Nombre" => "Nombre2", "Descripcion" => $descripcion],
-    ["imagen" => "pasta.jpg", "Nombre" => "Nombre3", "Descripcion" => $descripcion],
-    ["imagen" => "pollito.jpg", "Nombre" => "Nombre4","Descripcion" => $descripcion],
-    ["imagen" => "brochetas.jpg", "Nombre" => "Nombre1", "Descripcion" => $descripcion],
-    ["imagen" => "combo.jpg", "Nombre" => "Nombre2", "Descripcion" => $descripcion],
-    ["imagen" => "pasta.jpg", "Nombre" => "Nombre3", "Descripcion" => $descripcion],
-    ["imagen" => "pollito.jpg", "Nombre" => "Nombre4","Descripcion" => $descripcion],
-    ["imagen" => "brochetas.jpg", "Nombre" => "Nombre1", "Descripcion" => $descripcion],
-    ["imagen" => "combo.jpg", "Nombre" => "Nombre2", "Descripcion" => $descripcion],
-    ["imagen" => "pasta.jpg", "Nombre" => "Nombre3", "Descripcion" => $descripcion]
+  1 =>  ["imagen" => "brochetas.jpg", "Nombre" => "Nombre1", "Descripcion" => $descripcion, "Categoria" => 1],
+  2 =>  ["imagen" => "combo.jpg", "Nombre" => "Nombre2", "Descripcion" => $descripcion, "Categoria" => 1],
+  3 =>  ["imagen" => "pasta.jpg", "Nombre" => "Nombre3", "Descripcion" => $descripcion, "Categoria" => 1],
+  4 =>  ["imagen" => "pollito.jpg", "Nombre" => "Nombre4","Descripcion" => $descripcion, "Categoria" => 1],
+    ["imagen" => "brochetas.jpg", "Nombre" => "Nombre1", "Descripcion" => $descripcion, "Categoria" => 2],
+    ["imagen" => "combo.jpg", "Nombre" => "Nombre2", "Descripcion" => $descripcion, "Categoria" => 2],
+    ["imagen" => "pasta.jpg", "Nombre" => "Nombre3", "Descripcion" => $descripcion, "Categoria" => 3],
+    ["imagen" => "pollito.jpg", "Nombre" => "Nombre4","Descripcion" => $descripcion, "Categoria" => 3],
+    ["imagen" => "brochetas.jpg", "Nombre" => "Nombre1", "Descripcion" => $descripcion, "Categoria" => 3],
+    ["imagen" => "combo.jpg", "Nombre" => "Nombre2", "Descripcion" => $descripcion, "Categoria" => 3],
+    ["imagen" => "pasta.jpg", "Nombre" => "Nombre3", "Descripcion" => $descripcion, "Categoria" => 3],
+    ["imagen" => "pollito.jpg", "Nombre" => "Nombre4","Descripcion" => $descripcion, "Categoria" => 4],
+    ["imagen" => "brochetas.jpg", "Nombre" => "Nombre1", "Descripcion" => $descripcion, "Categoria" => 4],
+    ["imagen" => "combo.jpg", "Nombre" => "Nombre2", "Descripcion" => $descripcion, "Categoria" => 4],
+    ["imagen" => "pasta.jpg", "Nombre" => "Nombre3", "Descripcion" => $descripcion, "Categoria" => 5]
 ];
 
 $tickets = [
@@ -43,6 +51,14 @@ $tickets = [
     ["id" => 7,"Mesa" => 7,"Fecha" => "","Camarero" => $_SESSION["user"]["nombre"],"Total" => 90],
     ["id" => 8,"Mesa" => 7,"Fecha" => "","Camarero" => $_SESSION["user"]["nombre"],"Total" => 90],
     ["id" => 9,"Mesa" => 7,"Fecha" => "","Camarero" => $_SESSION["user"]["nombre"],"Total" => 90]
+];
+$_SESSION['ticket'] = [
+    "id" => 1,"mesa" => 5,"total" =>75
+];
+$platosTicket = [
+    ["id" => 1, "idTicket" => 1 , "plato" => 1],
+    ["id" => 2, "idTicket" => 1 , "plato" => 2],
+    ["id" => 3, "idTicket" => 1 , "plato" => 3]
 ];
 
 if (isset($_SESSION['user'])) {
@@ -78,17 +94,23 @@ if (isset($_SESSION['user'])) {
     } elseif (isset($_POST['idPlato'])) {
        include 'restaurante/platoSeleccion.php';
     } elseif (isset($_POST['crearTicket'])) {
+       include 'restaurante/menuCategorias.php';
+    } elseif (isset($_POST['seleccionCategoria'])) {
        include 'restaurante/menu.php';
     } elseif (isset($_POST['idTicket'])) {
        include 'restaurante/ticket.php';
     } elseif (isset($_POST['volverMenu'])) {
+       include 'restaurante/menu.php';
+    } elseif (isset($_POST['categoria'])) {
+       include 'restaurante/menuCategorias.php';
+    } elseif (isset($_POST['platos'])) {
        include 'restaurante/menu.php';
     } elseif (isset($_POST['anadirPlato'])) {
        include 'restaurante/menu.php';
        echo "<script type='text/javascript'>
             swal('Añadido!', 'Plato añadido al ticket', 'success');
         </script>";
-    }  else {
+    } else {
         include 'restaurante/home.php';
         echo "<script type='text/javascript'> $('navHome').style.background = 'black'; </script>";
     }
@@ -101,7 +123,7 @@ if (isset($_SESSION['user'])) {
             "nombre" => "Administrador",
             "apellidos" => "Admin Admin",
             "telefono" => 666999666,
-            "perfil" => "Admin.Plataforma"
+            "perfil" => 3
         ];
         include 'restaurante/home.php';
         echo "<script type='text/javascript'> $('navHome').style.background = 'black'; </script>";
