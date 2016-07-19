@@ -26,7 +26,7 @@
                 $colores = ["btn-primary", "btn-success", "btn-info", "btn-warning", "btn-danger", "btn-default"];
                    foreach ($categorias as $key=>$categoria) {
                        echo '<form action="index.php" method="POST">';
-                        echo '<button type=submit name="seleccionCategoria" class="categoria col-md-5 col-xs-5 col-xs-6 text-center btn '.$colores[$key] .'">';
+                        echo '<button type=submit name="seleccionCategoria" class="categoria col-md-5 col-xs-5 col-xs-6 text-center btn '.$colores[$key - 1] .'">';
                             echo '<h4>'.$categoria.'</h4>';
                         echo '</button>';
                         echo '<input type="hidden" name="categoriaSeleccionada" value="'.$key.'"/>';
@@ -35,17 +35,7 @@
                 ?>
                 
             </section>
-            <footer class="pie col-md-12 text-center col-xs-12">
-            <!--
-                <ul>
-                    <li><a href="#">Elemento del footer</a></li>
-                    <li><a href="#">Elemento del footer</a></li>
-                    <li><a href="#">Elemento del footer</a></li>
-                    <li><a href="#">Elemento del footer</a></li>
-                </ul>
-            -->
-            </footer>
-            <!--<div id="marcaLegal"><p>@copyright 2016</p></div>-->
+            
         </div>
     </body>
     <script type="text/javascript" src="js/jquery-1.12.1.min.js"></script>

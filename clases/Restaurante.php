@@ -4,14 +4,15 @@ require_once 'Conexion.php';
 
 class Restaurante {
     
-    
+    protected $id;
     protected $cif;
     protected $nombre;
     protected $email;
     protected $telefono;
     
     
-    public function __construct($cif,$nombre,$email,$telefono){
+    public function __construct($id,$cif,$nombre,$email,$telefono){
+        $this->id = $id;
         $this->cif = $cif;
         $this->nombre = $nombre;
         $this->email = $email;

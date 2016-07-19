@@ -26,8 +26,9 @@
             $x=0;
             foreach($datosPlatos as $fila){
                 if($fila["Categoria"] == $_POST["categoriaSeleccionada"]){
+                    echo '<div class="col-md-4 col-xs-12">';
                     echo "<form action='index.php' method='POST' onClick='this.submit()'>"; 
-                    echo '<div class="col-md-4 col-xs-12 platoMenu">'
+                    echo '<div class="row platoMenu">'
                            .'<div class="col-md-6 col-xs-6">'
                            .'<img class="img-responsive" src="img/'.$fila["imagen"].'"/>'
                         .'</div>'
@@ -38,6 +39,12 @@
                     .'</div>';
                     echo "<input type='hidden' name='idPlato' value='$x'/>";
                     echo "</form>";
+                    echo "<form action='index.php' method='POST'>";
+                    echo '<div class="row botonPlatoMenu">';
+                    echo '<input type="submit" name="anadirPlato" value="Añadir al ticket" class="col-md-6 col-md-offset-3 col-xs-12 btn btn-danger"/>';
+                    echo '</div>';
+                    echo "</form>";
+                    echo '</div>';
                     $x++;
                 }
             }

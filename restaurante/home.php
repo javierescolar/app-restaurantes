@@ -25,17 +25,7 @@
                 include 'restaurante/partials/formHome.php';
             ?>
             </section>
-            <footer class="pie col-md-12 text-center col-xs-12">
-            <!--
-                <ul>
-                    <li><a href="#">Elemento del footer</a></li>
-                    <li><a href="#">Elemento del footer</a></li>
-                    <li><a href="#">Elemento del footer</a></li>
-                    <li><a href="#">Elemento del footer</a></li>
-                </ul>
-            -->
-            </footer>
-            <!--<div id="marcaLegal"><p>@copyright 2016</p></div>-->
+            
         </div>
     </body>
     <script type="text/javascript" src="js/jquery-1.12.1.min.js"></script>

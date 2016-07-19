@@ -24,21 +24,21 @@ $datosProductos = [
 ];
 
 $datosPlatos = [
-  1 =>  ["imagen" => "brochetas.jpg", "Nombre" => "Nombre1", "Descripcion" => $descripcion, "Categoria" => 1],
-  2 =>  ["imagen" => "combo.jpg", "Nombre" => "Nombre2", "Descripcion" => $descripcion, "Categoria" => 1],
-  3 =>  ["imagen" => "pasta.jpg", "Nombre" => "Nombre3", "Descripcion" => $descripcion, "Categoria" => 1],
-  4 =>  ["imagen" => "pollito.jpg", "Nombre" => "Nombre4","Descripcion" => $descripcion, "Categoria" => 1],
-    ["imagen" => "brochetas.jpg", "Nombre" => "Nombre1", "Descripcion" => $descripcion, "Categoria" => 2],
-    ["imagen" => "combo.jpg", "Nombre" => "Nombre2", "Descripcion" => $descripcion, "Categoria" => 2],
-    ["imagen" => "pasta.jpg", "Nombre" => "Nombre3", "Descripcion" => $descripcion, "Categoria" => 3],
-    ["imagen" => "pollito.jpg", "Nombre" => "Nombre4","Descripcion" => $descripcion, "Categoria" => 3],
-    ["imagen" => "brochetas.jpg", "Nombre" => "Nombre1", "Descripcion" => $descripcion, "Categoria" => 3],
-    ["imagen" => "combo.jpg", "Nombre" => "Nombre2", "Descripcion" => $descripcion, "Categoria" => 3],
-    ["imagen" => "pasta.jpg", "Nombre" => "Nombre3", "Descripcion" => $descripcion, "Categoria" => 3],
-    ["imagen" => "pollito.jpg", "Nombre" => "Nombre4","Descripcion" => $descripcion, "Categoria" => 4],
-    ["imagen" => "brochetas.jpg", "Nombre" => "Nombre1", "Descripcion" => $descripcion, "Categoria" => 4],
-    ["imagen" => "combo.jpg", "Nombre" => "Nombre2", "Descripcion" => $descripcion, "Categoria" => 4],
-    ["imagen" => "pasta.jpg", "Nombre" => "Nombre3", "Descripcion" => $descripcion, "Categoria" => 5]
+  1 =>  ["imagen" => "brochetas.jpg", "Nombre" => "Nombre1", "Descripcion" => $descripcion, "Categoria" => 1, "Precio" => 15.2],
+  2 =>  ["imagen" => "combo.jpg", "Nombre" => "Nombre2", "Descripcion" => $descripcion, "Categoria" => 1, "Precio" => 15.2],
+  3 =>  ["imagen" => "pasta.jpg", "Nombre" => "Nombre3", "Descripcion" => $descripcion, "Categoria" => 1, "Precio" => 15.2],
+  4 =>  ["imagen" => "pollito.jpg", "Nombre" => "Nombre4","Descripcion" => $descripcion, "Categoria" => 1, "Precio" => 15.2],
+    ["imagen" => "brochetas.jpg", "Nombre" => "Nombre1", "Descripcion" => $descripcion, "Categoria" => 2, "Precio" => 15.2],
+    ["imagen" => "combo.jpg", "Nombre" => "Nombre2", "Descripcion" => $descripcion, "Categoria" => 2, "Precio" => 15.2],
+    ["imagen" => "pasta.jpg", "Nombre" => "Nombre3", "Descripcion" => $descripcion, "Categoria" => 3, "Precio" => 15.2],
+    ["imagen" => "pollito.jpg", "Nombre" => "Nombre4","Descripcion" => $descripcion, "Categoria" => 3, "Precio" => 15.2],
+    ["imagen" => "brochetas.jpg", "Nombre" => "Nombre1", "Descripcion" => $descripcion, "Categoria" => 3, "Precio" => 15.2],
+    ["imagen" => "combo.jpg", "Nombre" => "Nombre2", "Descripcion" => $descripcion, "Categoria" => 3, "Precio" => 15.2],
+    ["imagen" => "pasta.jpg", "Nombre" => "Nombre3", "Descripcion" => $descripcion, "Categoria" => 3, "Precio" => 15.2],
+    ["imagen" => "pollito.jpg", "Nombre" => "Nombre4","Descripcion" => $descripcion, "Categoria" => 4, "Precio" => 15.2],
+    ["imagen" => "brochetas.jpg", "Nombre" => "Nombre1", "Descripcion" => $descripcion, "Categoria" => 4, "Precio" => 15.2],
+    ["imagen" => "combo.jpg", "Nombre" => "Nombre2", "Descripcion" => $descripcion, "Categoria" => 4, "Precio" => 15.2],
+    ["imagen" => "pasta.jpg", "Nombre" => "Nombre3", "Descripcion" => $descripcion, "Categoria" => 5, "Precio" => 15.2]
 ];
 
 $tickets = [
