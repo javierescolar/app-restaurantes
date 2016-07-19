@@ -4,17 +4,17 @@ require_once 'Conexion.php';
 
 class Coste extends Restaurante{
     
-    private $coste;
-    private $beneficio;
-    private $empleado;
-    private $ingredientes;
-    private $local;
-    private $IVA = 21;
+    protected $coste;
+    protected $beneficio;
+    protected $empleado;
+    protected $ingredientes;
+    protected $local;
+    protected $IVA = 21;
     
         
     public function __construct($coste,$beneficio){
         $this->beneficio = $beneficio;
-        $this->coste = $coste
+        $this->coste = $coste;
     }
     
     function calculaIva($precio){
@@ -38,15 +38,14 @@ class Coste extends Restaurante{
     
     public function muestraCosteBeneficio(){
         
-        $conexion = new Conexion();
-        $consulta = $conexion->prepare('SELECT coste, beneficio FROM costes');
-        $consulta->execute();
-        $registro = $consulta->fetch();
-        if($registro){
-            return new self($registro['coste'],$registro['beneficio']);
-        }else{
-            return false;
-        }
+        
+        $bd = BD::getConexion();
+        $select = 'SELECT coste, beneficio FROM costes';
+        $sentencia = $bd->prepare($select);
+        $sentencia->execute();
+        $sentencia->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'costes');
+        $coste = $sentencia->fetchAll();
+        return $coste;
     
     }
     

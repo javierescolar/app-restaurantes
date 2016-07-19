@@ -29,7 +29,7 @@
             </div>
             <label for="newPerfil" class="col-xs-1 col-md-1 form-control-label">Perfil:</label>
             <div class="col-xs-12 col-md-3">
-                <input type="text" name="newPerfil" class="form-control" required disabled value="<?php echo $_SESSION['user']['perfil']; ?>">
+                <input type="text" name="newPerfil" class="form-control" required disabled value="<?php echo $_SESSION['user']['idPerfil']; ?>">
             </div>
         </div>
         <div class="form-group row ">

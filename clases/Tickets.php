@@ -2,13 +2,13 @@
 
 require_once 'Conexion.php';
 
-class Ticket extends Restaurante{
+class Ticket extends Plato{
     
-    private $mesa;
-    private $fecha;
-    private $vendedor;
-    private $total;
-    private $abierto;
+    protected $mesa;
+    protected $fecha;
+    protected $vendedor;
+    protected $total;
+    protected $abierto;
     
     public function __construct($mesa,$fecha,$vendedor,$total,$abierto){
         
@@ -29,15 +29,13 @@ class Ticket extends Restaurante{
     
     public function muestraTickets(){
         
-        $conexion = new Conexion();
-        $consulta = $conexion->prepare('SELECT * FROM tickets');
-        $consulta->execute();
-        $registro = $consulta->fetch();
-        if($registro){
-            return new self($registro['mesa'],$registro['fecha'],$registro['vendedor'],$registro['total'],$registro['abierto']);
-        }else{
-            return false;
-        }
+        $bd = BD::getConexion();
+        $select = 'SELECT * FROM tickets';
+        $sentencia = $bd->prepare($select);
+        $sentencia->execute();
+        $sentencia->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'tickets');
+        $ticket = $sentencia->fetchAll();
+        return $ticket;
     }
     
     public function getMesa(){

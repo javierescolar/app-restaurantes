@@ -1,3 +1,8 @@
+<?php
+
+$platosTicket = TicketPlato::muestraTikectPlato($_POST['idTicket']);
+
+?>
 <div class="formularios row col-xs-12 col-md-6 col-md-offset-3">
 
     <div class="text-center cabeceraForm">Ticket</div>
@@ -19,23 +24,20 @@
         
         echo '<label for="platos" class="col-xs-1 col-md-1 form-control-label">Platos</label>
         <label for="precios" class="col-xs-1 col-md-1 col-md-offset-8 col-xs-offset-6 form-control-label">Precios</label></div>';
-            foreach($platosTicket as $platos){
+            foreach($platosTicket as $plato){
+                $datosPlato = Plato::muestraPlatoId($plato["idPlato"]);
                 echo '<div class="form-group row">';
-                if($platos["idTicket"] == $_POST['idTicket']){
-                foreach ($platos as $key => $plato) {
-                        if($key == "plato"){
+                
                             echo '<div class="col-xs-7 col-md-5 col-md-offset-1">';
-                            echo  '<input type="text" name="plato" class="form-control" required disabled value="'.$datosPlatos[$plato]['Nombre'].'">';
+                            echo  '<input type="text" name="plato" class="form-control" required disabled value="'.$datosPlato::getNombre().'">';
                             echo '</div>';
                             echo '<div class="col-xs-3 col-md-2 col-md-offset-3">';
-                            echo  '<input type="text" name="precio" class="form-control" required disabled value="'.$datosPlatos[$plato]['Precio'].'">';
+                            echo  '<input type="text" name="precio" class="form-control" required disabled value="'.$datosPlato::getPrecio().'">';
                             echo '</div>';
                             echo '<div class="col-xs-2 col-md-1">';
                             echo  "<button type='submit' name='dropProduct' class='btn-link drop'><span class='glyphicon glyphicon-remove'></span></button>";
                             echo '</div>';
-                        }
-                    }
-                }
+
                 echo "</div>";
             }
         ?>

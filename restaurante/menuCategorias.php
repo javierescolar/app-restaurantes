@@ -17,19 +17,20 @@
 
             <?php
 
-            include ($_SESSION['user']['perfil'] == 3)? 'restaurante/partials/navCamarero.php':'restaurante/partials/nav.php';
+            include ($_SESSION['user']['idPerfil'] == 3)? 'restaurante/partials/navCamarero.php':'restaurante/partials/nav.php';
             ?>
 
             <section class="cuerpo">
                 
                 <?php
-                $colores = ["btn-primary", "btn-success", "btn-info", "btn-warning", "btn-danger", "btn-default"];
+                $colores = ["","btn-primary", "btn-success", "btn-info", "btn-warning", "btn-danger", "btn-default"];
+                $categorias = Categoria::muestraCategorias();
                    foreach ($categorias as $key=>$categoria) {
                        echo '<form action="index.php" method="POST">';
-                        echo '<button type=submit name="seleccionCategoria" class="categoria col-md-5 col-xs-5 col-xs-6 text-center btn '.$colores[$key - 1] .'">';
-                            echo '<h4>'.$categoria.'</h4>';
+                        echo '<button type=submit name="seleccionCategoria" class="categoria col-md-5 col-xs-5 col-xs-6 text-center btn '.$colores[$categoria['idCategoria']] .'">';
+                            echo '<h4>'.$categoria['nombre'].'</h4>';
                         echo '</button>';
-                        echo '<input type="hidden" name="categoriaSeleccionada" value="'.$key.'"/>';
+                        echo '<input type="hidden" name="categoriaSeleccionada" value="'.$categoria['idCategoria'].'"/>';
                         echo '</form>';
                    }
                 ?>

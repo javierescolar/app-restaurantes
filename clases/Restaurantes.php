@@ -26,18 +26,19 @@ class Restaurante {
         $conexion = null;
     }
     
-    public function muestraRestaurante(){
+    public function muestraRestaurantes(){
         
-        $conexion = new Conexion();
-        $consulta = $conexion->prepare('SELECT * FROM restaurantes');
-        $consulta->execute();
-        $registro = $consulta->fetch();
-        if($registro){
-            return new self($registro['cif'],$registro['nombre'],$registro['email'],$registro['telefono']);
-        }else{
-            return false;
-        }
+        $bd = BD::getConexion();
+        $select = 'SELECT * FROM restaurantes';
+        $sentencia = $bd->prepare($select);
+        $sentencia->execute();
+        $sentencia->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'restaurantes');
+        $restaurante = $sentencia->fetchAll();
+        return $restaurante;
     
+    }
+    public function getId(){
+        return $thisd->id;
     }
     
     public function getCif() {

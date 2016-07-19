@@ -35,18 +35,37 @@ class Platos extends Restaurante{
     
     public function muestraPlatos(){
         
-        $conexion = new Conexion();
-        $consulta = $conexion->prepare('SELECT * FROM platos');
-        $consulta->execute();
-        $registro = $consulta->fetch();
-        if($registro){
-            return new self($registro['id'],$registro['nombre'],$registro['precio'],$registro['ingredientes'],$registro['descripcion'],$registro['imagen'],$registro['idRestaurante']);
-        }else{
-            return false;
-        }
+        
+        $bd = BD::getConexion();
+        $select = 'SELECT * FROM platos';
+        $sentencia = $bd->prepare($select);
+        $sentencia->execute();
+        $sentencia->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'platos');
+        $plato = $sentencia->fetchAll();
+        return $plato;
     
     }
     
+    public function muestraPlatoId($idPlato){
+        $bd = BD::getConexion();
+        $select = 'SELECT * FROM platos WHERE idPlato ='.$idPlato;
+        $sentencia = $bd->prepare($select);
+        $sentencia->execute();
+        $sentencia->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'platos');
+        $plato = $sentencia->fetchAll();
+        return $plato;
+        
+    }
+    public function muestraPlatosCategoria($idCategoria){
+        $bd = BD::getConexion();
+        $select = 'SELECT * FROM platos WHERE idCategoria ='.$idCategoria;
+        $sentencia = $bd->prepare($select);
+        $sentencia->execute();
+        $sentencia->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'platos');
+        $plato = $sentencia->fetchAll();
+        return $plato;
+        
+    }
     public function getId() {
        return $this->id;
     }
