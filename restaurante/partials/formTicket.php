@@ -1,7 +1,7 @@
 <?php
 
-$platosTicket = TicketPlato::muestraTikectPlato($_POST['idTicket']);
-
+$platosTicket = Plato::muestraPlatoIdTicket($_POST['idTicket']);
+$datosTicket = Ticket::muestraTicketId($_POST['idTicket']);
 ?>
 <div class="formularios row col-xs-12 col-md-6 col-md-offset-3">
 
@@ -11,11 +11,11 @@ $platosTicket = TicketPlato::muestraTikectPlato($_POST['idTicket']);
             <div class="form-group row">
             <label for="ticket" class="col-xs-1 col-md-1 form-control-label">Ticket:</label>
             <div class="col-xs-7 col-md-3">
-                <input type="text" name="ticket" class="form-control" required disabled value="<?php echo $_SESSION['ticket']['id']; ?>">
+                <input type="text" name="ticket" class="form-control" required disabled value="<?php echo $datosTicket['idTicket'] ?>">
             </div>
             <label for="mesa" class="col-md-offset-5 col-xs-1 col-md-1 form-control-label">Mesa:</label>
             <div class="col-xs-3 col-md-2">
-                <input type="text" name="mesa" class="form-control" required value="<?php echo $_SESSION['ticket']['mesa']; ?>">
+                <input type="text" name="mesa" class="form-control" required value="<?php echo $datosTicket['mesa'] ?>">
             </div>
             <hr>
             </div>
@@ -25,14 +25,13 @@ $platosTicket = TicketPlato::muestraTikectPlato($_POST['idTicket']);
         echo '<label for="platos" class="col-xs-1 col-md-1 form-control-label">Platos</label>
         <label for="precios" class="col-xs-1 col-md-1 col-md-offset-8 col-xs-offset-6 form-control-label">Precios</label></div>';
             foreach($platosTicket as $plato){
-                $datosPlato = Plato::muestraPlatoId($plato["idPlato"]);
                 echo '<div class="form-group row">';
                 
                             echo '<div class="col-xs-7 col-md-5 col-md-offset-1">';
-                            echo  '<input type="text" name="plato" class="form-control" required disabled value="'.$datosPlato::getNombre().'">';
+                            echo  '<input type="text" name="plato" class="form-control" required disabled value="'.$plato['nombre'].'">';
                             echo '</div>';
                             echo '<div class="col-xs-3 col-md-2 col-md-offset-3">';
-                            echo  '<input type="text" name="precio" class="form-control" required disabled value="'.$datosPlato::getPrecio().'">';
+                            echo  '<input type="text" name="precio" class="form-control" required disabled value="'.$plato['precio'].'">';
                             echo '</div>';
                             echo '<div class="col-xs-2 col-md-1">';
                             echo  "<button type='submit' name='dropProduct' class='btn-link drop'><span class='glyphicon glyphicon-remove'></span></button>";
@@ -45,7 +44,7 @@ $platosTicket = TicketPlato::muestraTikectPlato($_POST['idTicket']);
         <div class="form-group row">
             <label for="total" class="col-md-offset-8 col-xs-1 col-md-1 form-control-label">Total:</label>
             <div class="col-xs-12 col-md-3">
-                <input type="text" name="total" class="form-control" required disabled value="<?php echo $_SESSION['ticket']['total']; ?>">
+                <input type="text" name="total" class="form-control" required disabled value="<?php echo $datosTicket['total']; ?>">
             </div>
         </div>
     </form>

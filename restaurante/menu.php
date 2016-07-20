@@ -23,7 +23,7 @@
             <section class="cuerpo">
                 
             <?php
-            $datosPlatos = Plato::muestraPlatosCategoria($_POST["categoriaSeleccionada"]);
+            $datosPlatos = Plato::muestraPlatosCategoria($_SESSION['categoriaSeleccionada']);
             foreach($datosPlatos as $plato){
               
                     echo '<div class="col-md-4 col-xs-12">';
@@ -42,6 +42,7 @@
                     echo "<form action='index.php' method='POST'>";
                     echo '<div class="row botonPlatoMenu">';
                     echo '<input type="submit" name="anadirPlato" value="Añadir al ticket" class="col-md-6 col-md-offset-3 col-xs-12 btn btn-danger"/>';
+                    echo "<input type='hidden' name='idPlato' value='".$plato["idPlato"]."'/>";
                     echo '</div>';
                     echo "</form>";
                     echo '</div>';

@@ -1,20 +1,20 @@
 <?php
 
-require_once 'Conexion.php';
-
+require_once 'BD.php';
+require_once 'Platos.php';
 class Ticket extends Plato{
     
     protected $mesa;
     protected $fecha;
-    protected $vendedor;
+    protected $idUsuario;
     protected $total;
     protected $abierto;
     
-    public function __construct($mesa,$fecha,$vendedor,$total,$abierto){
+    public function __construct($mesa,$fecha,$idUsuario,$total,$abierto){
         
         $this->mesa = $mesa;
         $this->fecha = $fecha;
-        $this->vendedor = $vendedor;
+        $this->idUsuario = $idUsuario;
         $this->total = $total;
         $this->abierto = $abierto;
     }
@@ -27,17 +27,38 @@ class Ticket extends Plato{
         $conexion = null;
     }
     
-    public function muestraTickets(){
+    public function muestraTickets($user){
         
-        $bd = BD::getConexion();
-        $select = 'SELECT * FROM tickets';
-        $sentencia = $bd->prepare($select);
-        $sentencia->execute();
-        $sentencia->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'tickets');
-        $ticket = $sentencia->fetchAll();
-        return $ticket;
+        $conexion = BD::getConexion();
+        $consulta = $conexion->prepare('SELECT * FROM tickets WHERE idUsuario = :idUser');
+        $consulta->execute([":idUser" => $user]);
+        $registro = $consulta->fetchAll();
+        return $registro;
     }
     
+    public function muestraTicketId($idTicket){  
+        $conexion = BD::getConexion();
+        $consulta = $conexion->prepare('SELECT * FROM tickets WHERE idTicket = :idTicket');
+        $consulta->execute([":idTicket" => $idTicket]);
+        $registro = $consulta->fetch();
+        return $registro;
+    }
+    
+    public function crearTicket($user,$mesa){  
+        $conexion = BD::getConexion();
+        $consulta = $conexion->prepare('INSERT INTO tickets(mesa,fecha,idUsuario,abierto) VALUES (:mesa,:fecha,:idUsuario,1)');
+        $consulta->execute([":fecha" => date("Y-m-d"), ":idUsuario" => $user, ":mesa" => $mesa]);
+        $idInsertado = $conexion->lastInsertId();
+        return $idInsertado;
+    }
+    
+    public function anadirPlatoTicket($idTicket,$idPlato){  
+        $conexion = BD::getConexion();
+        $consulta = $conexion->prepare('INSERT INTO ticketsplatos(idTicket,idPlato) VALUES (:idTicket,:idPlato)');
+        return $consulta->execute([":idTicket" => $idTicket, ":idPlato" => $idPlato]);
+    }
+
+
     public function getMesa(){
         return $this->mesa;
     }

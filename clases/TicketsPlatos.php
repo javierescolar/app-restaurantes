@@ -1,6 +1,7 @@
 <?php
 
 require_once 'BD.php';
+require_once 'Tickets.php';
 
 class TicketPlato extends Ticket{
     
@@ -9,9 +10,9 @@ class TicketPlato extends Ticket{
     protected $idTicket;
     
     
-    public function __construct($plato, $idTicket){
-        
-        $this->idPlato = $plato;
+    public function __construct($id,$idPlato, $idTicket){
+        $this->idTicketPlato = $id;
+        $this->idPlato = $idPlato;
         $this->idTicket = $idTicket;
         
     }
@@ -19,22 +20,12 @@ class TicketPlato extends Ticket{
     public function guardaTicketPlato(){
         
         $conexion = new Conexion();
-        $consulta = $conexion->prepare('INSERT INTO tickets_platos(plato,precio,idTicket) VALUES ('.$this->plato.','.$this->precio.','.$this->idTicket.')');
+        $consulta = $conexion->prepare('INSERT INTO tickets_platos(idplato, idTicket) VALUES ('.$this->idPlato.','.$this->idTicket.')');
         $consulta->execute();
         $conexion = null;
     }
     
-      public function muestraTikectPlato($idTicket){
-        
-        $bd = BD::getConexion();
-        $select = 'SELECT * FROM ticketplatos WHERE idTicket = :idTicket';
-        $sentencia = $bd->prepare($select);
-        $sentencia->execute([":idTicket" => $idTicket]);
-        $sentencia->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'ticketPlatos');
-        $categoria = $sentencia->fetchAll();
-        return $categoria;
-    
-    }
+ 
         
  
 

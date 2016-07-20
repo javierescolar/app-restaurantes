@@ -6,10 +6,12 @@ require_once('clases/Tickets.php');
 require_once('clases/Categorias.php');
 require_once('clases/Platos.php');
 require_once('clases/TicketsPlatos.php');
+require_once('clases/Productos.php');
 
 session_start();
-//variables para pruebas
+//variables
 $mensajeLogin = "";
+$numeroMesas = 10;
 
 if(isset($_SESSION['user'])) {
     if (isset($_POST['cerrarSesion'])) {
@@ -19,11 +21,21 @@ if(isset($_SESSION['user'])) {
     } elseif(isset($_POST['datosUsuario'])){
         include 'restaurante/editProfile.php';
     } elseif (isset($_POST['crearTicket'])) {
+        $_SESSION['ticketActual'] = Ticket::crearTicket($_SESSION['user']['idUsuario'],$_POST['mesa']);
        include 'restaurante/menuCategorias.php';
     } elseif (isset($_POST['idTicket'])) {
        include 'restaurante/ticket.php';
     } elseif (isset($_POST['seleccionCategoria'])) {
+        $_SESSION['categoriaSeleccionada'] = $_POST['categoriaSeleccionada'];
        include 'restaurante/menu.php';
+    } elseif (isset($_POST['anadirPlato'])){
+        Ticket::anadirPlatoTicket($_SESSION['ticketActual'],$_POST['idPlato']);
+        include 'restaurante/menu.php';
+        echo "<script type='text/javascript'>
+            swal('Añadido!', 'Plato añadido al ticket', 'success');
+        </script>";
+    } elseif (isset ($_POST['idPlato'])) {
+        include 'restaurante/platoSeleccion.php';
     } else {
         include 'restaurante/home.php';
         echo "<script type='text/javascript'> $('navHome').style.background = 'black'; </script>";
@@ -36,7 +48,7 @@ if(isset($_SESSION['user'])) {
             include 'restaurante/home.php';
         } else {
             echo $usuario;
-            $mensajeLogin = "EL usuario no existe en la base de datos o no está habilitado";
+            $mensajeLogin = "<p style='color:red'>EL usuario no existe en la base de datos o no está habilitado</p>";
             include 'restaurante/login.php';
         }
     } else {

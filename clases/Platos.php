@@ -1,16 +1,16 @@
 <?php
 
-require_once 'Conexion.php';
+require_once 'BD.php';
 
-class Platos extends Restaurante{
+class Plato extends Restaurante{
     
-    private $id;
-    private $nombre;
-    private $precio;
-    private $ingredientes;
-    private $descripcion;
-    private $imagen;
-    private $valoracion;
+    protected $id;
+    protected $nombre;
+    protected $precio;
+    protected $ingredientes;
+    protected $descripcion;
+    protected $imagen;
+    protected $valoracion;
     
     
     
@@ -33,6 +33,9 @@ class Platos extends Restaurante{
         $conexion = null;
     }
     
+   
+    
+    
     public function muestraPlatos(){
         
         
@@ -46,16 +49,20 @@ class Platos extends Restaurante{
     
     }
     
-    public function muestraPlatoId($idPlato){
+    public function muestraPlatoIdTicket($idTicket){
+        
         $bd = BD::getConexion();
-        $select = 'SELECT * FROM platos WHERE idPlato ='.$idPlato;
+        $select = 'SELECT * FROM platos
+                    inner join ticketsplatos on platos.idPlato = ticketsplatos.idPlato
+                    where ticketsplatos.idTicket = :idTicket';
         $sentencia = $bd->prepare($select);
-        $sentencia->execute();
+        $sentencia->execute([":idTicket"=>$idTicket]);
         $sentencia->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'platos');
-        $plato = $sentencia->fetchAll();
-        return $plato;
+        $platos = $sentencia->fetchAll();
+        return $platos;
         
     }
+    
     public function muestraPlatosCategoria($idCategoria){
         $bd = BD::getConexion();
         $select = 'SELECT * FROM platos WHERE idCategoria ='.$idCategoria;

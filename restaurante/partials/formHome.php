@@ -1,5 +1,12 @@
-<form action="index.php" method="POST" class="form col-xs-12 col-md-12 " id="formEditProfile" role="form">
-    <input type="submit" name="crearTicket" id="crearTicket" value="Crear Ticket" class="btn btn-danger col-md-offset-10"/>
+<form action="index.php" method="POST" class="form col-xs-12 col-md-12 form-inline" role="form">
+    <select name="mesa" class="form-control col-md-offset-9" required>
+        <option></option>
+        <?php
+        for($i = 1; $i <= $numeroMesas; $i++)
+            echo "<option value='$i'>Mesa $i</option>";
+        ?>
+    </select>
+    <input type="submit" name="crearTicket" id="crearTicket" value="Crear Ticket" class="btn btn-danger"/>
 </form>
 
 <div class="formularios row col-xs-12 col-xs-12 col-md-10 col-md-offset-1">
