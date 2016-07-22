@@ -57,7 +57,18 @@ class Ticket extends Plato{
         $consulta = $conexion->prepare('INSERT INTO ticketsplatos(idTicket,idPlato) VALUES (:idTicket,:idPlato)');
         return $consulta->execute([":idTicket" => $idTicket, ":idPlato" => $idPlato]);
     }
-
+    
+    public function actualizarTicket($idTicket){  
+        $conexion = BD::getConexion();
+        $select = " UPDATE tickets
+            SET total = (SELECT sum(platos.precio) FROM platos
+                    inner join ticketsplatos on platos.idPlato = ticketsplatos.idPlato
+                    where ticketsplatos.idTicket = :idTicket)
+            WHERE idTicket = :idTicket   ";
+        $consulta = $conexion->prepare($select);
+        return $consulta->execute([":idTicket" => $idTicket]);
+        
+    }
 
     public function getMesa(){
         return $this->mesa;

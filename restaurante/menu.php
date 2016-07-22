@@ -40,7 +40,7 @@
                     echo "<input type='hidden' name='idPlato' value='".$plato["idPlato"]."'/>";
                     echo "</form>";
                     echo "<form action='index.php' method='POST'>";
-                    echo '<div class="row botonPlatoMenu">';
+                    echo '<div class="row">';
                     echo '<input type="submit" name="anadirPlato" value="Añadir al ticket" class="col-md-6 col-md-offset-3 col-xs-12 btn btn-danger"/>';
                     echo "<input type='hidden' name='idPlato' value='".$plato["idPlato"]."'/>";
                     echo '</div>';

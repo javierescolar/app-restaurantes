@@ -21,21 +21,25 @@ if(isset($_SESSION['user'])) {
     } elseif(isset($_POST['datosUsuario'])){
         include 'restaurante/editProfile.php';
     } elseif (isset($_POST['crearTicket'])) {
-        $_SESSION['ticketActual'] = Ticket::crearTicket($_SESSION['user']['idUsuario'],$_POST['mesa']);
+       $_SESSION['ticketActual'] = Ticket::crearTicket($_SESSION['user']['idUsuario'],$_POST['mesa']);
        include 'restaurante/menuCategorias.php';
     } elseif (isset($_POST['idTicket'])) {
+       $_SESSION['ticketActual'] = $_POST['idTicket']; 
        include 'restaurante/ticket.php';
     } elseif (isset($_POST['seleccionCategoria'])) {
         $_SESSION['categoriaSeleccionada'] = $_POST['categoriaSeleccionada'];
        include 'restaurante/menu.php';
     } elseif (isset($_POST['anadirPlato'])){
         Ticket::anadirPlatoTicket($_SESSION['ticketActual'],$_POST['idPlato']);
+        Ticket::actualizarTicket($_SESSION['ticketActual']);
         include 'restaurante/menu.php';
         echo "<script type='text/javascript'>
             swal('Añadido!', 'Plato añadido al ticket', 'success');
         </script>";
     } elseif (isset ($_POST['idPlato'])) {
         include 'restaurante/platoSeleccion.php';
+    } elseif (isset ($_POST['categoria'])) {
+        include 'restaurante/menuCategorias.php';
     } else {
         include 'restaurante/home.php';
         echo "<script type='text/javascript'> $('navHome').style.background = 'black'; </script>";
