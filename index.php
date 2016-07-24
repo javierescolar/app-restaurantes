@@ -38,7 +38,7 @@ if(isset($_SESSION['user'])) {
             swal('Borrado!', 'Plato borrado del ticket', 'success');
         </script>";
     } elseif (isset($_POST['anadirPlato'])){
-        Ticket::anadirPlatoTicket($_SESSION['ticketActual'],$_POST['idPlato']);
+        Ticket::anadirPlatoTicket($_SESSION['ticketActual'],$_POST['idPlato'],"");
         Ticket::actualizarTicket($_SESSION['ticketActual']);
         include 'restaurante/menu.php';
         echo "<script type='text/javascript'>
@@ -75,8 +75,14 @@ if(isset($_SESSION['user'])) {
             foreach ($_POST["newIngredientesEsenciales"] as $producto){
                 $productosEsenciales = $productosEsenciales.$producto.",";
             }
+            if(isset($_POST["newIngredientesSimples"])){
+                foreach ($_POST["newIngredientesSimples"] as $producto){
+                    $productosSimples = $productosSimples.$producto.",";
+                }
+            }
+        $productos = $productosEsenciales.$productosSimples;
         move_uploaded_file($_FILES['newImagen']['tmp_name'],'img/'.$_FILES['newImagen']['name']);
-        Plato::guardarPlato($_POST['newNombre'],$_POST['newPrecio'],$productosEsenciales,$_POST['newDescripcion'],$_FILES['newImagen']['name'],1,$_POST['newCategoria'],$_SESSION['user']['idRestaurante']);
+        Plato::guardarPlato($_POST['newNombre'],$_POST['newPrecio'],$productos,$_POST['newDescripcion'],$_FILES['newImagen']['name'],1,$_POST['newCategoria'],$_SESSION['user']['idRestaurante']);
         }
         include 'restaurante/platos.php';
         echo "<script type='text/javascript'> $('navPlatos').style.background = 'black'; </script>";
