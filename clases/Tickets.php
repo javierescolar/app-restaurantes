@@ -52,24 +52,42 @@ class Ticket extends Plato{
         return $idInsertado;
     }
     
-    public function anadirPlatoTicket($idTicket,$idPlato){  
+    public function anadirPlatoTicket($idTicket,$idPlato,$ingredientes){  
         $conexion = BD::getConexion();
-        $consulta = $conexion->prepare('INSERT INTO ticketsplatos(idTicket,idPlato) VALUES (:idTicket,:idPlato)');
-        return $consulta->execute([":idTicket" => $idTicket, ":idPlato" => $idPlato]);
+        $consulta = $conexion->prepare('INSERT INTO ticketsplatos(idTicket,idPlato,ordenEspecial) VALUES (:idTicket,:idPlato, :ingredientes)');
+        return $consulta->execute([":idTicket" => $idTicket, ":idPlato" => $idPlato, ":ingredientes" => $ingredientes]);
+    }
+    
+    public function borrarPlatoTicket($idTicketPlato){  
+        $conexion = BD::getConexion();
+        $consulta = $conexion->prepare('DELETE FROM ticketsplatos WHERE idTicketPlato = :idTicketPlato');
+        return $consulta->execute([":idTicketPlato" => $idTicketPlato]);
     }
     
     public function actualizarTicket($idTicket){  
         $conexion = BD::getConexion();
         $select = " UPDATE tickets
             SET total = (SELECT sum(platos.precio) FROM platos
-                    inner join ticketsplatos on platos.idPlato = ticketsplatos.idPlato
-                    where ticketsplatos.idTicket = :idTicket)
+                    INNER JOIN ticketsplatos ON platos.idPlato = ticketsplatos.idPlato
+                    WHERE ticketsplatos.idTicket = :idTicket)
             WHERE idTicket = :idTicket   ";
         $consulta = $conexion->prepare($select);
         return $consulta->execute([":idTicket" => $idTicket]);
         
     }
-
+    
+    public function muestraPlatosTickets($idTicket){  
+        $conexion = BD::getConexion();
+        $select  = "SELECT ticketsplatos.idTicketPlato, platos.nombre as nombre, platos.precio as precio, ticketsplatos.ordenEspecial "
+                . " FROM ticketsplatos"
+                . " INNER JOIN platos ON platos.idPlato = ticketsplatos.idPlato "
+                . " WHERE ticketsplatos.idTicket = :idTicket";
+        $consulta = $conexion->prepare($select);
+        $consulta->execute([":idTicket" => $idTicket]);
+        $registros = $consulta->fetchAll();
+        return $registros;
+    }
+    
     public function getMesa(){
         return $this->mesa;
     }

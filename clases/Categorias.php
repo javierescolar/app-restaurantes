@@ -1,6 +1,6 @@
 <?php
 
-require_once 'Conexion.php';
+require_once 'BD.php';
 
 class Categoria extends Restaurante{
     
@@ -23,22 +23,6 @@ class Categoria extends Restaurante{
         $categoria = $sentencia->fetchAll();
         return $categoria;
     
-    }
-    
-    function getIdCategoria() {
-        return $this->idCategoria;
-    }
-
-    function getNombre() {
-        return $this->nombre;
-    }
-
-    function setIdCategoria($idCategoria) {
-        $this->idCategoria = $idCategoria;
-    }
-
-    function setNombre($nombre) {
-        $this->nombre = $nombre;
     }
     
 }

@@ -2,7 +2,7 @@
 
 require_once 'BD.php';
 
-class Productos extends Restaurante{
+class Producto extends Restaurante{
     
     protected $idProducto;
     protected $ean;
@@ -16,6 +16,7 @@ class Productos extends Restaurante{
     
     public function __construct($idProducto=null,$ean=null,$nombre=null,$cantidad=null,$caducidad=null,
             $precio=null,$categoria=null,$idMedia=null,$idRestaurante=null){
+        
         $this->idProducto = $idProducto;
         $this->ean = $ean;
         $this->nombre = $nombre;
@@ -25,6 +26,16 @@ class Productos extends Restaurante{
         $this->categoria = $categoria;
         $this->idMedia = $idMedia;
         $this->idRestaurante = $idRestaurante;
+        
+    }
+    public function muestraProductosEsenciales($esencial){
+        $bd = BD::getConexion();
+        $select = 'SELECT * FROM productos WHERE esencial='.$esencial;
+        $sentencia = $bd->prepare($select);
+        $sentencia->execute();
+        $sentencia->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'productos');
+        $productos = $sentencia->fetchAll();
+        return $productos;
         
     }
     
@@ -46,19 +57,25 @@ class Productos extends Restaurante{
         }else{
             return false;
         }
-    
     }
     
     public function muestraProductosPlato($ingredientes){
-        $bd = BD::getConexion();
-        $select = 'SELECT * FROM productos WHERE idProducto in ( :ingredientes )';
+        $ingredientes = explode(",",substr($ingredientes, 0, (strlen($ingredientes) - 1)));
+         $bd = BD::getConexion();
+        $select = 'SELECT * FROM productos WHERE idProducto in (';
+        foreach( $ingredientes as $ingrediente){
+            $select = $select.(int)$ingrediente.",";
+        }
+        $select = substr($select,0, (strlen($select) - 1));
+        $select = $select.")";
+       
         $sentencia = $bd->prepare($select);
-        $sentencia->execute([":ingredientes" => $ingredientes]);
+        $sentencia->execute();
         //$sentencia->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'productos');
         $productos = $sentencia->fetchAll();
         return $productos;
-        
     }
+    
     function getIdProducto() {
         return $this->idProducto;
     }

@@ -22,36 +22,40 @@
 
             include 'restaurante/partials/subNav.php';
             ?>
-           
+
             <section class="cuerpo">
+               <form action="index.php" method="POST">
                <div class="col-md-12 col-xs-12">
                    <?php
                    $plato = Plato::muestraPlatoId($_POST['idPlato']);
-                   $ingredientesPlato = Productos::muestraProductosPlato($plato['ingredientes']);;
+                   $ingredientesPlato = Producto::muestraProductosPlato($plato['ingredientes']);;
                     echo "<h1 class='text-center'>".$plato['nombre']."</h1>";
                     ?>
+                   
                    <div class="col-md-12 col-xs-12">
-                       
+
                     <?php
                         echo  "<img src='img/".$plato["imagen"]."' class='img-responsive platoFoto'></img>";
                         echo "<h4>Ingredientes</h4>";
                         foreach ($ingredientesPlato as $ingrediente){
-                            echo "<input type='checkbox' name='ingrediente[".$ingrediente['idProducto']."]' value='".$ingrediente['idProducto']."'> ".$ingrediente['nombre']."</input>";
+                            echo '<div class="checkbox">';
+                            echo "<label><input type='checkbox' name='ingrediente[".$ingrediente['idProducto']."]' value='".$ingrediente['idProducto']."'> ".$ingrediente['nombre']."</label>";
+                            echo "</div>";
                         }
                         echo "<p class='textDescripcion'>".$plato["descripcion"]."</p>";
-                    ?> 
+                    ?>
                    </div>
-                       
+
                </div>
                 <div class="row col-md-12 col-xs-12">
-                    <form action="index.php" method="POST">
+                    
                         <input type='hidden' name='idPlato' value='<?php echo $plato["idPlato"]; ?>'/>;
-                        <input type="submit" name="anadirPlato" value="Añadir al ticket" class="btn btn-danger col-md-offset-10 col-md-2 col-xs-offset-1 col-xs-11"/>
-                    </form>
+                        <input type="submit" name="anadirPlatoSeleccion" value="Añadir al ticket" class="btn btn-danger col-md-offset-10 col-md-2 col-xs-offset-1 col-xs-11"/>
+                   
                 </div>
-            
+                    </form>
             </section>
-            
+
         </div>
     </body>
     <script type="text/javascript" src="js/jquery-1.12.1.min.js"></script>

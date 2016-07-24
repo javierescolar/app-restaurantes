@@ -26,11 +26,13 @@ class Plato extends Restaurante{
     }
     
     
-    public function guardarPlato(){
-        $conexion = new Conexion();
-        $consulta = $conexion->prepare('INSERT INTO platos(id,nombre,precio,ingredientes,descripcion,imagen,idRestaurante) VALUES ('.$this->id.','.$this->nombre.','.$this->precio.','.$this->ingredientes.','.$this->descripcion.','.$this->imagen.','.$this->idRestaurante.')');
-        $consulta->execute();
-        $conexion = null;
+      public function guardarPlato($nombre,$precio,$ingredientes,$descripcion,$imagen,$valoracion,$idCategoria,$idRestaurante){     
+        $bd = BD::getConexion();
+        $select = 'INSERT INTO platos(nombre,precio,ingredientes,descripcion,imagen,valoracion,idCategoria,idRestaurante) '
+                . ' VALUES ("'.$nombre.'",'.$precio.',"'.$ingredientes.'","'.$descripcion.'","'.$imagen.'",'.$valoracion.','.$idCategoria.','.$idRestaurante.')';
+        $sentencia = $bd->prepare($select);
+        $consulta = $sentencia->execute();
+        return $consulta;
     }
     
    
@@ -73,6 +75,19 @@ class Plato extends Restaurante{
         return $plato;
         
     }
+    
+     public function muestraPlatoId($idPlato){
+        $bd = BD::getConexion();
+        $select = 'SELECT * FROM platos WHERE idPlato ='.$idPlato;
+        $sentencia = $bd->prepare($select);
+        $sentencia->execute();
+        $sentencia->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'platos');
+        $plato = $sentencia->fetch();
+        return $plato;
+        
+    }
+    
+    
     public function getId() {
        return $this->id;
     }

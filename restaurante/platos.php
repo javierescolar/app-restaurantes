@@ -14,23 +14,14 @@
     <body>
         <div class="container-fluid">
             <?php
-            include ($_SESSION['user']['perfil'] == 3)? 'restaurante/partials/navCamarero.php':'restaurante/partials/nav.php';
+            include ($_SESSION['user']['idPerfil'] == 3)? 'restaurante/partials/navCamarero.php':'restaurante/partials/nav.php';
             ?>
             <section class="cuerpo">
-                <div class="row col-xs-12 col-md-8 col-md-offset-2">
-                    <div id="imaginary_container"> 
-                        <div class="input-group stylish-input-group">
-                            <input type="text" class="form-control"  placeholder="Buscar Plato ..." >
-                            <span class="input-group-addon">
-                                <button type="submit">
-                                    <span class="glyphicon glyphicon-search"></span>
-                                </button>  
-                            </span>
-                        </div>
-                    </div>
-                </div>
+                
                 <?php
-                include 'restaurante/partials/formPlatos.php'
+                
+                    include 'restaurante/partials/formPlatos.php';
+                
                 ?>
             </section>
         </div>
@@ -42,3 +33,4 @@
     <script type="text/javascript" src="js/sweetalert.min.js"></script>
 
 </html>
+

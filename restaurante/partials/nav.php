@@ -3,7 +3,7 @@
     <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" 
+            <button type="button" class="navbar-toggle collapsed"
                     data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
                 <span class="sr-only">Toggle navigation</span>
                 <span class="icon-bar"></span>
@@ -49,7 +49,7 @@
                     <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>
                 </form>
                 <li class="dropdown">
-                    <a class="dropdown-toggle userNav" data-toggle="dropdown" role="button" 
+                    <a class="dropdown-toggle userNav" data-toggle="dropdown" role="button"
                        aria-expanded="false"><span class="glyphicon glyphicon-user"></span><?php echo " " . $_SESSION['user']['email'] . " "; ?><span class="caret"></span>
                     </a>
                     <ul class="dropdown-menu" role="menu">

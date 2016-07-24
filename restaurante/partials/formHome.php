@@ -27,10 +27,10 @@
         </div>
          <?php
          $tickets = Ticket::muestraTickets($_SESSION['user']['idUsuario']);
-         $x=0;//SESION/ $tickets=consulta por el vendedor y si esta abierto o no 
+         $x=0;//SESION/ $tickets=consulta por el vendedor y si esta abierto o no
          foreach($tickets as $ticket){
              echo '<div class="form-group row formTickets">';
-             echo "<form action='index.php' method='POST' onClick='this.submit()'>"; 
+             echo "<form action='index.php' method='POST' onClick='this.submit()'>";
              echo '<div class="col-xs-3 col-md-3 text-center">'.$ticket['idTicket'].'</div>';
              echo '<div class="col-xs-3 col-md-3 text-center">'.$ticket['mesa'].'</div>';
              echo '<div class="col-xs-3 col-md-3 text-center">'.$ticket['fecha'].'</div>';

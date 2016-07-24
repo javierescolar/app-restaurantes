@@ -18,6 +18,8 @@
             <?php
 
             include ($_SESSION['user']['idPerfil'] == 3)? 'restaurante/partials/navCamarero.php':'restaurante/partials/nav.php';
+            
+             include 'restaurante/partials/subNav.php';
             ?>
 
             <section class="cuerpo">

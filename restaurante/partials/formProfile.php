@@ -1,3 +1,5 @@
+<?php $perfil = Perfil::cargarPerfil($_SESSION['user']['idPerfil']); ?>
+
 <div class="formularios row col-xs-12 col-xs-12 col-md-10 col-md-offset-1">
     <div class="text-center cabeceraForm">Datos Usuario</div>
     <form action="index.php" method="POST" class="form col-xs-12 col-md-12 " id="formEditProfile" role="form">
@@ -29,7 +31,7 @@
             </div>
             <label for="newPerfil" class="col-xs-1 col-md-1 form-control-label">Perfil:</label>
             <div class="col-xs-12 col-md-3">
-                <input type="text" name="newPerfil" class="form-control" required disabled value="<?php echo $_SESSION['user']['idPerfil']; ?>">
+                <input type="text" name="newPerfil" class="form-control" required disabled value="<?php echo $perfil['nombre']; ?>">
             </div>
         </div>
         <div class="form-group row ">

@@ -6,32 +6,35 @@ require_once('clases/BD.php');
 class Usuario extends Restaurante{
 
     protected $idUsuario;
-    protected $idRestaurante;
     protected $dni;
     protected $nombre;
     protected $apellidos;
-    protected $email;
-    protected $telefono;
-    protected $perfil;
     protected $pass;
+    protected $telefono;
+    protected $email;
+    protected $idPerfil;
+    protected $habilitado;
+    protected $idRestaurante;
     
-
-    public function __constructor($id, $restaurante, $dni, $nombre, $apellidos, $pass, $idPerfil, $email, $telefono, $habilitado) {
-        $this->idRestaurante = $restaurante;
+    public function __constructor($id = null, $restaurante = null, $dni = null, $nombre = null, $apellidos = null, $pass = null, $idPerfil = null, $email = null, $telefono = null, $habilitado = null) {
+        
         $this->idUsuario = $id;
         $this->dni = $dni;
         $this->nombre = $nombre;
         $this->apellidos = $apellidos;
+        $this->pass = $pass;
         $this->email = $email;
         $this->telefono = $telefono;
-        $this->perfil = $perfil;
+        $this->idPerfil = $idPerfil;
+        $this->habilitado = $habilitado;
+        $this->idRestaurante = $restaurante;
     }
 
     public function loginUser($email, $pass) {
         $bd = BD::getConexion();
-        $select = 'SELECT * FROM usuarios WHERE email = :email AND password = :password AND habilitado = 1';
+        $select = 'SELECT * FROM usuarios WHERE email = :email AND pass = :pass AND habilitado = 1';
         $sentencia = $bd->prepare($select);
-        $sentencia->execute([":email" => $email, ":password" => $pass]);
+        $sentencia->execute([":email" => $email, ":pass" => $pass]);
         $sentencia->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'usuarios');
         $usuario = $sentencia->fetch();
         return $usuario;
@@ -49,19 +52,21 @@ class Usuario extends Restaurante{
         
     }
     
-    public function muestraUsuarios(){
+        public function muestraUsuarios(){
         
-        $bd = BD::getConexion();
-        $select = 'SELECT * FROM usuarios';
-        $sentencia = $bd->prepare($select);
-        $sentencia->execute();
-        $sentencia->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'usuarios');
-        $usuario = $sentencia->fetchAll();
-        return $usuario;
+        $conexion = new Conexion();
+        $consulta = $conexion->prepare('SELECT * FROM usuarios');
+        $consulta->execute();
+        $registro = $consulta->fetch();
+        if($registro){
+            return new self($registro['idUsuario'],$registro['dni'],$registro['nombre'],$registro['apellidos'],$registro['pass'],$registro['telefono'],$registro['email'],$registro['idPerfil'],$registro['habilitado'],$registro['idRestaurante']);
+        }else{
+            return false;
+        }
     
     }
     
-    function getIdUsuario() {
+        function getIdUsuario() {
         return $this->idUsuario;
     }
 

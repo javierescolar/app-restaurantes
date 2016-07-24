@@ -153,7 +153,9 @@ nav li button:hover{
 .formularios input[type=text],input[type=email],input[type=date],input[type=number]{
     height:2em !important;
 }
-
+input[type=checkbox]{
+    height:1.2em !important;
+}
 .formTickets:hover{
     cursor:pointer; cursor: hand;	
 }
@@ -178,13 +180,19 @@ nav li button:hover{
     color:#A4A4A4;
 }
 .subNav ul li button{
-    color:#A4A4A4;
+    color:black;
 }
 .subNav ul li button:hover{
     text-decoration:none;
-    color:white;
+    color:#A4A4A4;
 }
+
 .botonPlatoMenu{
     margin-top:-0.5em;
     margin-bottom:0.5em;
+}
+input[type=text].ordenEspecial{
+    width:15.85em;
+    height:1.5em !important;
+    font-size:0.8em;
 }
