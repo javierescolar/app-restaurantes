@@ -30,7 +30,7 @@ class Ticket extends Plato{
     public function muestraTickets($user){
         
         $conexion = BD::getConexion();
-        $consulta = $conexion->prepare('SELECT * FROM tickets WHERE idUsuario = :idUser');
+        $consulta = $conexion->prepare('SELECT * FROM tickets WHERE idUsuario = :idUser AND abierto = 1');
         $consulta->execute([":idUser" => $user]);
         $registro = $consulta->fetchAll();
         return $registro;
@@ -44,10 +44,10 @@ class Ticket extends Plato{
         return $registro;
     }
     
-    public function crearTicket($user,$mesa){  
+    public function crearTicket($user,$mesa,$restaurante){  
         $conexion = BD::getConexion();
-        $consulta = $conexion->prepare('INSERT INTO tickets(mesa,fecha,idUsuario,abierto) VALUES (:mesa,:fecha,:idUsuario,1)');
-        $consulta->execute([":fecha" => date("Y-m-d"), ":idUsuario" => $user, ":mesa" => $mesa]);
+        $consulta = $conexion->prepare('INSERT INTO tickets(mesa,fecha,idUsuario,abierto,idRestaurante) VALUES (:mesa,:fecha,:idUsuario,1,:idRestaurante)');
+        $consulta->execute([":fecha" => date("Y-m-d"), ":idUsuario" => $user, ":mesa" => $mesa, ":idRestaurante" => $restaurante]);
         $idInsertado = $conexion->lastInsertId();
         return $idInsertado;
     }
@@ -86,6 +86,16 @@ class Ticket extends Plato{
         $consulta->execute([":idTicket" => $idTicket]);
         $registros = $consulta->fetchAll();
         return $registros;
+    }
+    
+    public function cerrarTicket($idTicket){  
+        $conexion = BD::getConexion();
+        $select = " UPDATE tickets
+            SET abierto = 0
+            WHERE idTicket = :idTicket";
+        $consulta = $conexion->prepare($select);
+        return $consulta->execute([":idTicket" => $idTicket]);
+        
     }
     
     public function getMesa(){

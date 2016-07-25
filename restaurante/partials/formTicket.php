@@ -60,6 +60,10 @@ $datosPlatosTickets = Ticket::muestraPlatosTickets($_SESSION['ticketActual']);
                 <input type="text" name="total" class="form-control col-md-offset-6 col-xs-offset-5" required disabled value="<?php echo $datosTicket['total']; ?>">
             </div>
         </div>
+        
+        <div class="form-group row">
+            <input type="submit" name="cerrarTicket" class="btn btn-danger col-md-offset-10" value="Cerrar Ticket">
+        </div>
     </form>
 </div>
 

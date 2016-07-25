@@ -22,7 +22,7 @@ if(isset($_SESSION['user'])) {
     } elseif(isset($_POST['datosUsuario'])){
         include 'restaurante/editProfile.php';
     } elseif (isset($_POST['crearTicket'])) {
-       $_SESSION['ticketActual'] = Ticket::crearTicket($_SESSION['user']['idUsuario'],$_POST['mesa']);
+       $_SESSION['ticketActual'] = Ticket::crearTicket($_SESSION['user']['idUsuario'],$_POST['mesa'],$_SESSION['user']['idRestaurante']);
        include 'restaurante/menuCategorias.php';
     } elseif (isset($_POST['idTicket'])) {
        $_SESSION['ticketActual'] = $_POST['idTicket'];
@@ -89,7 +89,15 @@ if(isset($_SESSION['user'])) {
         echo "<script type='text/javascript'>
             swal('Guardado!', 'Plato guardado correctamente', 'success');
         </script>";
+    } elseif(isset($_POST['cerrarTicket'])){
+        Ticket::cerrarTicket($_SESSION['ticketActual']);
+        include 'restaurante/home.php';
+        echo "<script type='text/javascript'> $('navHome').style.background = 'black'; </script>";
+        echo "<script type='text/javascript'>
+           swal('Cerrado!', 'Ticket cerrado', 'success');
+        </script>";
     } else {
+    
         include 'restaurante/home.php';
         echo "<script type='text/javascript'> $('navHome').style.background = 'black'; </script>";
     }
