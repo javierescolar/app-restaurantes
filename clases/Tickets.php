@@ -97,6 +97,22 @@ class Ticket extends Plato{
         return $consulta->execute([":idTicket" => $idTicket]);
         
     }
+    public function anularTicket($idTicket){  
+        $conexion = BD::getConexion();
+        $select = " DELETE FROM tickets WHERE idTicket = :idTicket;"
+                  ." DELETE FROM ticketsplatos WHERE idTicket = :idTicket";
+        $consulta = $conexion->prepare($select);
+        return $consulta->execute([":idTicket" => $idTicket]);
+        
+    }
+    public function mesasOcupadas($idRestaurante){     
+        $conexion = BD::getConexion();
+        $consulta = $conexion->prepare('SELECT mesa FROM tickets WHERE abierto = 1 and idRestaurante = :idRestaurante');
+        $consulta->execute([":idRestaurante" => $idRestaurante]);
+        $consulta->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'tickets');
+        $registros = $consulta->fetchAll();
+        return $registros;
+    }
     
     public function getMesa(){
         return $this->mesa;

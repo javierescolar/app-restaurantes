@@ -128,6 +128,36 @@ window.onload = function () {
 
         });
     }
+    if ($('cerrarTicket')) {
+        $('cerrarTicket').addEventListener("click", function (event) {
+            event.preventDefault();
+            var boton = $('cerrarTicket');
+            swal({title: "¿Estás seguro?", text: "¿quieres cerrar el ticket?", type: "warning", showCancelButton: true, confirmButtonColor: "#DD6B55", confirmButtonText: "Sí", cancelButtonText: "No", closeOnConfirm: false, closeOnCancel: false}, function (isConfirm) {
+                if (isConfirm) {
+                    $('accionTicket').value = "cerrarTicket";
+                    boton.value="aaa";
+                   boton.parentElement.parentElement.parentElement.submit();
+                } else {
+                    swal("Cancelado", "No se cerro el ticket", "error");
+                }
+            });
+        });
+    }
+    if ($('anularTicket')) {
+        $('anularTicket').addEventListener("click", function (event) {
+            event.preventDefault();
+            var boton = $('anularTicket');
+            swal({title: "¿Estás seguro?", text: "¿quieres anular el ticket?", type: "warning", showCancelButton: true, confirmButtonColor: "#DD6B55", confirmButtonText: "Sí", cancelButtonText: "No", closeOnConfirm: false, closeOnCancel: false}, function (isConfirm) {
+                if (isConfirm) {
+                    $('accionTicket').value = "anularTicket";
+                    boton.value="anularTicket";
+                   boton.parentElement.parentElement.parentElement.submit();
+                } else {
+                    swal("Cancelado", "No se anulo el ticket", "error");
+                }
+            });
+        });
+    }
 
 
 }

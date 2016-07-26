@@ -2,8 +2,18 @@
     <select name="mesa" class="form-control col-md-offset-9" required>
         <option></option>
         <?php
-        for($i = 1; $i <= $numeroMesas; $i++)
-            echo "<option value='$i'>Mesa $i</option>";
+        $mesasOcupadas = Ticket::mesasOcupadas($_SESSION['user']['idRestaurante']);
+        for($i = 1; $i <= $numeroMesas; $i++){
+            $ocupada = false;
+            foreach ($mesasOcupadas as $mesa){
+                if(in_array($i,$mesa)){
+                    $ocupada = true;
+                } 
+            }
+            if(!$ocupada){
+                echo "<option value='$i'>Mesa $i</option>";
+            }
+         }   
         ?>
     </select>
     <input type="submit" name="crearTicket" id="crearTicket" value="Crear Ticket" class="btn btn-danger"/>

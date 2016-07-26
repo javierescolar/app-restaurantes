@@ -89,12 +89,19 @@ if(isset($_SESSION['user'])) {
         echo "<script type='text/javascript'>
             swal('Guardado!', 'Plato guardado correctamente', 'success');
         </script>";
-    } elseif(isset($_POST['cerrarTicket'])){
+    }elseif(isset ($_POST['accionTicket']) && $_POST['accionTicket'] == 'cerrarTicket'){
         Ticket::cerrarTicket($_SESSION['ticketActual']);
         include 'restaurante/home.php';
         echo "<script type='text/javascript'> $('navHome').style.background = 'black'; </script>";
         echo "<script type='text/javascript'>
            swal('Cerrado!', 'Ticket cerrado', 'success');
+        </script>";
+    } elseif(isset ($_POST['accionTicket']) && $_POST['accionTicket'] == 'anularTicket'){
+        Ticket::anularTicket($_SESSION['ticketActual']);
+        include 'restaurante/home.php';
+        echo "<script type='text/javascript'> $('navHome').style.background = 'black'; </script>";
+        echo "<script type='text/javascript'>
+           swal('Anulado!', 'Ticket anulado', 'success');
         </script>";
     } else {
     
