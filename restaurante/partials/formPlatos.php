@@ -79,9 +79,10 @@
             </div>
         </div>
         <div class="form-group row">
-
+            
             <input type="submit" name="guardarPlatos" class="btn btn-danger col-md-offset-10" value="Guardar Plato"/>
         </div>
 
     </form>
+    <button id="activarFromProductos" class="btn-link">Añadir Producto</button> 
 </div>

@@ -39,8 +39,6 @@ class Restaurante {
         }
     
     }
-    
-    
     public function getId(){
         return $thisd->id;
     }

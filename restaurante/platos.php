@@ -21,7 +21,7 @@
                 <?php
                 
                     include 'restaurante/partials/formPlatos.php';
-                
+                    include 'restaurante/partials/formProducts.php';
                 ?>
             </section>
         </div>

@@ -1,55 +1,67 @@
-<div class="formularios row col-xs-12 col-md-10 col-md-offset-1">
+<div id="formFlotante">
+    <div id="formFlotanteCaja">
+        <button class="col-md-offset-11 drop btn-link" id="desactivarFromProductos"><span class="glyphicon glyphicon-remove"></span></button>
+        <div class="formularios row col-xs-12 col-md-10 col-md-offset-1">
 
-    <div class="text-center cabeceraForm">Productos</div>
-    <form action='index.php' method='POST' id="formProductos">
-        <div class="form-group row col-md-12 cabeceraProductos">
-            <div class="col-xs-12 col-md-3 text-center">
-                <h4>EAN</h4>
+        <div class="text-center cabeceraForm">Productos</div>
+        <form action='index.php' method='POST' id="formProductos">
+            <div class="form-group row col-md-12 cabeceraProductos">
+                <div class="col-xs-12 col-md-2">
+                    <label for="newEan">Ean</label>
+                        <input name='newEan' class='form-control' type='text' value='' required/>
+                </div>
+
+                <div class="col-xs-12 col-md-3">
+                    <label for="newNombre">Nombre</label>
+                    <input name='newNombre' class='form-control' type='text' value='' required/>
+
+                </div>
+                <div class="col-xs-12 col-md-1">
+                    <label for="newCantidad">Cantidad</label>
+                    <input name='newCantidad' class='form-control' type='text' value='' required/>
+
+                </div>
+                <div class="col-xs-12 col-md-2">
+                    <label for="newCaducidad">Caducidad</label>
+                    <input name='newCaducidad' class='form-control' type='date' value='' required/>
+
+                </div>
+                <div class="col-xs-12 col-md-1">
+                    <label for="newPrecio">Precio</label>
+                    <input name='newPrecio' class='form-control' type='text' value='' required/>
+
+                </div>
+                <div class="col-xs-12 col-md-2">
+                    <label for="newCategoria">Categoria</label>
+                        <select name="newCategoria" class="form-control" required>
+                            <option></option>
+                            <?php $categorias = Categoria::muestraCategorias();
+                                foreach ($categorias as $categoria){
+                                    echo "<option value='".$categoria['idCategoria']."'>".$categoria['nombre']."</option>";
+                                }
+                            ?>
+                        </select>
+
+                </div>
+                <div class="col-xs-12 col-md-1">
+                    <label for="newMedida">Medida</label>
+                        <select name="newMedida" class="form-control" required>
+                            <option></option>
+                            <?php $medidas = Medida::muestraMedidas();
+                                foreach ($medidas as $medida){
+                                    echo "<option value='".$medida['idMedida']."'>".$medida['nombre']."</option>";
+                                }
+                            ?>
+                        </select>
+
+                </div>
             </div>
-            <div class="col-xs-12 col-md-3 text-center">
-                <h4>Nombre</h4>
+            <div class="form-group row">
+                <input type="submit" class="btn btn-danger col-md-offset-9" name="guardarProductoPlato" value="Guardar Producto">
             </div>
-            <div class="col-xs-12 col-md-2 text-center">
-                <h4>Cantidad</h4>
-            </div>
-            <div class="col-xs-12 col-md-3 text-center">
-                <h4>Caducidad</h4>
-            </div>
-            <div class="col-xs-12 col-md-1 text-right">
-                <h4>Acción</h4>
-            </div>
+            </form>
+         
         </div>
-
-        <?php
-        foreach ($datosProductos as $fila) {
-            echo '<div class="form-group row">';
-            foreach ($fila as $columna => $celda) {
-                if($columna == "EAN"){
-                    echo '<div class="col-xs-12 col-md-3">';
-                    echo "<input name='$columna' class='form-control' type='text' value='$celda'/>";
-                    echo '</div>';
-                } elseif($columna == "Nombre"){
-                    echo '<div class="col-xs-12 col-md-3">';
-                    echo "<input name='$columna' class='form-control' type='text' value='$celda'/>";
-                    echo '</div>';
-                } elseif($columna == "Cantidad"){
-                    echo '<div class="col-xs-12 col-md-2">';
-                    echo "<input name='$columna' class='form-control' type='number' value='$celda'/>";
-                    echo '</div>';
-                } elseif($columna == "Caducidad"){
-                    echo '<div class="col-xs-12 col-md-3">';
-                    echo "<input name='$columna' class='form-control' type='date' value='$celda'/>";
-                    echo '</div>';
-                }
-                
-            }
-            echo '<div class="col-xs-12 col-md-1">';
-            echo "<button type='submit' name='saveProduct' class='btn-link save'><span class='glyphicon glyphicon-ok'></span></button>"
-            . "<button type='submit' name='dropProduct' class='btn-link drop'><span class='glyphicon glyphicon-remove'></span></button>";
-            echo '</div>';
-            echo '</div>';
-        }
-        ?>
-    </form>
-    <button class="btn-link" id="nuevoProducto">añadir nuevo producto</button>
+    </div>
 </div>
+<script type="text/javascript" src="js/main.js"></script>

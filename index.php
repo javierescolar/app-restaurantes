@@ -8,6 +8,7 @@ require_once('clases/Platos.php');
 require_once('clases/TicketsPlatos.php');
 require_once('clases/Productos.php');
 require_once('clases/Perfiles.php');
+require_once('clases/Medidas.php');
 
 session_start();
 //variables
@@ -21,6 +22,9 @@ if(isset($_SESSION['user'])) {
         include 'restaurante/login.php';
     } elseif(isset($_POST['datosUsuario'])){
         include 'restaurante/editProfile.php';
+    } elseif (isset($_POST['productos'])) {
+        include 'restaurante/products.php';
+        echo "<script type='text/javascript'> $('navProductos').style.background = 'black'; </script>";
     } elseif (isset($_POST['crearTicket'])) {
        $_SESSION['ticketActual'] = Ticket::crearTicket($_SESSION['user']['idUsuario'],$_POST['mesa'],$_SESSION['user']['idRestaurante']);
        include 'restaurante/menuCategorias.php';
@@ -89,7 +93,7 @@ if(isset($_SESSION['user'])) {
         echo "<script type='text/javascript'>
             swal('Guardado!', 'Plato guardado correctamente', 'success');
         </script>";
-    }elseif(isset ($_POST['accionTicket']) && $_POST['accionTicket'] == 'cerrarTicket'){
+    } elseif(isset ($_POST['accionTicket']) && $_POST['accionTicket'] == 'cerrarTicket'){
         Ticket::cerrarTicket($_SESSION['ticketActual']);
         include 'restaurante/home.php';
         echo "<script type='text/javascript'> $('navHome').style.background = 'black'; </script>";
@@ -104,7 +108,6 @@ if(isset($_SESSION['user'])) {
            swal('Anulado!', 'Ticket anulado', 'success');
         </script>";
     } else {
-    
         include 'restaurante/home.php';
         echo "<script type='text/javascript'> $('navHome').style.background = 'black'; </script>";
     }

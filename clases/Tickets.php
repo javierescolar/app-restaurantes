@@ -97,6 +97,7 @@ class Ticket extends Plato{
         return $consulta->execute([":idTicket" => $idTicket]);
         
     }
+    
     public function anularTicket($idTicket){  
         $conexion = BD::getConexion();
         $select = " DELETE FROM tickets WHERE idTicket = :idTicket;"
@@ -113,6 +114,7 @@ class Ticket extends Plato{
         $registros = $consulta->fetchAll();
         return $registros;
     }
+    
     
     public function getMesa(){
         return $this->mesa;

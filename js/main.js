@@ -158,6 +158,16 @@ window.onload = function () {
             });
         });
     }
-
-
+    if ($('activarFromProductos')) {
+        $('activarFromProductos').addEventListener("click", function () {
+            $('formFlotante').style.display = 'block'; 
+        });
+    }
+    if ($('desactivarFromProductos')) {
+        $('desactivarFromProductos').addEventListener("click", function () {
+            $('formFlotante').style.display = 'none';
+        });
+    }
+     
+    
 }

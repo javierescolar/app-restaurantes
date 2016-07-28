@@ -46,17 +46,15 @@ class Producto extends Restaurante{
         $conexion = null;
     }
     
-    public function muestraProductos(){
+    public function muestraProductos($idRestaurante){
         
-        $conexion = new Conexion();
-        $consulta = $conexion->prepare('SELECT * FROM productos');
-        $consulta->execute();
-        $registro = $consulta->fetch();
-        if($registro){
-            return new self($registro['ean'],$registro['nombre'],$registro['cantidad'],$registro['caducidad'],$registro['precio']);
-        }else{
-            return false;
-        }
+        $conexion = BD::getConexion();
+        $consulta = $conexion->prepare('SELECT * FROM productos WHERE idRestaurante = :idRestaurante');
+        $consulta->execute(["idRestaurante" => $idRestaurante]);
+        $consulta->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'productos');
+        $productos = $consulta->fetchAll();
+        return $productos;
+        
     }
     
     public function muestraProductosPlato($ingredientes){
