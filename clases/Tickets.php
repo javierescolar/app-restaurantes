@@ -19,13 +19,7 @@ class Ticket extends Plato{
         $this->abierto = $abierto;
     }
     
-    public function guardaTicket(){
-        
-        $conexion = new Conexion();
-        $consulta = $conexion->prepare('INSERT INTO tickets(mesa,fecha,vendedor,total,abierto) VALUES ('.$this->mesa.','.$this->fecha.','.$this->vendedor.','.$this->total.','.$this->abierto.')');
-        $consulta->execute();
-        $conexion = null;
-    }
+ 
     
     public function muestraTickets($user){
         
@@ -47,7 +41,7 @@ class Ticket extends Plato{
     public function crearTicket($user,$mesa,$restaurante){  
         $conexion = BD::getConexion();
         $consulta = $conexion->prepare('INSERT INTO tickets(mesa,fecha,idUsuario,abierto,idRestaurante) VALUES (:mesa,:fecha,:idUsuario,1,:idRestaurante)');
-        $consulta->execute([":fecha" => date("Y-m-d"), ":idUsuario" => $user, ":mesa" => $mesa, ":idRestaurante" => $restaurante]);
+        $consulta->execute([":fecha" => date("Y-m-d H:i:s"), ":idUsuario" => $user, ":mesa" => $mesa, ":idRestaurante" => $restaurante]);
         $idInsertado = $conexion->lastInsertId();
         return $idInsertado;
     }

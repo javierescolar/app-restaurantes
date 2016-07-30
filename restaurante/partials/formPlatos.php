@@ -1,5 +1,5 @@
 <div class="formularios row col-xs-12 col-xs-12 col-md-10 col-md-offset-1">
-    <div class="text-center cabeceraForm">Datos Plato</div>
+    <div class="text-center cabeceraForm">Nuevo Plato</div>
     <form action="index.php" method="POST" class="form col-xs-12 col-md-12 " id="formPlatos" role="form" enctype="multipart/form-data">
 
         <div class="form-group row">
@@ -69,8 +69,6 @@
             </div>
         </div>
         <div class="form-group row">
-
-
             <div class="form-group col-xs-12 col-md-12">
                 <label for="newDescripcion" class="col-xs-1 col-md-1 form-control-label">Descripción:</label>
                 <br>
@@ -84,5 +82,5 @@
         </div>
 
     </form>
-    <button id="activarFromProductos" class="btn-link">Añadir Producto</button> 
+    <button id="activarFromProductos" class="btn-link">Alta Producto</button> 
 </div>

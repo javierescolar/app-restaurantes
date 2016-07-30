@@ -46,64 +46,12 @@ function validateDni(dni) {
     return resultado;
 }
 
-function createButtonSave() {
-    var btnSave = document.createElement('button'),
-            span = document.createElement('span');
-    span.setAttribute('class', "glyphicon glyphicon-ok");
-    btnSave.setAttribute("class", "btn-link save");
-    btnSave.setAttribute("type", "submit");
-    btnSave.setAttribute("name", "saveProduct");
-    btnSave.appendChild(span);
-    return btnSave;
-}
-
-function createButtonDrop() {
-    var btnDrop = document.createElement('button'),
-            span = document.createElement('span');
-    span.setAttribute('class', "glyphicon glyphicon-remove");
-    btnDrop.setAttribute("class", "btn-link drop");
-    btnDrop.setAttribute("type", "submit");
-    btnDrop.setAttribute("name", "dropProduct");
-    btnDrop.appendChild(span);
-    return btnDrop;
-}
-
-function createInput(name) {
-    var input = document.createElement('input');
-    input.setAttribute("type", "text");
-    input.setAttribute("class", "form-control");
-    input.setAttribute("name", name);
-    return input;
-}
-function addRowForm(form) {
-    var fila = document.createElement('div'),
-            celdaEan = document.createElement('div'),
-            celdaNombre = document.createElement('div'),
-            celdaCantidad = document.createElement('div'),
-            celdaCaducidad = document.createElement('div'),
-            celdaAccion = document.createElement('div');
-    fila.setAttribute('class', 'form-group row');
-    celdaEan.setAttribute('class', 'col-xs-12 col-md-3');
-    celdaNombre.setAttribute('class', 'col-xs-12 col-md-3');
-    celdaCantidad.setAttribute('class', 'col-xs-12 col-md-2');
-    celdaCaducidad.setAttribute('class', 'col-xs-12 col-md-3');
-    celdaAccion.setAttribute('class', 'col-xs-12 col-md-1');
-    celdaEan.appendChild(createInput('EAN'));
-    celdaNombre.appendChild(createInput('Nombre'));
-    celdaCantidad.appendChild(createInput('Cantidad'));
-    celdaCaducidad.appendChild(createInput('Caducidad'));
-    celdaAccion.appendChild(createButtonSave());
-    celdaAccion.appendChild(createButtonDrop());
-    fila.appendChild(celdaEan);
-    fila.appendChild(celdaNombre);
-    fila.appendChild(celdaCantidad);
-    fila.appendChild(celdaCaducidad);
-    fila.appendChild(celdaAccion);
-    form.appendChild(fila);
-}
-
 
 window.onload = function () {
+    
+    
+    setTimeout("location.reload()",60000); 
+    
     var nuevoProducto = 0;
     if ($('formLogin')) {
         $('formLogin').addEventListener("submit", function (event) {

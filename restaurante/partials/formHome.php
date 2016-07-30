@@ -3,17 +3,17 @@
         <option></option>
         <?php
         $mesasOcupadas = Ticket::mesasOcupadas($_SESSION['user']['idRestaurante']);
-        for($i = 1; $i <= $numeroMesas; $i++){
+        for ($i = 1; $i <= $numeroMesas; $i++) {
             $ocupada = false;
-            foreach ($mesasOcupadas as $mesa){
-                if(in_array($i,$mesa)){
+            foreach ($mesasOcupadas as $mesa) {
+                if (in_array($i, $mesa)) {
                     $ocupada = true;
-                } 
+                }
             }
-            if(!$ocupada){
+            if (!$ocupada) {
                 echo "<option value='$i'>Mesa $i</option>";
             }
-         }   
+        }
         ?>
     </select>
     <input type="submit" name="crearTicket" id="crearTicket" value="Crear Ticket" class="btn btn-danger"/>
@@ -22,33 +22,38 @@
 <div class="formularios row col-xs-12 col-xs-12 col-md-10 col-md-offset-1">
     <div class="text-center cabeceraForm">Tickets Abiertos</div>
     <div class="form-group row col-md-12 cabeceraProductos">
-            <div class="col-xs-3 col-md-3 text-center">
-                <h4>Ticket</h4>
-            </div>
-            <div class="col-xs-3 col-md-3 text-center">
-                <h4>Mesa</h4>
-            </div>
-            <div class="col-xs-3 col-md-3 text-center">
-                <h4>Camarero</h4>
-            </div>
-            <div class="col-xs-3 col-md-3 text-center">
-                <h4>Total</h4>
-            </div>
+        <div class="col-xs-3 col-md-3 text-center">
+            <h4>Ticket</h4>
         </div>
-         <?php
-         $tickets = Ticket::muestraTickets($_SESSION['user']['idUsuario']);
-         $x=0;//SESION/ $tickets=consulta por el vendedor y si esta abierto o no
-         foreach($tickets as $ticket){
-             echo '<div class="form-group row formTickets">';
-             echo "<form action='index.php' method='POST' onClick='this.submit()'>";
-             echo '<div class="col-xs-3 col-md-3 text-center">'.$ticket['idTicket'].'</div>';
-             echo '<div class="col-xs-3 col-md-3 text-center">'.$ticket['mesa'].'</div>';
-             echo '<div class="col-xs-3 col-md-3 text-center">'.$ticket['fecha'].'</div>';
-             echo '<div class="col-xs-3 col-md-3 text-center">'.$ticket['total'].'</div>';
-            echo "<input type='hidden' value='".$ticket['idTicket']."'name='idTicket'/>";
+        <div class="col-xs-3 col-md-3 text-center">
+            <h4>Mesa</h4>
+        </div>
+        <div class="col-xs-3 col-md-3 text-center">
+            <h4>Total cuenta</h4>
+        </div>
+        <div class="col-xs-3 col-md-3 text-center">
+            <h4>Tiempo</h4>
+        </div>
+    </div>
+    <?php
+    $tickets = Ticket::muestraTickets($_SESSION['user']['idUsuario']);
+    if(count($tickets) !== 0) {
+
+        $x = 0; //SESION/ $tickets=consulta por el vendedor y si esta abierto o no
+        foreach ($tickets as $ticket) {
+            echo '<div class="form-group row formTickets">';
+            echo "<form action='index.php' method='POST' onClick='this.submit()'>";
+            echo '<div class="col-xs-3 col-md-3 text-center">' . $ticket['idTicket'] . '</div>';
+            echo '<div class="col-xs-3 col-md-3 text-center">' . $ticket['mesa'] . '</div>';
+            echo '<div class="col-xs-3 col-md-3 text-center">' . $ticket['total'] . '</div>';
+            echo '<div class="col-xs-3 col-md-3 text-center" id="reloj"></div>';
+            echo "<input type='hidden' value='" . $ticket['idTicket'] . "'name='idTicket'/>";
             echo "</form>";
             echo "</div>";
             $x++;
-         }
-         ?>
+        }
+    } else {
+         echo "<br><br><h5 class='text-center'>No tienes ticket asignados<h5>";
+    }
+    ?>
 </div>

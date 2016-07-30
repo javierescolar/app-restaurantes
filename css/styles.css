@@ -150,7 +150,7 @@ nav li button:hover{
     margin:1em;
 }
 
-.formularios input[type=text],input[type=email],input[type=date],input[type=number]{
+.formularios input[type=text],input[type=email],input[type=date],input[type=number],select{
     height:2em !important;
 }
 input[type=checkbox]{
@@ -209,16 +209,19 @@ input[type=text].ordenEspecial{
 }
 
 #formFlotanteCaja{ 
-  border-radius:2em;
-  background:white;
-  height:20em;
-  width:85%;
-  margin:5%;
-  z-index:999;
-  margin-top:10em;
+    border-radius:2em;
+    background:white;
+    height:22em;
+    margin:5%;
+    z-index:999;
+    margin-top:10em;
 }
 
 #formFlotanteCaja span{
     font-size:2em;
-    margin-left:1.5em;
+    margin-left:1em;
+}
+
+.form-group{
+    margin-bottom:0.2em;
 }

@@ -107,7 +107,16 @@ if(isset($_SESSION['user'])) {
         echo "<script type='text/javascript'>
            swal('Anulado!', 'Ticket anulado', 'success');
         </script>";
-    } else {
+    } elseif(isset ($_POST['guardarProducto'])){
+        $esencial = (isset($_POST['newEsencial']))? 1:0; 
+        Producto:: guardarProducto($_POST['newEan'],$_POST['newNombre'],$_POST['newCantidad'],$_POST['newCaducidad']
+                ,$_POST['newPrecio'], $esencial ,$_POST['newMedida'],$_SESSION['user']['idRestaurante']);
+        include 'restaurante/products.php';
+        echo "<script type='text/javascript'> $('navProductos').style.background = 'black'; </script>";
+        echo "<script type='text/javascript'>
+           swal('Guardado!', 'Producto guardado', 'success');
+        </script>";
+    }else {
         include 'restaurante/home.php';
         echo "<script type='text/javascript'> $('navHome').style.background = 'black'; </script>";
     }

@@ -10,7 +10,6 @@ class Producto extends Restaurante{
     protected $cantidad;
     protected $caducidad;
     protected $precio;
-    protected $categoria;
     protected $idMedia;
     protected $idRestaurante;
     
@@ -39,11 +38,12 @@ class Producto extends Restaurante{
         
     }
     
-    public function guardarProductos(){
-        $conexion = new Conexion();
-        $consulta = $conexion->prepare('INSERT INTO productos(ean,nombre,cantidad,caducidad,precio) VALUES ('.$this->ean.','.$this->nombre.','.$this->cantidad.','.$this->caducidad.','.$this->precio.')');
-        $consulta->execute();
-        $conexion = null;
+    public function guardarProducto($ean,$nombre,$cantidad,$caducidad,$precio,$esencial,$medida,$idResturante){
+        $conexion = BD::getConexion();
+        $sentencia = $conexion->prepare('INSERT INTO productos(ean,nombre,cantidad,caducidad,precio,esencial,idMedida,idRestaurante) VALUES ('.$ean.',"'.$nombre.'",'.$cantidad.','.$caducidad.','.$precio.','.$esencial.','.$medida.','.$idResturante.')');
+        $consulta = $sentencia->execute();
+        return $consulta;
+
     }
     
     public function muestraProductos($idRestaurante){
