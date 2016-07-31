@@ -22,9 +22,14 @@ if(isset($_SESSION['user'])) {
         include 'restaurante/login.php';
     } elseif(isset($_POST['datosUsuario'])){
         include 'restaurante/editProfile.php';
+    } elseif(isset($_POST['editarPerfil'])){
+        $_SESSION['user'] = Usuario::editarUsuario($_POST['newDni'],$_POST['newNombre'],$_POST['newApellidos'],
+                $_POST['newTelefono'],$_POST['newEmail'],$_SESSION['user']['idRestaurante'],$_SESSION['user']['idUsuario']);
+        include 'restaurante/editProfile.php';
     } elseif (isset($_POST['productos'])) {
         include 'restaurante/products.php';
-        echo "<script type='text/javascript'> $('navProductos').style.background = 'black'; </script>";
+        echo "<script type='text/javascript'> $('navProductos').style.background = 'black'; "
+        . " origenFormProductos('productos'); </script>";
     } elseif (isset($_POST['crearTicket'])) {
        $_SESSION['ticketActual'] = Ticket::crearTicket($_SESSION['user']['idUsuario'],$_POST['mesa'],$_SESSION['user']['idRestaurante']);
        include 'restaurante/menuCategorias.php';
@@ -72,7 +77,8 @@ if(isset($_SESSION['user'])) {
         include 'restaurante/ticket.php';
     } elseif (isset ($_POST['platos'])) {
         include 'restaurante/platos.php';
-        echo "<script type='text/javascript'> $('navPlatos').style.background = 'black'; </script>";
+        echo "<script type='text/javascript'> $('navPlatos').style.background = 'black'; "
+        . " origenFormProductos('platos'); </script>";
     } elseif (isset($_POST['guardarPlatos'])){
         $productosEsenciales = "";
         if(isset($_POST["newIngredientesEsenciales"])){
@@ -111,11 +117,18 @@ if(isset($_SESSION['user'])) {
         $esencial = (isset($_POST['newEsencial']))? 1:0; 
         Producto:: guardarProducto($_POST['newEan'],$_POST['newNombre'],$_POST['newCantidad'],$_POST['newCaducidad']
                 ,$_POST['newPrecio'], $esencial ,$_POST['newMedida'],$_SESSION['user']['idRestaurante']);
-        include 'restaurante/products.php';
-        echo "<script type='text/javascript'> $('navProductos').style.background = 'black'; </script>";
+        if($_POST['origenFormularioProducto'] == 'productos'){
+            include 'restaurante/products.php';
+            echo "<script type='text/javascript'> $('navProductos').style.background = 'black'; </script>";
+        } else {
+            include 'restaurante/platos.php';
+            echo "<script type='text/javascript'> $('navPlatos').style.background = 'black'; </script>";
+        }
         echo "<script type='text/javascript'>
            swal('Guardado!', 'Producto guardado', 'success');
         </script>";
+        
+        
     }else {
         include 'restaurante/home.php';
         echo "<script type='text/javascript'> $('navHome').style.background = 'black'; </script>";

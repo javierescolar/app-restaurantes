@@ -40,7 +40,28 @@ class Usuario extends Restaurante{
         return $usuario;
     }
     
-    
+    public function editarUsuario($dni,$nombre,$apellidos,$telefono,$email,$idRestaurante,$idUsuario){
+        //update usuario para editar datos
+        $bd = BD::getConexion();
+        $select = "UPDATE usuarios SET dni = :dni"
+                        . ",nombre = :nombre"
+                        . ",apellidos = :apellidos"
+                        . ",telefono = :telefono"
+                        . ",email = :email"
+                        . ",idRestaurante = :idRestaurante"
+                . " WHERE idUsuario = :idUsuario";
+        $sentencia = $bd->prepare($select);
+        $sentencia->execute([":dni" => $dni, ":nombre" => $nombre, ":apellidos" => $apellidos,
+            ":telefono" => $telefono, ":email" => $email, ":idRestaurante" => $idRestaurante,
+            ":idUsuario" => $idUsuario]);
+        //recupero el usuario para mantener la sessión del mismo
+        $bd2 = BD::getConexion();
+        $sentencia2 = $bd2->prepare("SELECT * FROM usuarios WHERE idUsuario = ".$idUsuario);
+        $sentencia2->execute();
+        $sentencia2->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'usuarios');
+        $usuario = $sentencia2->fetch();
+        return $usuario;
+    }
     
     public function guardaUsuario(){
         

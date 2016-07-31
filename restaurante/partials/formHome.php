@@ -38,15 +38,26 @@
     <?php
     $tickets = Ticket::muestraTickets($_SESSION['user']['idUsuario']);
     if(count($tickets) !== 0) {
-
+        echo '<div style="background-color:white" class="form-group row formTickets">';
+            
+            echo '<div class="col-xs-3 col-md-3 text-center"></div>';
+            echo '<div class="col-xs-3 col-md-3 text-center"></div>';
+            echo '<div class="col-xs-3 col-md-3 text-center"></div>';
+            echo '<div class="col-xs-3 col-md-3 text-center"></div>';
+            
+            echo "</div>";
         $x = 0; //SESION/ $tickets=consulta por el vendedor y si esta abierto o no
         foreach ($tickets as $ticket) {
-            echo '<div class="form-group row formTickets">';
+            $date1=date_create(date("Y-m-d H:i:s"));
+            $date2=date_create($ticket['fecha']);
+            $diff=date_diff($date1,$date2);
+            $colorSLA = ($diff->format("%I") < 30)? ($diff->format("%I") < 15)?"#A9FFA6" :"#FFDFA6" :"#FF8181";
+            echo '<div style="background-color:'.$colorSLA.'" class="form-group row formTickets">';
             echo "<form action='index.php' method='POST' onClick='this.submit()'>";
             echo '<div class="col-xs-3 col-md-3 text-center">' . $ticket['idTicket'] . '</div>';
             echo '<div class="col-xs-3 col-md-3 text-center">' . $ticket['mesa'] . '</div>';
             echo '<div class="col-xs-3 col-md-3 text-center">' . $ticket['total'] . '</div>';
-            echo '<div class="col-xs-3 col-md-3 text-center" id="reloj"></div>';
+            echo '<div class="col-xs-3 col-md-3 text-center">'.$diff->format("%H:%I").'</div>';
             echo "<input type='hidden' value='" . $ticket['idTicket'] . "'name='idTicket'/>";
             echo "</form>";
             echo "</div>";

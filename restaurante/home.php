@@ -12,7 +12,7 @@
 
     </head>
 
-    <body>
+    <body id="home">
         <div class="container-fluid">
 
             <?php
