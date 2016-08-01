@@ -190,6 +190,17 @@ window.onload = function () {
             $('formFlotante').style.display = 'none';
         });
     }
+    
+    if ($('activarFormSla')) {
+        $('activarFormSla').addEventListener("click", function () {
+            $('formFlotante').style.display = 'block'; 
+        });
+    }
+    if ($('desactivarFormSla')) {
+        $('desactivarFormSla').addEventListener("click", function () {
+            $('formFlotante').style.display = 'none';
+        });
+    }
      
     
 }

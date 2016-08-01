@@ -40,6 +40,11 @@
                         <button type="submit" class="btn-link" name="gestion">Gestión</button>
                     </form>
                 </li>
+                <li>
+                    <form action="index.php" method="POST">
+                        <button id="navSla" type="submit" class="btn-link" name="sla">SLA´s</button>
+                    </form>
+                </li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
                <!--<form class="navbar-form navbar-left" id="search"role="search">

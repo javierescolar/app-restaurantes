@@ -16,44 +16,50 @@
         <div class="container-fluid">
 
             <?php
-
-            include ($_SESSION['user']['idPerfil'] == 3)? 'restaurante/partials/navCamarero.php':'restaurante/partials/nav.php';
-
-
-            include 'restaurante/partials/subNav.php';
+            include ($_SESSION['user']['idPerfil'] == 3) ? 'restaurante/partials/navCamarero.php' : 'restaurante/partials/nav.php';
+            if (isset($_SESSION['ticketActual'])) {
+                include 'restaurante/partials/subNav.php';
+            }
             ?>
 
             <section class="cuerpo">
-               <form action="index.php" method="POST">
-               <div class="col-md-12 col-xs-12">
-                   <?php
-                   $plato = Plato::muestraPlatoId($_POST['idPlato']);
-                   $ingredientesPlato = Producto::muestraProductosPlato($plato['ingredientes']);;
-                    echo "<h1 class='text-center'>".$plato['nombre']."</h1>";
-                    ?>
-                   
-                   <div class="col-md-12 col-xs-12">
+                <form action="index.php" method="POST">
+                    <div class="col-md-12 col-xs-12">
+                        <?php
+                        $plato = Plato::muestraPlatoId($_POST['idPlato']);
+                        $ingredientesPlato = Producto::muestraProductosPlato($plato['ingredientes']);
+                        ;
+                        echo "<h1 class='text-center'>" . $plato['nombre'] . "</h1>";
+                        ?>
 
+                        <div class="col-md-12 col-xs-12">
+
+                            <?php
+                            echo "<img src='img/" . $plato["imagen"] . "' class='img-responsive platoFoto'></img>";
+                            echo "<h4>Ingredientes</h4>";
+                            foreach ($ingredientesPlato as $ingrediente) {
+                                echo '<div class="checkbox">';
+                                echo "<label><input type='checkbox' name='ingrediente[" . $ingrediente['idProducto'] . "]' value='" . $ingrediente['idProducto'] . "'> " . $ingrediente['nombre'] . "</label>";
+                                echo "</div>";
+                            }
+                            echo "<p class='textDescripcion'>" . $plato["descripcion"] . "</p>";
+                            ?>
+                        </div>
+
+                    </div>
                     <?php
-                        echo  "<img src='img/".$plato["imagen"]."' class='img-responsive platoFoto'></img>";
-                        echo "<h4>Ingredientes</h4>";
-                        foreach ($ingredientesPlato as $ingrediente){
-                            echo '<div class="checkbox">';
-                            echo "<label><input type='checkbox' name='ingrediente[".$ingrediente['idProducto']."]' value='".$ingrediente['idProducto']."'> ".$ingrediente['nombre']."</label>";
-                            echo "</div>";
-                        }
-                        echo "<p class='textDescripcion'>".$plato["descripcion"]."</p>";
-                    ?>
-                   </div>
+                    if (isset($_SESSION['ticketActual'])) {
+                        ?>
+                        <div class="row col-md-12 col-xs-12">
 
-               </div>
-                <div class="row col-md-12 col-xs-12">
-                    
-                        <input type='hidden' name='idPlato' value='<?php echo $plato["idPlato"]; ?>'/>;
-                        <input type="submit" name="anadirPlatoSeleccion" value="Añadir al ticket" class="btn btn-danger col-md-offset-10 col-md-2 col-xs-offset-1 col-xs-11"/>
-                   
-                </div>
-                    </form>
+                            <input type='hidden' name='idPlato' value='<?php echo $plato["idPlato"]; ?>'/>;
+                            <input type="submit" name="anadirPlatoSeleccion" value="Añadir al ticket" class="btn btn-danger col-md-offset-10 col-md-2 col-xs-offset-1 col-xs-11"/>
+
+                        </div>
+    <?php
+}
+?>
+                </form>
             </section>
 
         </div>

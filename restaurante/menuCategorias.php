@@ -16,29 +16,29 @@
         <div class="container-fluid">
 
             <?php
-
-            include ($_SESSION['user']['idPerfil'] == 3)? 'restaurante/partials/navCamarero.php':'restaurante/partials/nav.php';
-            
-             include 'restaurante/partials/subNav.php';
+            include ($_SESSION['user']['idPerfil'] == 3) ? 'restaurante/partials/navCamarero.php' : 'restaurante/partials/nav.php';
+            if (!isset($_POST['carta'])) {
+                include 'restaurante/partials/subNav.php';
+            }
             ?>
 
             <section class="cuerpo">
-                
+
                 <?php
-                $colores = ["","btn-primary", "btn-success", "btn-info", "btn-warning", "btn-danger", "btn-default"];
+                $colores = ["", "btn-primary", "btn-success", "btn-info", "btn-warning", "btn-danger", "btn-default"];
                 $categorias = Categoria::muestraCategorias();
-                   foreach ($categorias as $key=>$categoria) {
-                       echo '<form action="index.php" method="POST">';
-                        echo '<button type=submit name="seleccionCategoria" class="categoria col-md-5 col-xs-5 col-xs-6 text-center btn '.$colores[$categoria['idCategoria']] .'">';
-                            echo '<h4>'.$categoria['nombre'].'</h4>';
-                        echo '</button>';
-                        echo '<input type="hidden" name="categoriaSeleccionada" value="'.$categoria['idCategoria'].'"/>';
-                        echo '</form>';
-                   }
+                foreach ($categorias as $key => $categoria) {
+                    echo '<form action="index.php" method="POST">';
+                    echo '<button type=submit name="seleccionCategoria" class="categoria col-md-5 col-xs-5 col-xs-6 text-center btn ' . $colores[$categoria['idCategoria']] . '">';
+                    echo '<h4>' . $categoria['nombre'] . '</h4>';
+                    echo '</button>';
+                    echo '<input type="hidden" name="categoriaSeleccionada" value="' . $categoria['idCategoria'] . '"/>';
+                    echo '</form>';
+                }
                 ?>
-                
+
             </section>
-            
+
         </div>
     </body>
     <script type="text/javascript" src="js/jquery-1.12.1.min.js"></script>

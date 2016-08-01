@@ -9,6 +9,7 @@ require_once('clases/TicketsPlatos.php');
 require_once('clases/Productos.php');
 require_once('clases/Perfiles.php');
 require_once('clases/Medidas.php');
+require_once('clases/SLA.php');
 
 session_start();
 //variables
@@ -22,6 +23,9 @@ if(isset($_SESSION['user'])) {
         include 'restaurante/login.php';
     } elseif(isset($_POST['datosUsuario'])){
         include 'restaurante/editProfile.php';
+    } elseif(isset($_POST['carta'])){
+        include 'restaurante/menuCategorias.php';
+        echo "<script type='text/javascript'> $('navCarta').style.background = 'black'; </script>";
     } elseif(isset($_POST['editarPerfil'])){
         $_SESSION['user'] = Usuario::editarUsuario($_POST['newDni'],$_POST['newNombre'],$_POST['newApellidos'],
                 $_POST['newTelefono'],$_POST['newEmail'],$_SESSION['user']['idRestaurante'],$_SESSION['user']['idUsuario']);
@@ -67,8 +71,7 @@ if(isset($_SESSION['user'])) {
             swal('Añadido!', 'Plato añadido al ticket', 'success');
         </script>";
     } elseif (isset ($_POST['idPlato'])) {
-        include 'restaurante/platoSeleccion.php';
-        
+        include 'restaurante/platoSeleccion.php';   
     } elseif (isset ($_POST['categoriaSubNav'])) {
         include 'restaurante/menuCategorias.php';
     } elseif (isset ($_POST['platosSubNav'])) {
@@ -127,9 +130,19 @@ if(isset($_SESSION['user'])) {
         echo "<script type='text/javascript'>
            swal('Guardado!', 'Producto guardado', 'success');
         </script>";
-        
-        
-    }else {
+    }elseif(isset ($_POST['sla'])){
+        include 'restaurante/sla.php';
+        echo "<script type='text/javascript'> $('navSla').style.background = 'black'; </script>";
+    } elseif(isset ($_POST['guardarSla'])){
+        SLA::guardarSla($_POST['newNombreSla'],$_POST['newValorSla'],$_POST['newColorSla'],$_SESSION['user']['idRestaurante']);
+        include 'restaurante/sla.php';
+        echo "<script type='text/javascript'> $('navSla').style.background = 'black'; </script>";
+        echo "<script type='text/javascript'>
+           swal('Guardado!', 'SLA guardado', 'success');
+        </script>";
+    } else {
+        unset($_SESSION['ticketActual']);
+        unset($_SESSION['categoriaSeleccionada']);
         include 'restaurante/home.php';
         echo "<script type='text/javascript'> $('navHome').style.background = 'black'; </script>";
     }

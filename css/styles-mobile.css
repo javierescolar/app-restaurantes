@@ -15,4 +15,13 @@
     input[type=text].ordenEspecial{
         width:11.85em;
     }
+    
+    #formFlotanteCaja{ 
+        min-height:40em;
+    }
+    #formFlotanteCaja span{
+        font-size:1.2em;
+        margin-left:1em;
+    }
+     
 }
