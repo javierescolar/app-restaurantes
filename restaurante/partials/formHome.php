@@ -38,35 +38,44 @@
     <?php
     $slas = SLA::muestraSla($_SESSION['user']['idRestaurante']);
     $tickets = Ticket::muestraTickets($_SESSION['user']['idUsuario']);
-    if(count($tickets) !== 0) {
+    if (count($tickets) !== 0) {
         echo '<div style="background-color:white" class="form-group row formTickets">';
-            
-            echo '<div class="col-xs-3 col-md-3 text-center"></div>';
-            echo '<div class="col-xs-3 col-md-3 text-center"></div>';
-            echo '<div class="col-xs-3 col-md-3 text-center"></div>';
-            echo '<div class="col-xs-3 col-md-3 text-center"></div>';
-            
-            echo "</div>";
+
+        echo '<div class="col-xs-3 col-md-3 text-center"></div>';
+        echo '<div class="col-xs-3 col-md-3 text-center"></div>';
+        echo '<div class="col-xs-3 col-md-3 text-center"></div>';
+        echo '<div class="col-xs-3 col-md-3 text-center"></div>';
+
+        echo "</div>";
         $x = 0; //SESION/ $tickets=consulta por el vendedor y si esta abierto o no
         foreach ($tickets as $ticket) {
-            $date1=date_create(date("Y-m-d H:i:s"));
-            $date2=date_create($ticket['fecha']);
-            $diff=date_diff($date1,$date2);
-            $minutosTotales = ($diff->format("%H")*60) + $diff->format("%I");
-            $colorSLA = ($diff->format("%I") < 30)? ($diff->format("%I") < 15)?"#A9FFA6" :"#FFDFA6" :"#FF8181";
-            echo '<div style="background-color:'.$colorSLA.'" class="form-group row formTickets">';
+            $aux = 0;
+            $colorSLA = $slas[count($slas)-1]->getColor();
+            $date1 = date_create(date("Y-m-d H:i:s"));
+            $date2 = date_create($ticket['fecha']);
+            $diff = date_diff($date1, $date2);
+            $minutosTotales = ($diff->format("%H") * 60) + $diff->format("%I");
+            for ($i = 0; $i < count($slas); $i++) {
+                if ($minutosTotales < $slas[$i]->getValor() && $minutosTotales >= $aux) {
+                    $colorSLA = $slas[$i]->getColor();
+                    $aux = $slas[$i]->getValor();
+                } else {
+                    $aux = $slas[$i]->getValor();
+                }
+            }
+            echo '<div style="background-color:' . $colorSLA . '" class="form-group row formTickets">';
             echo "<form action='index.php' method='POST' onClick='this.submit()'>";
             echo '<div class="col-xs-3 col-md-3 text-center">' . $ticket['idTicket'] . '</div>';
             echo '<div class="col-xs-3 col-md-3 text-center">' . $ticket['mesa'] . '</div>';
             echo '<div class="col-xs-3 col-md-3 text-center">' . $ticket['total'] . '</div>';
-            echo '<div class="col-xs-3 col-md-3 text-center">'.$diff->format("%H:%I").'</div>';
+            echo '<div class="col-xs-3 col-md-3 text-center">' . $diff->format("%H:%I") . '</div>';
             echo "<input type='hidden' value='" . $ticket['idTicket'] . "'name='idTicket'/>";
             echo "</form>";
             echo "</div>";
             $x++;
         }
     } else {
-         echo "<br><br><h5 class='text-center'>No tienes ticket asignados<h5>";
+        echo "<br><br><h5 class='text-center'>No tienes ticket asignados<h5>";
     }
     ?>
 </div>
