@@ -125,6 +125,16 @@ function origenFormProductos(origen){
     $('origenFormularioProducto').value = origen;
 }
 
+function editarIngrediente(boton){   
+    $('productoEditado').value = boton;
+}
+
+function borrarIngrediente(boton){
+    $('productoBorrado').value = boton;
+}
+function borrarSla(boton){
+    $('slaBorrado').value = boton;
+}
 window.onload = function () {
     
     if($('home')){
@@ -133,21 +143,37 @@ window.onload = function () {
     var nuevoProducto = 0;
     if ($('formLogin')) {
         $('formLogin').addEventListener("submit", function (event) {
-            (validateEmail($('email').value) && validatePassword($('password').value)) ? true : event.preventDefault();
+            if(validateEmail($('email').value) && validatePassword($('password').value)) { 
+                true;
+            }else {
+                event.preventDefault();
+                swal("Atención", "Los datos introducidos no son válidos", "warning");
+            }
         });
     }
     if ($('formEditProfile')) {
         $('formEditProfile').addEventListener("submit", function (event) {
-            (validateEmail($('newEmail').value) && validateDni($('newDni').value)
+           if (validateEmail($('newEmail').value) && validateDni($('newDni').value)
                     && validateName($('newNombre').value) && validateLastNames($('newApellidos').value)
-                    && validatePhone($('newTelefono').value)) ? true : event.preventDefault();
+                    && validatePhone($('newTelefono').value)){ 
+                true;
+            }else {
+                event.preventDefault();
+                swal("Atención", "Los datos introducidos no son válidos", "warning");
+            }
+            
         });
     }
     if ($('formNuevoProducto')) {
         $('formNuevoProducto').addEventListener("submit", function (event) {
-            (validateEan($('newEan').value) && validateNombreProducto($('newNombreProducto').value)
+            if(validateEan($('newEan').value) && validateNombreProducto($('newNombreProducto').value)
                     && validateCantidad($('newCantidad').value) 
-                    && validatePrecio($('newPrecio').value)) ? true : event.preventDefault();
+                    && validatePrecio($('newPrecio').value)) { 
+                true;
+            }else {
+                event.preventDefault();
+                swal("Atención", "Los datos introducidos no son válidos", "warning");
+            }
         });
     }
     if ($('cerrarTicket')) {
@@ -201,6 +227,8 @@ window.onload = function () {
             $('formFlotante').style.display = 'none';
         });
     }
+    
+    
      
     
 }

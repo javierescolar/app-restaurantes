@@ -5,6 +5,8 @@
 
         <div class="text-center cabeceraForm">Nuevo SLA</div>
         <form action='index.php' method='POST' id="formNuevoSla">
+            <button id="guardarSla" type="submit" name="guardarSla" class="btn-link" value="Guardar SLA"><span class="save glyphicon glyphicon-floppy-saved"></span></button>
+            
             <div class="form-group row col-md-12">
                 <div class="col-xs-12 col-md-3">
                     <label for="newNombreSla">Nombre</label>
@@ -22,10 +24,7 @@
                     <input name='newColorSla' id="newColorSla" class='form-control' type='text' required/>
 
                 </div>
-                <div class="col-xs-12 col-md-3">
-                     <label for="guardarSla"> </label>
-                     <input type="submit" class="col-md-offset-6 btn btn-danger" name="guardarSla" value="Guardar SLA">
-                </div>
+                
             </div>
             <br>
         </form>

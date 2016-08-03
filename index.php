@@ -30,6 +30,9 @@ if(isset($_SESSION['user'])) {
         $_SESSION['user'] = Usuario::editarUsuario($_POST['newDni'],$_POST['newNombre'],$_POST['newApellidos'],
                 $_POST['newTelefono'],$_POST['newEmail'],$_SESSION['user']['idRestaurante'],$_SESSION['user']['idUsuario']);
         include 'restaurante/editProfile.php';
+        echo "<script type='text/javascript'>
+            swal('Guardado!', 'Perfil editado', 'success');
+        </script>";      
     } elseif (isset($_POST['productos'])) {
         include 'restaurante/products.php';
         echo "<script type='text/javascript'> $('navProductos').style.background = 'black'; "
@@ -139,6 +142,35 @@ if(isset($_SESSION['user'])) {
         echo "<script type='text/javascript'> $('navSla').style.background = 'black'; </script>";
         echo "<script type='text/javascript'>
            swal('Guardado!', 'SLA guardado', 'success');
+        </script>";
+    } elseif(isset ($_POST['slaBorrado']) && $_POST['slaBorrado'] != ""){
+        SLA::borrarSla($_POST['slaBorrado']);
+        include 'restaurante/sla.php';
+        echo "<script type='text/javascript'> $('navSla').style.background = 'black'; </script>";
+        echo "<script type='text/javascript'>
+           swal('Borrado!', 'SLA borrado', 'success');
+        </script>";
+    } elseif(isset ($_POST['guardarSlas']) && $_POST['slaBorrado'] == ""){
+        SLA::editarSlas($_POST['newIdsSla'],$_POST['newNombreSla'],$_POST['newValor'],$_POST['newColor']);
+        include 'restaurante/sla.php';
+        echo "<script type='text/javascript'> $('navSla').style.background = 'black'; </script>";
+        echo "<script type='text/javascript'>
+           swal('Guardado!', 'SLA´s guardados', 'success');
+        </script>";
+    } elseif(isset ($_POST['productoBorrado']) && $_POST['productoBorrado'] != ""){
+        Producto::borrarProducto($_POST['productoBorrado']);
+        include 'restaurante/products.php';
+        echo "<script type='text/javascript'> $('navProductos').style.background = 'black'; </script>";
+        echo "<script type='text/javascript'>
+           swal('Borrado!', 'Producto borrado', 'success');
+        </script>";
+    } elseif(isset ($_POST['editarProductos']) && $_POST['productoBorrado'] == ""){
+        Producto::editarProductos($_POST['newIds'],$_POST['newEan'],$_POST['newNombre'],$_POST['newCantidad'],
+                            $_POST['newCaducidad'],$_POST['newPrecio'],$_POST['newMedida'],$_POST['newEsencial']);
+        include 'restaurante/products.php';
+        echo "<script type='text/javascript'> $('navProductos').style.background = 'black'; </script>";
+        echo "<script type='text/javascript'>
+           swal('Guardado!', 'Productos guardados', 'success');
         </script>";
     } else {
         unset($_SESSION['ticketActual']);

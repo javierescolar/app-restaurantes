@@ -46,6 +46,33 @@ class Producto extends Restaurante{
 
     }
     
+    public function borrarProducto($id){
+        $conexion = BD::getConexion();
+        $sentencia = $conexion->prepare('DELETE FROM productos WHERE idProducto = '.$id);
+        $consulta = $sentencia->execute();
+        return $consulta;
+    }
+    
+    public function editarProductos($ids,$ean,$nombre,$cantidad,$caducidad,$precio,$medida,$esencial){
+        
+        foreach ($ids as $key=>$id){
+            $conexion = BD::getConexion();
+             $select = "UPDATE productos "
+                . "SET ean = '".$ean[$key]."'"
+                . ",nombre = '".$nombre[$key]."'"
+                . ",cantidad = ".$cantidad[$key]
+                . ",caducidad = '".$caducidad[$key]."'"
+                . ",precio = ".$precio[$key]
+                . ",idMedida = ".$medida[$key]
+                . " WHERE idProducto = ".$id;
+              $sentencia = $conexion->prepare($select);
+              $consulta = $sentencia->execute();
+             
+        }
+         
+    }
+    
+    
     public function muestraProductos($idRestaurante){
         
         $conexion = BD::getConexion();

@@ -5,6 +5,7 @@
 
         <div class="text-center cabeceraForm">Nuevo Productos</div>
         <form action='index.php' method='POST' id="formNuevoProducto">
+             <button id="guardarProducto" type="submit" name="guardarProducto" class="btn-link" value="Guardar Producto"><span class="save glyphicon glyphicon-floppy-saved"></span></button>
             <div class="form-group row col-md-12">
                 <div class="col-xs-12 col-md-3">
                     <label for="newEan">Ean</label>
@@ -55,11 +56,9 @@
                     <input name='newPrecio' id="newPrecio"  class='form-control' type='text' value='' required/>
 
                 </div>
-                 <div class="col-xs-12 col-md-2 col-md-offset-2">
-                     <label for="guardarProducto"></label>
+                 
                      <input id="origenFormularioProducto" type="hidden" name="origenFormularioProducto" value="">
-                     <input type="submit" class="btn btn-danger" name="guardarProducto" value="Guardar Producto">
-            </div>
+            
             </div>    
             </form>
         </div>

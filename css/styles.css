@@ -96,6 +96,9 @@ nav li button:hover{
     margin-left:0.8em;
 }
 
+.save{
+     color:white;
+}
 .save:hover{
     color:#64FE2E;
 }
@@ -218,10 +221,17 @@ input[type=text].ordenEspecial{
 }
 
 #formFlotanteCaja span{
-    font-size:2em;
+    font-size:1.2em;
     margin-left:1em;
 }
 
 .form-group{
     margin-bottom:0.2em;
 }
+
+#editarProductos,#guardarPlatos,#guardarSlas,#editarPerfil,#guardarProducto,#guardarSla{
+    position:absolute;
+    margin-top:-3.7em;
+    right:2.2em;
+}
+

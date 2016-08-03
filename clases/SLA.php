@@ -40,6 +40,29 @@ class SLA extends Restaurante{
 
     }
     
+    public function borrarSla($id){
+        $conexion = BD::getConexion();
+        $sentencia = $conexion->prepare('DELETE FROM sla WHERE id = '.$id);
+        $consulta = $sentencia->execute();
+        return $consulta;
+    }
+    
+     public function editarSlas($ids,$nombre,$valor,$color){
+        
+        foreach ($ids as $key=>$id){
+            $conexion = BD::getConexion();
+             $select = "UPDATE sla "
+                . "SET nombre = '".$nombre[$key]."'"
+                . ",valor = ".$valor[$key]
+                . ",color = '".$color[$key]."'"
+                . " WHERE id = ".$id;
+              $sentencia = $conexion->prepare($select);
+              $consulta = $sentencia->execute();
+             
+        }
+         
+    }
+    
     
     function getId() {
         return $this->id;

@@ -1,8 +1,9 @@
 <div class="formularios row col-xs-12 col-xs-12 col-md-10 col-md-offset-1">
     <div class="text-center cabeceraForm">Nuevo Plato</div>
     <form action="index.php" method="POST" class="form col-xs-12 col-md-12 " id="formPlatos" role="form" enctype="multipart/form-data">
+<button id="guardarPlatos" type="submit" name="guardarPlatos" class="btn-link" value="Guardar Plato"><span class="save glyphicon glyphicon-floppy-saved"></span></button>
 
-        <div class="form-group row">
+    <div class="form-group row">
             <div class="form-group col-md-9 col-xs-12">
                 <label for="newNombre" class="col-xs-1 col-md-1 form-control-label">Nombre:</label>
 
@@ -76,10 +77,7 @@
 
             </div>
         </div>
-        <div class="form-group row">
-            
-            <input type="submit" name="guardarPlatos" class="btn btn-danger col-md-offset-10" value="Guardar Plato"/>
-        </div>
+        
 
     </form>
     <button id="activarFromProductos" class="btn-link">Alta Producto</button> 
