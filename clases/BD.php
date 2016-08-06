@@ -2,7 +2,7 @@
 
 class BD {
 
-    private $basedatos = 'appRestaurante';
+    private $basedatos = 'apprestaurante';
     private $usuario = 'root';
     private $contrasenya = '';
     private $equipo = '127.0.0.1';

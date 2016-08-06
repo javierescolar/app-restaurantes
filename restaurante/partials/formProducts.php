@@ -1,10 +1,12 @@
 <div id="formFlotante">
     <div id="formFlotanteCaja">
-        <button class="col-md-offset-11 col-xs-offset-10 drop btn-link" id="desactivarFromProductos"><span class="glyphicon glyphicon-remove"></span></button>
+        
         <div class="formularios row col-xs-10 col-md-10 col-md-offset-1 col-xs-offset-1">
 
         <div class="text-center cabeceraForm">Nuevo Productos</div>
+         <button id="desactivarFromProductos" class="btn-link"><span class="drop glyphicon glyphicon-remove"></span></button>
         <form action='index.php' method='POST' id="formNuevoProducto">
+           
              <button id="guardarProducto" type="submit" name="guardarProducto" class="btn-link" value="Guardar Producto"><span class="save glyphicon glyphicon-floppy-saved"></span></button>
             <div class="form-group row col-md-12">
                 <div class="col-xs-12 col-md-3">

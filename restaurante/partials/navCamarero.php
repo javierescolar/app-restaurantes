@@ -1,4 +1,4 @@
-<img src="http://i.imgur.com/RcmcLv4.png" class="img-responsive logo" alt="" />
+<img src="img/<?php echo Restaurante::cargarLogo($_SESSION['user']['idRestaurante'])?>" class="img-responsive logo" alt="logo" />
 <nav class="navbar navbar-inverse" role="navigation">
     <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
@@ -17,7 +17,7 @@
             <ul class="nav navbar-nav menu">
                 <li>
                     <form action="index.php" method="POST">
-                        <button id="navHome"  type="submit" class="btn-link" name="home">Inicio</button>
+                        <button id="navHome"  type="submit" class="btn-link" name="home">Tickets</button>
                     </form>
                 </li>
                 <li>

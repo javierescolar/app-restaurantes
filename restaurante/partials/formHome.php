@@ -16,7 +16,7 @@
         }
         ?>
     </select>
-    <input type="submit" name="crearTicket" id="crearTicket" value="Crear Ticket" class="btn btn-danger"/>
+    <input type="submit" name="crearTicket" id="crearTicket" value="Crear Ticket" class="btn btn-default"/>
 </form>
 
 <div class="formularios row col-xs-12 col-xs-12 col-md-10 col-md-offset-1">
@@ -74,6 +74,7 @@
             echo "</div>";
             $x++;
         }
+          echo "<br>";
     } else {
         echo "<br><br><h5 class='text-center'>No tienes ticket asignados<h5>";
     }

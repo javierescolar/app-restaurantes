@@ -47,50 +47,50 @@ function validateDni(dni) {
 }
 
 function validateEan(eanCode) {
-	// Check if only digits
-	var ValidChars = "0123456789";
-	for (i = 0; i < eanCode.length; i++) { 
-		digit = eanCode.charAt(i); 
-		if (ValidChars.indexOf(digit) == -1) {
-			return false;
-		}
-	}
-	
-	// Add five 0 if the code has only 8 digits
-	if (eanCode.length == 8 ) {
-		eanCode = "00000" + eanCode;
-	}
-	// Check for 13 digits otherwise
-	else if (eanCode.length != 13) {
-		return false;
-	}
-	
-	// Get the check number
-	originalCheck = eanCode.substring(eanCode.length - 1);
-	eanCode = eanCode.substring(0, eanCode.length - 1);
-	
-	// Add even numbers together
-	even = Number(eanCode.charAt(1)) + 
-	       Number(eanCode.charAt(3)) + 
-	       Number(eanCode.charAt(5)) + 
-	       Number(eanCode.charAt(7)) + 
-	       Number(eanCode.charAt(9)) + 
-	       Number(eanCode.charAt(11));
-	// Multiply this result by 3
-	even *= 3;
-	
-	// Add odd numbers together
-	odd = Number(eanCode.charAt(0)) + 
-	      Number(eanCode.charAt(2)) + 
-	      Number(eanCode.charAt(4)) + 
-	      Number(eanCode.charAt(6)) + 
-	      Number(eanCode.charAt(8)) + 
-	      Number(eanCode.charAt(10));
-	
-	// Add two totals together
-	total = even + odd;
-	
-	// Calculate the checksum
+    // Check if only digits
+    var ValidChars = "0123456789";
+    for (i = 0; i < eanCode.length; i++) {
+        digit = eanCode.charAt(i);
+        if (ValidChars.indexOf(digit) == -1) {
+            return false;
+        }
+    }
+
+    // Add five 0 if the code has only 8 digits
+    if (eanCode.length == 8) {
+        eanCode = "00000" + eanCode;
+    }
+    // Check for 13 digits otherwise
+    else if (eanCode.length != 13) {
+        return false;
+    }
+
+    // Get the check number
+    originalCheck = eanCode.substring(eanCode.length - 1);
+    eanCode = eanCode.substring(0, eanCode.length - 1);
+
+    // Add even numbers together
+    even = Number(eanCode.charAt(1)) +
+            Number(eanCode.charAt(3)) +
+            Number(eanCode.charAt(5)) +
+            Number(eanCode.charAt(7)) +
+            Number(eanCode.charAt(9)) +
+            Number(eanCode.charAt(11));
+    // Multiply this result by 3
+    even *= 3;
+
+    // Add odd numbers together
+    odd = Number(eanCode.charAt(0)) +
+            Number(eanCode.charAt(2)) +
+            Number(eanCode.charAt(4)) +
+            Number(eanCode.charAt(6)) +
+            Number(eanCode.charAt(8)) +
+            Number(eanCode.charAt(10));
+
+    // Add two totals together
+    total = even + odd;
+
+    // Calculate the checksum
     // Divide total by 10 and store the remainder
     checksum = total % 10;
     // If result is not 0 then take away 10
@@ -98,84 +98,108 @@ function validateEan(eanCode) {
         checksum = 10 - checksum;
     }
 
-	// Return the result
-	if (checksum != originalCheck) {
-		return false;
-	}
-	
+    // Return the result
+    if (checksum != originalCheck) {
+        return false;
+    }
+
     return true;
 }
 
 function validateNombreProducto(nombre) {
-    var pattern = /^(([A-Z]|(Á|É|Í|Ó|Ú))([a-z]|[ñáéíóú]){2,10})? ?(([a-z]|[ñáéíóú]){2,10})? ?(([a-z]|[ñáéíóú]){2,10})? ?(([a-z]|[ñáéíóú]){2,10})$/
+    var pattern = /^(([A-Z]|(Á|É|Í|Ó|Ú))([a-z]|[ñáéíóú]){2,10})? ?(([a-z]|[ñáéíóú]){2,10})? ?(([a-z]|[ñáéíóú]){2,10})? ?(([a-z]|[ñáéíóú]){2,10})$/;
     return pattern.test(nombre);
 }
 
 function validateCantidad(cantidad) {
-    var pattern = /^[0-9]{1,5}$/
+    var pattern = /^[0-9]{1,5}$/;
     return pattern.test(cantidad);
 }
 
 function validatePrecio(cantidad) {
-    var pattern = /^\d{1,5}.\d{1,2}$/
+    var pattern = /^\d{1,5}.\d{1,2}$/;
     return pattern.test(cantidad);
 }
+function validateValorSLA(valor) {
+    var pattern = /^\d{1,4}$/;
+    return pattern.test(valor);
+}
+function validateColorSLA(color) {
+    var pattern = /(0x|0X)?[a-fA-F0-9]+$/;
+    return pattern.test(color);
+}
 
-function origenFormProductos(origen){
+function origenFormProductos(origen) {
     $('origenFormularioProducto').value = origen;
 }
 
-function editarIngrediente(boton){   
+function editarIngrediente(boton) {
     $('productoEditado').value = boton;
 }
 
-function borrarIngrediente(boton){
+function borrarIngrediente(boton) {
     $('productoBorrado').value = boton;
 }
-function borrarSla(boton){
+function borrarSla(boton) {
     $('slaBorrado').value = boton;
 }
-window.onload = function () {
-    
-    if($('home')){
-        setTimeout("location.reload()",60000); 
+
+
+
+
+    if ($('home')) {
+        setTimeout("location.reload()", 60000);
     }
     var nuevoProducto = 0;
     if ($('formLogin')) {
         $('formLogin').addEventListener("submit", function (event) {
-            if(validateEmail($('email').value) && validatePassword($('password').value)) { 
+            if (validateEmail($('email').value) && validatePassword($('password').value)) {
                 true;
-            }else {
+            } else {
                 event.preventDefault();
                 swal("Atención", "Los datos introducidos no son válidos", "warning");
             }
         });
     }
+
+
     if ($('formEditProfile')) {
         $('formEditProfile').addEventListener("submit", function (event) {
-           if (validateEmail($('newEmail').value) && validateDni($('newDni').value)
+            if (validateEmail($('newEmail').value) && validateDni($('newDni').value)
                     && validateName($('newNombre').value) && validateLastNames($('newApellidos').value)
-                    && validatePhone($('newTelefono').value)){ 
+                    && validatePhone($('newTelefono').value)) {
                 true;
-            }else {
+            } else {
                 event.preventDefault();
                 swal("Atención", "Los datos introducidos no son válidos", "warning");
             }
-            
+
         });
     }
     if ($('formNuevoProducto')) {
         $('formNuevoProducto').addEventListener("submit", function (event) {
-            if(validateEan($('newEan').value) && validateNombreProducto($('newNombreProducto').value)
-                    && validateCantidad($('newCantidad').value) 
-                    && validatePrecio($('newPrecio').value)) { 
+            if (validateEan($('newEan').value) && validateNombreProducto($('newNombreProducto').value)
+                    && validateCantidad($('newCantidad').value)
+                    && validatePrecio($('newPrecio').value)) {
                 true;
-            }else {
+            } else {
                 event.preventDefault();
                 swal("Atención", "Los datos introducidos no son válidos", "warning");
             }
         });
     }
+    if ($('formNuevoSla')) {
+        $('formNuevoSla').addEventListener("submit", function (event) {
+            if (validateName($('newNombreSla').value) && validateColorSLA($('newColorSla').value)
+                    && validateValorSLA($('newValorSla').value)) {
+                true;
+            } else {
+                event.preventDefault();
+                swal("Atención", "Los datos introducidos no son válidos", "warning");
+            }
+        });
+    }
+    
     if ($('cerrarTicket')) {
         $('cerrarTicket').addEventListener("click", function (event) {
             event.preventDefault();
@@ -183,8 +207,8 @@ window.onload = function () {
             swal({title: "¿Estás seguro?", text: "¿quieres cerrar el ticket?", type: "warning", showCancelButton: true, confirmButtonColor: "#DD6B55", confirmButtonText: "Sí", cancelButtonText: "No", closeOnConfirm: false, closeOnCancel: false}, function (isConfirm) {
                 if (isConfirm) {
                     $('accionTicket').value = "cerrarTicket";
-                    boton.value="cerrarTicket";
-                   boton.parentElement.parentElement.parentElement.submit();
+                    boton.value = "cerrarTicket";
+                    boton.parentElement.parentElement.parentElement.submit();
                 } else {
                     swal("Cancelado", "No se cerro el ticket", "error");
                 }
@@ -198,33 +222,33 @@ window.onload = function () {
             swal({title: "¿Estás seguro?", text: "¿quieres anular el ticket?", type: "warning", showCancelButton: true, confirmButtonColor: "#DD6B55", confirmButtonText: "Sí", cancelButtonText: "No", closeOnConfirm: false, closeOnCancel: false}, function (isConfirm) {
                 if (isConfirm) {
                     $('accionTicket').value = "anularTicket";
-                    boton.value="anularTicket";
-                   boton.parentElement.parentElement.parentElement.submit();
+                    boton.value = "anularTicket";
+                    boton.parentElement.parentElement.parentElement.submit();
                 } else {
                     swal("Cancelado", "No se anulo el ticket", "error");
                 }
             });
         });
     }
-    
-    /*if ($('cerrarComanda')) {
-        $('cerrarComanda').addEventListener("click", function (event) {
+
+    if ($('mandarComanda')) {
+        $('mandarComanda').addEventListener("click", function (event) {
             event.preventDefault();
-            var boton = $('cerrarComanda');
-            swal({title: "¿Estás seguro?", text: "¿quieres cerrar la comanda?", type: "warning", showCancelButton: true, confirmButtonColor: "#DD6B55", confirmButtonText: "Sí", cancelButtonText: "No", closeOnConfirm: false, closeOnCancel: false}, function (isConfirm) {
+            var boton = $('mandarComanda');
+            swal({title: "¿Estás seguro?", text: "¿quieres mandar la comanda?", type: "warning", showCancelButton: true, confirmButtonColor: "#DD6B55", confirmButtonText: "Sí", cancelButtonText: "No", closeOnConfirm: false, closeOnCancel: false}, function (isConfirm) {
                 if (isConfirm) {
-                    $('accionTicket').value = "cerrarComanda";
-                    boton.value="cerrarComanda";
-                   boton.parentElement.parentElement.parentElement.submit();
+                    $('accionTicket').value = "mandarComanda";
+                    boton.value = "mandarComanda";
+                    boton.parentElement.parentElement.parentElement.submit();
                 } else {
                     swal("Cancelado", "No se cerro la comanda", "error");
                 }
             });
         });
-    */
+    }
     if ($('activarFromProductos')) {
         $('activarFromProductos').addEventListener("click", function () {
-            $('formFlotante').style.display = 'block'; 
+            $('formFlotante').style.display = 'block';
         });
     }
     if ($('desactivarFromProductos')) {
@@ -232,10 +256,10 @@ window.onload = function () {
             $('formFlotante').style.display = 'none';
         });
     }
-    
+
     if ($('activarFormSla')) {
         $('activarFormSla').addEventListener("click", function () {
-            $('formFlotante').style.display = 'block'; 
+            $('formFlotante').style.display = 'block';
         });
     }
     if ($('desactivarFormSla')) {
@@ -243,8 +267,8 @@ window.onload = function () {
             $('formFlotante').style.display = 'none';
         });
     }
-    
-    
-     
-    
-}
+
+
+
+
+

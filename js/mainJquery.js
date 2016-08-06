@@ -1,10 +1,11 @@
 /*global $*/
 
 window.onload = function(){
-if ($('#nuevoProducto')){
-    $('#nuevoProducto').click(funciton(){
+/*if ($('.botonCerrarComanda')){
+    $('.botonCerrarComanda').click(function(){
+       alert();
     });
-}
+}*/
 
 }
 

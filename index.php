@@ -119,6 +119,13 @@ if (isset($_SESSION['user'])) {
         echo "<script type='text/javascript'>
            swal('Cerrado!', 'Ticket cerrado', 'success');
         </script>";
+    } elseif (isset($_POST['accionTicket']) && $_POST['accionTicket'] == 'mandarComanda') {
+        Ticket::mandarComanda($_SESSION['ticketActual']);
+        include 'restaurante/home.php';
+        echo "<script type='text/javascript'> $('navHome').style.background = 'black'; </script>";
+        echo "<script type='text/javascript'>
+           swal('Enviada!', 'Comanda enviada', 'success');
+        </script>";
     } elseif (isset($_POST['accionTicket']) && $_POST['accionTicket'] == 'anularTicket') {
         Ticket::anularTicket($_SESSION['ticketActual']);
         include 'restaurante/home.php';
@@ -178,13 +185,7 @@ if (isset($_SESSION['user'])) {
         echo "<script type='text/javascript'>
            swal('Guardado!', 'Productos guardados', 'success');
         </script>";
-    } /*elseif (isset($_POST['comandas'])) {
-
-        include 'restaurante/homeCocina.php';
-    } elseif (isset($_POST['idComanda'])) {
-        $_SESSION['ticketActual'] = $_POST['idTicket'];
-        include 'restaurante/.php';
-    }*/ else {
+    }  else {
         unset($_SESSION['ticketActual']);
         unset($_SESSION['categoriaSeleccionada']);
         include 'restaurante/home.php';

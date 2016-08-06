@@ -19,7 +19,7 @@
     <div class="col-md-6 col-xs-12 col-md-offset-3">
       
         <form  class="login-form" method="post" action="index.php" role="login" id="formLogin">
-          <img src="http://i.imgur.com/RcmcLv4.png" class="img-responsive" alt="" />
+          <img src="img/app-restaurante.png" class="img-responsive" alt="" />
           
           <input type="email" name="email" id="email" placeholder="example@example.com" required class="form-control input-lg"/>
           

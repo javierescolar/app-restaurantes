@@ -9,14 +9,20 @@ class Restaurante {
     protected $nombre;
     protected $email;
     protected $telefono;
-    
-    
+    protected $estiloCSS;
+    protected $logo;
+
+
+
+
     public function __construct($id,$cif,$nombre,$email,$telefono){
         $this->id = $id;
         $this->cif = $cif;
         $this->nombre = $nombre;
         $this->email = $email;
         $this->telefono = $telefono;
+        $this->estiloCSS = $estiloCSS;
+        $this->logo = $logo;
     }
     
     public function guardarRestaurante(){
@@ -39,6 +45,27 @@ class Restaurante {
         }
     
     }
+    public function cargarCSS($idRestaurante){
+        $bd = BD::getConexion();
+        $select = 'SELECT * FROM restaurantes WHERE idRestaurante='.$idRestaurante;
+        $sentencia = $bd->prepare($select);
+        $sentencia->execute();
+        $sentencia->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'restaurantes');
+        $restaurante = $sentencia->fetch();
+        return $restaurante['estiloCSS'];
+        
+    }
+    public function cargarLogo($idRestaurante){
+        $bd = BD::getConexion();
+        $select = 'SELECT * FROM restaurantes WHERE idRestaurante='.$idRestaurante;
+        $sentencia = $bd->prepare($select);
+        $sentencia->execute();
+        $sentencia->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'restaurantes');
+        $restaurante = $sentencia->fetch();
+        return $restaurante['logo'];
+        
+    }
+    
     public function getId(){
         return $thisd->id;
     }

@@ -58,8 +58,7 @@ class Ticket extends Plato {
         $conexion = BD::getConexion();
         $consulta = $conexion->prepare('INSERT INTO ticketsplatos(idTicket,idPlato,ordenEspecial) VALUES (:idTicket,:idPlato, :ingredientes)');
         $consulta->execute([":idTicket" => $idTicket, ":idPlato" => $idPlato, ":ingredientes" => $ingredientes]);
-        $consulta2 = $conexion->prepare('UPDATE tickets set abiertoCocina = 1 WHERE IdTicket =' . $idTicket);
-        $consulta2->execute();
+        
     }
 
     public function borrarPlatoTicket($idTicketPlato) {
@@ -121,7 +120,13 @@ class Ticket extends Plato {
         $consulta = $conexion->prepare($select);
         return $consulta->execute([":idTicket" => $idTicket]);
     }
-
+    
+    public function mandarComanda($idTicket) {
+        $conexion = BD::getConexion();
+        $consulta2 = $conexion->prepare('UPDATE tickets set abiertoCocina = 1 WHERE IdTicket =' . $idTicket);
+        $consulta2->execute();
+    }
+    
     public function mesasOcupadas($idRestaurante) {
         $conexion = BD::getConexion();
         $consulta = $conexion->prepare('SELECT mesa FROM tickets WHERE abierto = 1 and idRestaurante = :idRestaurante');

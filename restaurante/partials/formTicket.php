@@ -62,8 +62,9 @@ $datosPlatosTickets = Ticket::muestraPlatosTickets($_SESSION['ticketActual']);
         </div>
         
         <div class="form-group row">
-            <input type="submit" id="anularTicket" name="anularTicket" class="btn btn-danger col-md-offset-1" value="Anular Ticket">
-            <input type="submit" id="cerrarTicket" name="cerrarTicket" class="btn btn-danger col-md-offset-6" value="Cerrar Ticket">
+            <input type="submit" id="anularTicket" name="anularTicket" class="btn btn-default  col-md-offset-1" value="Anular Ticket">
+            <input type="submit" id="mandarComanda" name="mandarComanda" class="btn btn-default col-md-offset-1" value="Mandar Comanda">
+            <input type="submit" id="cerrarTicket" name="cerrarTicket" class="btn btn-default col-md-offset-1" value="Cerrar Ticket">
             <input type="hidden" id="accionTicket" name="accionTicket" value="">
             
         </div>

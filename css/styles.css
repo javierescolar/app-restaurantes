@@ -1,10 +1,8 @@
-nav[role=navigation] {
-    background:#DA4540;
-}
+
 
 .logo{
-    width:18em;
-    margin:1em;
+    height:4em;
+    margin:0.2em;
 }
 
 .menu li button{
@@ -73,8 +71,6 @@ nav li button:hover{
 }
 
 .cabeceraForm{
-    background-color:#DA4540;
-    color:white;
     font-size:1.5em;
     border-radius:2em 2em 0em 0em;
     margin-bottom:2em;
@@ -85,6 +81,9 @@ nav li button:hover{
     border-radius:3em 3em 2em 2em;
     border:solid 0.1em #BDBDBD;
     margin-top:2em;
+    -webkit-box-shadow: 10px 10px 12px -5px rgba(0,0,0,0.45);
+    -moz-box-shadow: 10px 10px 12px -5px rgba(0,0,0,0.45);
+    box-shadow: 10px 10px 12px -5px rgba(0,0,0,0.45);
 }
 
 #search input[type=text]{
@@ -97,7 +96,7 @@ nav li button:hover{
 }
 
 .save{
-     color:white;
+    color:white;
 }
 .save:hover{
     color:#64FE2E;
@@ -126,8 +125,8 @@ nav li button:hover{
 
 #formProductos{
     max-height: 25em;
-	overflow-y: auto;
-	overflow-x: hidden;
+    overflow-y: auto;
+    overflow-x: hidden;
 }
 
 .platoMenu{
@@ -141,7 +140,7 @@ nav li button:hover{
 }
 
 .platoMenu:hover{
-   border:solid #c9302c 0.1em;
+    border:solid #c9302c 0.1em;
 }
 
 .platoFoto{
@@ -214,7 +213,7 @@ input[type=text].ordenEspecial{
 #formFlotanteCaja{ 
     border-radius:2em;
     background:white;
-    height:22em;
+    height:16em;
     margin:5%;
     z-index:999;
     margin-top:10em;
@@ -232,6 +231,19 @@ input[type=text].ordenEspecial{
 #editarProductos,#guardarPlatos,#guardarSlas,#editarPerfil,#guardarProducto,#guardarSla{
     position:absolute;
     margin-top:-3.7em;
-    right:2.2em;
+    right:2em;
 }
 
+#desactivarFromProductos , #desactivarFormSla{
+    position:absolute;
+    margin-top:-3.7em;
+    left:0;
+    color:white;
+}
+
+#desactivarFormSla{
+    position:absolute;
+    margin-top:-3.7em;
+    left:-91%;
+    color:white;
+}

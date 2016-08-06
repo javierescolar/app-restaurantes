@@ -2,21 +2,22 @@
 <html>
 
     <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>App - Restaurante</title>
-        <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css" />
-        <link rel="stylesheet" href="css/styles.css" type="text/css" />
-        <link rel="stylesheet" href="css/styles-mobile.css" type="text/css" />
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css" type="text/css" />
-
+      <?php
+        include 'restaurante/partials/head.php';
+       ?>
     </head>
 
     <body>
         <div class="container-fluid">
 
             <?php
-            include ($_SESSION['user']['idPerfil'] == 3) ? 'restaurante/partials/navCamarero.php' : 'restaurante/partials/nav.php';
+            if ($_SESSION['user']['idPerfil'] == 3) {
+                include 'restaurante/partials/navCamarero.php';
+            } else if ($_SESSION['user']['idPerfil'] == 4) {
+                include 'restaurante/partials/navCocina.php';
+            } else {
+                include 'restaurante/partials/nav.php';
+            }
             if (isset($_SESSION['ticketActual'])) {
                 include 'restaurante/partials/subNav.php';
             }
@@ -45,7 +46,7 @@
                     if (isset($_SESSION['ticketActual'])) {
                         echo "<form action='index.php' method='POST'>";
                         echo '<div class="row">';
-                        echo '<input type="submit" name="anadirPlato" value="Añadir al ticket" class="col-md-6 col-md-offset-3 col-xs-12 btn btn-danger"/>';
+                        echo '<input type="submit" name="anadirPlato" value="Añadir al ticket" class="col-md-6 col-md-offset-3 col-xs-12 btn btn-default"/>';
                         echo "<input type='hidden' name='idPlato' value='" . $plato["idPlato"] . "'/>";
                         echo '</div>';
                         echo "</form>";

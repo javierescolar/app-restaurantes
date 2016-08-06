@@ -6,7 +6,7 @@ if (count($tickets) !== 0) {
         $datosTicket = Ticket::muestraTicketId($ticket['idTicket']);
         $datosPlatosTickets = Ticket::muestraPlatosTickets($ticket['idTicket']);
         ?>
-        <div class="formulariosComandas row col-xs-12 col-md-offset-1 col-md-4">
+        <div class="formulariosComandas row col-xs-12 col-md-offset-1 col-md-5">
 
             <div class="text-center cabeceraForm">Ticket <?php echo $ticket['idTicket']; ?></div>
             <form action='index.php' method='POST' id="formTicket">
@@ -62,7 +62,7 @@ if (count($tickets) !== 0) {
                     <hr>
 
                     <div class="form-group row">
-                        <input type="submit" name="cerrarComanda" class="btn btn-danger col-md-offset-7" value="Cerrar comanda">
+                        <input type="submit" name="cerrarComanda" class="btn btn-default col-md-offset-7 col-xs-offset-1 botonCerrarComanda" value="Cerrar comanda">
                     </div>
                 </div>
             </form>
