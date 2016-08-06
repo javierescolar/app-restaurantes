@@ -81,7 +81,7 @@ nav li button:hover{
     margin:0em -0.75em 1.25em -0.75em;
 }
 
-.formularios{
+.formularios, .formulariosComandas{
     border-radius:3em 3em 2em 2em;
     border:solid 0.1em #BDBDBD;
     margin-top:2em;

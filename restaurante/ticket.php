@@ -16,20 +16,29 @@
         <div class="container-fluid">
 
             <?php
-            include ($_SESSION['user']['idPerfil'] == 3)? 'restaurante/partials/navCamarero.php':'restaurante/partials/nav.php';
-
-            include 'restaurante/partials/subNav.php';
+            if ($_SESSION['user']['idPerfil'] == 3) {
+                include 'restaurante/partials/navCamarero.php';
+            } else if ($_SESSION['user']['idPerfil'] == 4) {
+                include 'restaurante/partials/navCocina.php';
+            } else {
+                include 'restaurante/partials/nav.php';
+            }
+            if ($_SESSION['user']['idPerfil'] == 3) {
+                include 'restaurante/partials/subNav.php';
+            }
             ?>
 
             <section class="cuerpo container">
-                
-           <?php 
-            
-            include 'restaurante/partials/formTicket.php';
-            
-            ?>
+
+                <?php
+                if($_SESSION['user']['idPerfil'] == 3){
+                include 'restaurante/partials/formTicket.php';
+            } else if($_SESSION['user']['idPerfil'] == 4){
+                 include 'restaurante/partials/formComandaTicket.php';
+            }
+                ?>
             </section>
-            
+
         </div>
     </body>
     <script type="text/javascript" src="js/jquery-1.12.1.min.js"></script>

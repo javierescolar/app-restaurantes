@@ -183,7 +183,7 @@ window.onload = function () {
             swal({title: "¿Estás seguro?", text: "¿quieres cerrar el ticket?", type: "warning", showCancelButton: true, confirmButtonColor: "#DD6B55", confirmButtonText: "Sí", cancelButtonText: "No", closeOnConfirm: false, closeOnCancel: false}, function (isConfirm) {
                 if (isConfirm) {
                     $('accionTicket').value = "cerrarTicket";
-                    boton.value="aaa";
+                    boton.value="cerrarTicket";
                    boton.parentElement.parentElement.parentElement.submit();
                 } else {
                     swal("Cancelado", "No se cerro el ticket", "error");
@@ -206,6 +206,22 @@ window.onload = function () {
             });
         });
     }
+    
+    /*if ($('cerrarComanda')) {
+        $('cerrarComanda').addEventListener("click", function (event) {
+            event.preventDefault();
+            var boton = $('cerrarComanda');
+            swal({title: "¿Estás seguro?", text: "¿quieres cerrar la comanda?", type: "warning", showCancelButton: true, confirmButtonColor: "#DD6B55", confirmButtonText: "Sí", cancelButtonText: "No", closeOnConfirm: false, closeOnCancel: false}, function (isConfirm) {
+                if (isConfirm) {
+                    $('accionTicket').value = "cerrarComanda";
+                    boton.value="cerrarComanda";
+                   boton.parentElement.parentElement.parentElement.submit();
+                } else {
+                    swal("Cancelado", "No se cerro la comanda", "error");
+                }
+            });
+        });
+    */
     if ($('activarFromProductos')) {
         $('activarFromProductos').addEventListener("click", function () {
             $('formFlotante').style.display = 'block'; 

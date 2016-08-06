@@ -1,5 +1,6 @@
 
 <?php
+
 require_once('clases/Restaurantes.php');
 require_once('clases/Usuarios.php');
 require_once('clases/Tickets.php');
@@ -16,114 +17,120 @@ session_start();
 $mensajeLogin = "";
 $numeroMesas = 10;
 
-if(isset($_SESSION['user'])) {
+if (isset($_SESSION['user'])) {
     if (isset($_POST['cerrarSesion'])) {
         unset($_SESSION['user']);
         session_destroy();
         include 'restaurante/login.php';
-    } elseif(isset($_POST['datosUsuario'])){
+    } elseif (isset($_POST['datosUsuario'])) {
         include 'restaurante/editProfile.php';
-    } elseif(isset($_POST['carta'])){
+    } elseif (isset($_POST['carta'])) {
         include 'restaurante/menuCategorias.php';
         echo "<script type='text/javascript'> $('navCarta').style.background = 'black'; </script>";
-    } elseif(isset($_POST['editarPerfil'])){
-        $_SESSION['user'] = Usuario::editarUsuario($_POST['newDni'],$_POST['newNombre'],$_POST['newApellidos'],
-                $_POST['newTelefono'],$_POST['newEmail'],$_SESSION['user']['idRestaurante'],$_SESSION['user']['idUsuario']);
+    } elseif (isset($_POST['editarPerfil'])) {
+        $_SESSION['user'] = Usuario::editarUsuario($_POST['newDni'], $_POST['newNombre'], $_POST['newApellidos'], $_POST['newTelefono'], $_POST['newEmail'], $_SESSION['user']['idRestaurante'], $_SESSION['user']['idUsuario']);
         include 'restaurante/editProfile.php';
         echo "<script type='text/javascript'>
             swal('Guardado!', 'Perfil editado', 'success');
-        </script>";      
+        </script>";
     } elseif (isset($_POST['productos'])) {
         include 'restaurante/products.php';
         echo "<script type='text/javascript'> $('navProductos').style.background = 'black'; "
         . " origenFormProductos('productos'); </script>";
     } elseif (isset($_POST['crearTicket'])) {
-       $_SESSION['ticketActual'] = Ticket::crearTicket($_SESSION['user']['idUsuario'],$_POST['mesa'],$_SESSION['user']['idRestaurante']);
-       include 'restaurante/menuCategorias.php';
+        $_SESSION['ticketActual'] = Ticket::crearTicket($_SESSION['user']['idUsuario'], $_POST['mesa'], $_SESSION['user']['idRestaurante']);
+        include 'restaurante/menuCategorias.php';
     } elseif (isset($_POST['idTicket'])) {
-       $_SESSION['ticketActual'] = $_POST['idTicket'];
-       include 'restaurante/ticket.php';
+        $_SESSION['ticketActual'] = $_POST['idTicket'];
+        include 'restaurante/ticket.php';
     } elseif (isset($_POST['seleccionCategoria'])) {
         $_SESSION['categoriaSeleccionada'] = $_POST['categoriaSeleccionada'];
-       include 'restaurante/menu.php';
-    } elseif(isset ($_POST['dropPlato'])){
+        include 'restaurante/menu.php';
+    } elseif (isset($_POST['dropPlato'])) {
         Ticket::borrarPlatoTicket($_POST['idTicketPlato']);
         Ticket::actualizarTicket($_SESSION['ticketActual']);
         include 'restaurante/ticket.php';
         echo "<script type='text/javascript'>
             swal('Borrado!', 'Plato borrado del ticket', 'success');
         </script>";
-    } elseif (isset($_POST['anadirPlato'])){
-        Ticket::anadirPlatoTicket($_SESSION['ticketActual'],$_POST['idPlato'],"");
+    } elseif (isset($_POST['anadirPlato'])) {
+        Ticket::anadirPlatoTicket($_SESSION['ticketActual'], $_POST['idPlato'], "");
         Ticket::actualizarTicket($_SESSION['ticketActual']);
         include 'restaurante/menu.php';
         echo "<script type='text/javascript'>
             swal('Añadido!', 'Plato añadido al ticket', 'success');
         </script>";
-    }elseif (isset($_POST['anadirPlatoSeleccion'])){
+    } elseif (isset($_POST['anadirPlatoSeleccion'])) {
         $ingredientes = "";
-        if(isset($_POST['ingrediente'])){
-            foreach($_POST['ingrediente'] as $ingrediente){
-            $ingredientes = $ingredientes."".$ingrediente.",";
+        if (isset($_POST['ingrediente'])) {
+            foreach ($_POST['ingrediente'] as $ingrediente) {
+                $ingredientes = $ingredientes . "" . $ingrediente . ",";
             }
         }
-        Ticket::anadirPlatoTicket($_SESSION['ticketActual'],$_POST['idPlato'],$ingredientes);
+        Ticket::anadirPlatoTicket($_SESSION['ticketActual'], $_POST['idPlato'], $ingredientes);
         Ticket::actualizarTicket($_SESSION['ticketActual']);
         include 'restaurante/menu.php';
         echo "<script type='text/javascript'>
             swal('Añadido!', 'Plato añadido al ticket', 'success');
         </script>";
-    } elseif (isset ($_POST['idPlato'])) {
-        include 'restaurante/platoSeleccion.php';   
-    } elseif (isset ($_POST['categoriaSubNav'])) {
+    } elseif (isset($_POST['idPlato'])) {
+        include 'restaurante/platoSeleccion.php';
+    } elseif (isset($_POST['categoriaSubNav'])) {
         include 'restaurante/menuCategorias.php';
-    } elseif (isset ($_POST['platosSubNav'])) {
+    } elseif (isset($_POST['platosSubNav'])) {
         include 'restaurante/menu.php';
-    } elseif(isset ($_POST['ticketSubNav'])){
+    } elseif (isset($_POST['ticketSubNav'])) {
         include 'restaurante/ticket.php';
-    } elseif (isset ($_POST['platos'])) {
+    } elseif (isset($_POST['platos'])) {
         include 'restaurante/platos.php';
         echo "<script type='text/javascript'> $('navPlatos').style.background = 'black'; "
         . " origenFormProductos('platos'); </script>";
-    } elseif (isset($_POST['guardarPlatos'])){
+    } elseif (isset($_POST['guardarPlatos'])) {
         $productosEsenciales = "";
-        if(isset($_POST["newIngredientesEsenciales"])){
-            foreach ($_POST["newIngredientesEsenciales"] as $producto){
-                $productosEsenciales = $productosEsenciales.$producto.",";
+        if (isset($_POST["newIngredientesEsenciales"])) {
+            foreach ($_POST["newIngredientesEsenciales"] as $producto) {
+                $productosEsenciales = $productosEsenciales . $producto . ",";
             }
-            if(isset($_POST["newIngredientesSimples"])){
-                foreach ($_POST["newIngredientesSimples"] as $producto){
-                    $productosSimples = $productosSimples.$producto.",";
+            if (isset($_POST["newIngredientesSimples"])) {
+                foreach ($_POST["newIngredientesSimples"] as $producto) {
+                    $productosSimples = $productosSimples . $producto . ",";
                 }
             }
-        $productos = $productosEsenciales.$productosSimples;
-        move_uploaded_file($_FILES['newImagen']['tmp_name'],'img/'.$_FILES['newImagen']['name']);
-        Plato::guardarPlato($_POST['newNombre'],$_POST['newPrecio'],$productos,$_POST['newDescripcion'],$_FILES['newImagen']['name'],1,$_POST['newCategoria'],$_SESSION['user']['idRestaurante']);
+            $productos = $productosEsenciales . $productosSimples;
+            move_uploaded_file($_FILES['newImagen']['tmp_name'], 'img/' . $_FILES['newImagen']['name']);
+            Plato::guardarPlato($_POST['newNombre'], $_POST['newPrecio'], $productos, $_POST['newDescripcion'], $_FILES['newImagen']['name'], 1, $_POST['newCategoria'], $_SESSION['user']['idRestaurante']);
         }
         include 'restaurante/platos.php';
         echo "<script type='text/javascript'> $('navPlatos').style.background = 'black'; </script>";
         echo "<script type='text/javascript'>
             swal('Guardado!', 'Plato guardado correctamente', 'success');
         </script>";
-    } elseif(isset ($_POST['accionTicket']) && $_POST['accionTicket'] == 'cerrarTicket'){
+    } elseif (isset($_POST['cerrarComanda']) /*&& $_POST['accionTicket'] == 'cerrarComanda'*/) {
+        Ticket::cerrarComanda($_POST['idTicketPlato']);
+        include 'restaurante/home.php';
+        echo "<script type='text/javascript'> $('navHome').style.background = 'black'; </script>";
+        echo "<script type='text/javascript'>
+           swal('Cerrado!', 'Comanda cerrado', 'success');
+        </script>";
+    } elseif (isset($_POST['accionTicket']) && $_POST['accionTicket'] == 'cerrarTicket') {
         Ticket::cerrarTicket($_SESSION['ticketActual']);
         include 'restaurante/home.php';
         echo "<script type='text/javascript'> $('navHome').style.background = 'black'; </script>";
         echo "<script type='text/javascript'>
            swal('Cerrado!', 'Ticket cerrado', 'success');
         </script>";
-    } elseif(isset ($_POST['accionTicket']) && $_POST['accionTicket'] == 'anularTicket'){
+    } elseif (isset($_POST['accionTicket']) && $_POST['accionTicket'] == 'anularTicket') {
         Ticket::anularTicket($_SESSION['ticketActual']);
         include 'restaurante/home.php';
         echo "<script type='text/javascript'> $('navHome').style.background = 'black'; </script>";
         echo "<script type='text/javascript'>
            swal('Anulado!', 'Ticket anulado', 'success');
         </script>";
-    } elseif(isset ($_POST['guardarProducto'])){
-        $esencial = (isset($_POST['newEsencial']))? 1:0; 
-        Producto:: guardarProducto($_POST['newEan'],$_POST['newNombre'],$_POST['newCantidad'],$_POST['newCaducidad']
-                ,$_POST['newPrecio'], $esencial ,$_POST['newMedida'],$_SESSION['user']['idRestaurante']);
-        if($_POST['origenFormularioProducto'] == 'productos'){
+    }  elseif (isset($_POST['guardarProducto'])) {
+        $esencial = (isset($_POST['newEsencial'])) ? 1 : 0;
+        Producto:: guardarProducto($_POST['newEan'], $_POST['newNombre'], $_POST['newCantidad'], $_POST['newCaducidad']
+                , $_POST['newPrecio'], $esencial, $_POST['newMedida'], $_SESSION['user']['idRestaurante']);
+        if ($_POST['origenFormularioProducto'] == 'productos') {
             include 'restaurante/products.php';
             echo "<script type='text/javascript'> $('navProductos').style.background = 'black'; </script>";
         } else {
@@ -133,55 +140,60 @@ if(isset($_SESSION['user'])) {
         echo "<script type='text/javascript'>
            swal('Guardado!', 'Producto guardado', 'success');
         </script>";
-    }elseif(isset ($_POST['sla'])){
+    } elseif (isset($_POST['sla'])) {
         include 'restaurante/sla.php';
         echo "<script type='text/javascript'> $('navSla').style.background = 'black'; </script>";
-    } elseif(isset ($_POST['guardarSla'])){
-        SLA::guardarSla($_POST['newNombreSla'],$_POST['newValorSla'],$_POST['newColorSla'],$_SESSION['user']['idRestaurante']);
+    } elseif (isset($_POST['guardarSla'])) {
+        SLA::guardarSla($_POST['newNombreSla'], $_POST['newValorSla'], $_POST['newColorSla'], $_SESSION['user']['idRestaurante']);
         include 'restaurante/sla.php';
         echo "<script type='text/javascript'> $('navSla').style.background = 'black'; </script>";
         echo "<script type='text/javascript'>
            swal('Guardado!', 'SLA guardado', 'success');
         </script>";
-    } elseif(isset ($_POST['slaBorrado']) && $_POST['slaBorrado'] != ""){
+    } elseif (isset($_POST['slaBorrado']) && $_POST['slaBorrado'] != "") {
         SLA::borrarSla($_POST['slaBorrado']);
         include 'restaurante/sla.php';
         echo "<script type='text/javascript'> $('navSla').style.background = 'black'; </script>";
         echo "<script type='text/javascript'>
            swal('Borrado!', 'SLA borrado', 'success');
         </script>";
-    } elseif(isset ($_POST['guardarSlas']) && $_POST['slaBorrado'] == ""){
-        SLA::editarSlas($_POST['newIdsSla'],$_POST['newNombreSla'],$_POST['newValor'],$_POST['newColor']);
+    } elseif (isset($_POST['guardarSlas']) && $_POST['slaBorrado'] == "") {
+        SLA::editarSlas($_POST['newIdsSla'], $_POST['newNombreSla'], $_POST['newValor'], $_POST['newColor']);
         include 'restaurante/sla.php';
         echo "<script type='text/javascript'> $('navSla').style.background = 'black'; </script>";
         echo "<script type='text/javascript'>
            swal('Guardado!', 'SLA´s guardados', 'success');
         </script>";
-    } elseif(isset ($_POST['productoBorrado']) && $_POST['productoBorrado'] != ""){
+    } elseif (isset($_POST['productoBorrado']) && $_POST['productoBorrado'] != "") {
         Producto::borrarProducto($_POST['productoBorrado']);
         include 'restaurante/products.php';
         echo "<script type='text/javascript'> $('navProductos').style.background = 'black'; </script>";
         echo "<script type='text/javascript'>
            swal('Borrado!', 'Producto borrado', 'success');
         </script>";
-    } elseif(isset ($_POST['editarProductos']) && $_POST['productoBorrado'] == ""){
-        Producto::editarProductos($_POST['newIds'],$_POST['newEan'],$_POST['newNombre'],$_POST['newCantidad'],
-                            $_POST['newCaducidad'],$_POST['newPrecio'],$_POST['newMedida'],$_POST['newEsencial']);
+    } elseif (isset($_POST['editarProductos']) && $_POST['productoBorrado'] == "") {
+        Producto::editarProductos($_POST['newIds'], $_POST['newEan'], $_POST['newNombre'], $_POST['newCantidad'], $_POST['newCaducidad'], $_POST['newPrecio'], $_POST['newMedida'], $_POST['newEsencial']);
         include 'restaurante/products.php';
         echo "<script type='text/javascript'> $('navProductos').style.background = 'black'; </script>";
         echo "<script type='text/javascript'>
            swal('Guardado!', 'Productos guardados', 'success');
         </script>";
-    } else {
+    } /*elseif (isset($_POST['comandas'])) {
+
+        include 'restaurante/homeCocina.php';
+    } elseif (isset($_POST['idComanda'])) {
+        $_SESSION['ticketActual'] = $_POST['idTicket'];
+        include 'restaurante/.php';
+    }*/ else {
         unset($_SESSION['ticketActual']);
         unset($_SESSION['categoriaSeleccionada']);
         include 'restaurante/home.php';
         echo "<script type='text/javascript'> $('navHome').style.background = 'black'; </script>";
     }
 } else {
-    if(isset($_POST['botonLogin'])){
-        $usuario = Usuario::loginUser($_POST['email'],$_POST['password']);
-        if($usuario){
+    if (isset($_POST['botonLogin'])) {
+        $usuario = Usuario::loginUser($_POST['email'], $_POST['password']);
+        if ($usuario) {
             $_SESSION['user'] = $usuario;
             include 'restaurante/home.php';
         } else {
@@ -193,10 +205,4 @@ if(isset($_SESSION['user'])) {
         include 'restaurante/login.php';
     }
 }
-
-
-
-
-
-
 ?>
