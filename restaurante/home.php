@@ -9,7 +9,6 @@
 
     <body id="home">
         <div class="container-fluid">
-
             <?php
             if($_SESSION['user']['idPerfil'] == 3){//camarero
                 include 'restaurante/partials/navCamarero.php';
@@ -21,7 +20,10 @@
              
             ?>
 
-            <section class="cuerpo container">
+         
+        <section class="cuerpo">
+        
+   
                 
             <?php
             if($_SESSION['user']['idPerfil'] == 3){
@@ -31,9 +33,10 @@
             }
                
             ?>
-            </section>
+            
             
         </div>
+        </section>
     </body>
     <script type="text/javascript" src="js/jquery-1.12.1.min.js"></script>
     <script type="text/javascript" src="js/bootstrap.min.js"></script>
