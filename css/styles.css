@@ -44,7 +44,7 @@ ul .dropdown-menu form button span{
     color:white !important;
     text-decoration:none;
 
-    
+
 }
 
 .userNav {
@@ -77,8 +77,12 @@ ul .dropdown-menu form button span{
     text-decoration:none;
 }
 .cuerpo{
-    min-height: 30em;
+    height: 35em;
     margin-top:0.2em;
+     background-color: rgba(225, 225, 225, 0.24);
+    -webkit-box-shadow: 0px 10px 32px -6px rgba(0,0,0,0.37);
+    -moz-box-shadow: 0px 10px 32px -6px rgba(0,0,0,0.37);
+    box-shadow: 0px 10px 32px -6px rgba(0,0,0,0.37);
 }
 
 #marcaLegal{
@@ -88,7 +92,7 @@ ul .dropdown-menu form button span{
 }
 
 .cabeceraForm{
-    font-size:1.5em;
+    font-size:1.2em;
     border-radius:2em 2em 0em 0em;
     margin-bottom:2em;
     margin:0em -0.75em 1.25em -0.75em;
@@ -101,11 +105,10 @@ ul .dropdown-menu form button span{
     -webkit-box-shadow: 10px 10px 12px -5px rgba(0,0,0,0.45);
     -moz-box-shadow: 10px 10px 12px -5px rgba(0,0,0,0.45);
     box-shadow: 10px 10px 12px -5px rgba(0,0,0,0.45);
+    background-color: white;
 }
 
-#search input[type=text]{
-    width:104%;
-}
+
 
 #nuevoProducto{
     margin-top:-1.2em;
@@ -169,11 +172,13 @@ ul .dropdown-menu form button span{
     margin:1em;
 }
 
-.formularios input[type=text],input[type=email],input[type=date],input[type=number],select{
+.formularios input[type=text],input[type=email],input[type=date],input[type=number],input[type=file],select{
     height:2em !important;
+    
 }
 input[type=checkbox]{
-    height:1.2em !important;
+   
+    height:1.1em !important;
 }
 .formTickets:hover{
     cursor:pointer; cursor: hand;	
@@ -265,3 +270,38 @@ input[type=text].ordenEspecial{
     color:white;
 }
 
+h4 {
+    font-size:1.2em;
+    color:grey;
+    margin-top:-0.5em;
+}
+.formularios button span{
+    margin-top:0.6em;
+}
+#formFlotanteCaja .formularios button span{
+    font-size:1em;
+}
+.formularios button span.drops{
+    margin-top:0
+}
+
+nav{
+    height: 2em;
+}
+
+nav button, nav a{
+    height: 3.48em;
+}
+
+.dropdown-toggle{
+    line-height: 0.05em;
+    margin-top: -0.04em;
+}
+.dropdown-toggle:hover{
+    line-height: 0.05em;
+    margin-top: -0.04em;
+}
+
+label{
+    font-size:0.9em;
+}

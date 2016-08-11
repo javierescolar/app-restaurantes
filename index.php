@@ -25,7 +25,7 @@ if (isset($_SESSION['user'])) {
         echo '<script type="text/javascript">
                 responsiveVoice.pause();
             </script>';
-    } elseif ($_POST['idPlatoEnElTicket'] != "" && isset($_POST['idPlatoEnElTicket'])) {
+    } elseif ( isset($_POST['idPlatoEnElTicket']) && $_POST['idPlatoEnElTicket'] != "" ) {
       Ticket::marcarPlatoTerminado($_POST['idPlatoEnElTicket']);
       include 'restaurante/home.php';
       echo "<script type='text/javascript'> $('navHome').style.background = 'black'; </script>";

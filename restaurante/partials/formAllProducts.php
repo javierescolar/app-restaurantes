@@ -21,7 +21,7 @@
             ?>
             <div class="form-group row">
                 <div class="col-xs-12 col-md-1 text-center"> 
-                    <button type="submit" onclick="borrarIngrediente(this.getAttribute('data-productoborrado'));"  data-productoborrado="<?php echo $producto['idProducto'] ?>" class="btn-link"><span class="drop glyphicon glyphicon-trash"></span></button>
+                    <button type="submit" onclick="borrarIngrediente(this.getAttribute('data-productoborrado'));"  data-productoborrado="<?php echo $producto['idProducto'] ?>" class="btn-link"><span class="drop glyphicon glyphicon-trash drops"></span></button>
                 </div>
                 <input name='<?php echo "newIds[$x]"; ?>' type='hidden' value="<?php echo $producto['idProducto'] ?>"/>
                 <div class="col-xs-12 col-md-2">

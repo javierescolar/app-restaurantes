@@ -17,7 +17,7 @@
             <div class="form-group row">
                <input name='<?php echo "newIdsSla[$x]"; ?>' type='hidden' value="<?php echo $sla->getId(); ?>"/>
                 <div class="col-xs-12 col-md-1 text-center"> 
-                    <button type="submit" onclick="borrarSla(this.getAttribute('data-slaborrado'));"  data-slaborrado="<?php echo $sla->getId() ?>" class="btn-link"><span class="drop glyphicon glyphicon-trash"></span></button>
+                    <button type="submit" onclick="borrarSla(this.getAttribute('data-slaborrado'));"  data-slaborrado="<?php echo $sla->getId() ?>" class="btn-link"><span class="drop glyphicon glyphicon-trash drops"></span></button>
                 </div>
                 <div class="col-xs-12 col-md-4">
                     <input name='<?php echo "newNombreSla[$x]"; ?>' class='form-control' type='text' value="<?php echo $sla->getNombre(); ?>" required/>
