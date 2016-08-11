@@ -18,10 +18,17 @@ $mensajeLogin = "";
 $numeroMesas = 10;
 
 if (isset($_SESSION['user'])) {
-    if (isset($_POST['cerrarSesion'])) {
+    if (isset($_POST['cerrarSesion'])) { 
         unset($_SESSION['user']);
         session_destroy();
         include 'restaurante/login.php';
+        echo '<script type="text/javascript">
+                responsiveVoice.pause();
+            </script>';
+    } elseif ($_POST['idPlatoEnElTicket'] != "" && isset($_POST['idPlatoEnElTicket'])) {
+      Ticket::marcarPlatoTerminado($_POST['idPlatoEnElTicket']);
+      include 'restaurante/home.php';
+      echo "<script type='text/javascript'> $('navHome').style.background = 'black'; </script>";
     } elseif (isset($_POST['datosUsuario'])) {
         include 'restaurante/editProfile.php';
     } elseif (isset($_POST['carta'])) {
@@ -105,7 +112,7 @@ if (isset($_SESSION['user'])) {
         echo "<script type='text/javascript'>
             swal('Guardado!', 'Plato guardado correctamente', 'success');
         </script>";
-    } elseif (isset($_POST['cerrarComanda']) /*&& $_POST['accionTicket'] == 'cerrarComanda'*/) {
+    } elseif ($_POST['cerrarComanda'] = "cerrarComanda" && isset ($_POST['idTicketPlato'])) {
         Ticket::cerrarComanda($_POST['idTicketPlato']);
         include 'restaurante/home.php';
         echo "<script type='text/javascript'> $('navHome').style.background = 'black'; </script>";
@@ -185,7 +192,7 @@ if (isset($_SESSION['user'])) {
         echo "<script type='text/javascript'>
            swal('Guardado!', 'Productos guardados', 'success');
         </script>";
-    }  else {
+    } else {
         unset($_SESSION['ticketActual']);
         unset($_SESSION['categoriaSeleccionada']);
         include 'restaurante/home.php';

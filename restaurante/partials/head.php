@@ -6,3 +6,5 @@
 <link rel="stylesheet" href="css/styles-mobile.css" type="text/css" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css" type="text/css" />
 <link rel="stylesheet" href="css/<?php echo Restaurante::cargarCSS($_SESSION['user']['idRestaurante'])?>" type="text/css" />
+<script type="text/javascript" src="js/jquery-1.12.1.min.js"></script>
+ <script  src="http://code.responsivevoice.org/responsivevoice.js"></script>

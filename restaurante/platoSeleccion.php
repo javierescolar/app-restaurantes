@@ -54,7 +54,7 @@
                         <div class="row col-md-12 col-xs-12">
 
                             <input type='hidden' name='idPlato' value='<?php echo $plato["idPlato"]; ?>'/>;
-                            <input type="submit" name="anadirPlatoSeleccion" value="Añadir al ticket" class="btn btn-default col-md-offset-10 col-md-2 col-xs-offset-1 col-xs-11"/>
+                            <input type="submit" name="anadirPlatoSeleccion" value="Añadir al ticket" class="btn btn-default btn-sm  col-md-offset-10 col-md-2 col-xs-offset-1 col-xs-11"/>
 
                         </div>
     <?php

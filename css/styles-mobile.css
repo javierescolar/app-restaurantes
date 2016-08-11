@@ -26,4 +26,7 @@
     #desactivarFormSla{
         left:-82%;
     }
+    .checkbox input[type=checkbox]{
+        margin-left:4em;
+    }
 }

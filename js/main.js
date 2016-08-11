@@ -144,11 +144,15 @@ function borrarSla(boton) {
     $('slaBorrado').value = boton;
 }
 
+function preparado(check){
+ 
+  check.value = (check.checked == true)? "terminado" : "noTerminado";
+  document.getElementById('idPlatoEnElTicket').value = check.getAttribute('data-id');
+  check.form.submit();
 
-
-
+}
     if ($('home')) {
-        setTimeout("location.reload()", 60000);
+       // setTimeout("location.reload()", 60000);
     }
     var nuevoProducto = 0;
     if ($('formLogin')) {

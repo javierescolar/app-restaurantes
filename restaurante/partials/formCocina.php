@@ -1,7 +1,9 @@
 <?php
+$mensajeVoz = "";
 $slas = SLA::muestraSla($_SESSION['user']['idRestaurante']);
 $tickets = Ticket::muestraTicketsComandas($_SESSION['user']['idRestaurante']);
 if (count($tickets) !== 0) {
+    $x=0;
     foreach ($tickets as $ticket) {
         $datosTicket = Ticket::muestraTicketId($ticket['idTicket']);
         $datosPlatosTickets = Ticket::muestraPlatosTickets($ticket['idTicket']);
@@ -9,7 +11,7 @@ if (count($tickets) !== 0) {
         <div class="formulariosComandas row col-xs-12 col-md-offset-1 col-md-5">
 
             <div class="text-center cabeceraForm">Ticket <?php echo $ticket['idTicket']; ?></div>
-            <form action='index.php' method='POST' id="formTicket">
+            <form action='index.php' method='POST' class="formTicket">
                 <div class="form-group row col-md-12">
                     <div class="form-group row">
                         <div class="form-group col-xs-7 col-md-7">
@@ -32,6 +34,7 @@ if (count($tickets) !== 0) {
                     </div>
                     <?php
                     $i = 0;
+                    $mensajeVoz = $mensajeVoz."Ticket ".$ticket['idTicket'].",";
                     foreach ($datosPlatosTickets as $plato) {
 
                         echo '<div class="form-group row">';
@@ -46,9 +49,9 @@ if (count($tickets) !== 0) {
                         echo '</div>';
                         echo '<div class="form-group col-xs-3 col-md-2 col-md-offset-1">';
                         if ($plato['preparado'] == 0) {
-                            echo "<input type='checkbox' name='terminado[$i]' class='form-control' value='terminado'>";
+                            echo "<input onClick='preparado(this)' data-id='". $plato['idTicketPlato']."' type='checkbox' name='terminado[$i]' class='form-control checks' value='terminado'>";
                         } else {
-                            echo "<input checked type='checkbox' name='terminado[$i]' class='form-control' value='terminado'>";
+                            echo "<input onClick='preparado(this)' data-id='". $plato['idTicketPlato']."' checked type='checkbox' name='terminado[$i]' class='form-control checks' value='terminado'>";
                         }
                         echo '</div>';
 
@@ -56,18 +59,22 @@ if (count($tickets) !== 0) {
                         
 
                         $i++;
+                        $mensajeVoz = $mensajeVoz.$plato['nombre'].",";
                     }
+                    echo '<input type="hidden" id="idPlatoEnElTicket" name="idPlatoEnElTicket" value="">';
                     echo '<input type="hidden" name="idTicketPlato" value="' . $ticket['idTicket'] . '">';
                     ?>
                     <hr>
 
                     <div class="form-group row">
-                        <input type="submit" name="cerrarComanda" class="btn btn-default col-md-offset-7 col-xs-offset-1 botonCerrarComanda" value="Cerrar comanda">
+                        <input type="submit" name="cerrarComanda" data-numform ="<?php echo $x; ?>" class="btn btn-default btn-sm col-md-offset-7 col-xs-offset-1 botonCerrarComanda" value="Cerrar comanda">
                     </div>
                 </div>
             </form>
         </div>
         <?php
+        $x++;
+         $mensajeVoz = $mensajeVoz.".";
     }
 } else {
     echo "<br><br><h5 class='text-center'>No tienes comandas pedidas.<h5>";
@@ -75,3 +82,10 @@ if (count($tickets) !== 0) {
 ?>
 
 
+<script type="text/javascript">
+  responsiveVoice.OnVoiceReady = function() {
+    console.log("speech time?");
+  responsiveVoice.speak('<?php echo $mensajeVoz; ?>','Spanish Female',{rate:0.8});
+  responsiveVoice.cancel();
+};
+  </script>

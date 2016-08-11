@@ -7,7 +7,7 @@
     <title>App - Restaurante</title>
     <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css" />
     <link rel="stylesheet" href="css/login.css" type="text/css" />
-    
+    <script  src="http://code.responsivevoice.org/responsivevoice.js"></script>
 </head>
 
 <body role="login">

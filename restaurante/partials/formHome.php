@@ -16,7 +16,7 @@
         }
         ?>
     </select>
-    <input type="submit" name="crearTicket" id="crearTicket" value="Crear Ticket" class="btn btn-default"/>
+    <input type="submit" name="crearTicket" id="crearTicket" value="Crear Ticket" class="btn btn-default btn-sm btn-sm"/>
 </form>
 
 <div class="formularios row col-xs-12 col-xs-12 col-md-10 col-md-offset-1">
