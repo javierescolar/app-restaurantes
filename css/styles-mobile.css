@@ -29,4 +29,8 @@
     .checkbox input[type=checkbox]{
         margin-left:4em;
     }
+
+    .formularios{
+        margin:auto;
+    }
 }
