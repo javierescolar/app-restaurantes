@@ -120,6 +120,11 @@ function validatePrecio(cantidad) {
     var pattern = /^\d{1,5}.\d{1,2}$/;
     return pattern.test(cantidad);
 }
+
+function validateMerma(merma) {
+    var pattern =/^(?=.*[1-9])\d{0,2}(?:\.\d{0,2})?$/;
+    return pattern.test(merma);
+}
 function validateValorSLA(valor) {
     var pattern = /^\d{1,4}$/;
     return pattern.test(valor);
@@ -152,7 +157,7 @@ function preparado(check){
 
 }
     if ($('home')) {
-       // setTimeout("location.reload()", 60000);
+        setTimeout("location.reload()", 30000);
     }
     var nuevoProducto = 0;
     if ($('formLogin')) {
@@ -184,7 +189,8 @@ function preparado(check){
         $('formNuevoProducto').addEventListener("submit", function (event) {
             if (validateEan($('newEan').value) && validateNombreProducto($('newNombreProducto').value)
                     && validateCantidad($('newCantidad').value)
-                    && validatePrecio($('newPrecio').value)) {
+                    && validatePrecio($('newPrecio').value)
+                    && validateMerma($('newMerma').value)) {
                 true;
             } else {
                 event.preventDefault();
@@ -268,6 +274,17 @@ function preparado(check){
     }
     if ($('desactivarFormSla')) {
         $('desactivarFormSla').addEventListener("click", function () {
+            $('formFlotante').style.display = 'none';
+        });
+    }
+    
+    if ($('activarFromFacturas')) {
+        $('activarFromFacturas').addEventListener("click", function () {
+            $('formFlotante').style.display = 'block';
+        });
+    }
+    if ($('desactivarFromFacturas')) {
+        $('desactivarFromFacturas').addEventListener("click", function () {
             $('formFlotante').style.display = 'none';
         });
     }

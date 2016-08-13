@@ -11,6 +11,7 @@ require_once('clases/Productos.php');
 require_once('clases/Perfiles.php');
 require_once('clases/Medidas.php');
 require_once('clases/SLA.php');
+require_once('clases/Facturas.php');
 
 session_start();
 //variables
@@ -31,6 +32,30 @@ if (isset($_SESSION['user'])) {
       echo "<script type='text/javascript'> $('navHome').style.background = 'black'; </script>";
     } elseif (isset($_POST['datosUsuario'])) {
         include 'restaurante/editProfile.php';
+    } elseif (isset($_POST['nominas'])) {
+        $_SESSION['tipoFactura'] = 1;
+        include 'restaurante/factuNominas.php';
+        echo "<script type='text/javascript'> $('navFacturacion').style.background = 'black'; </script>";
+    } elseif (isset($_POST['luz'])) {
+        $_SESSION['tipoFactura'] = 2;
+        include 'restaurante/factuLuz.php';
+        echo "<script type='text/javascript'> $('navFacturacion').style.background = 'black'; </script>";
+    } elseif (isset($_POST['agua'])) {
+        $_SESSION['tipoFactura'] = 3;
+        include 'restaurante/factuAgua.php';
+        echo "<script type='text/javascript'> $('navFacturacion').style.background = 'black'; </script>";
+    } elseif (isset($_POST['gas'])) {
+        $_SESSION['tipoFactura'] = 4;
+        include 'restaurante/factuGas.php';
+        echo "<script type='text/javascript'> $('navFacturacion').style.background = 'black'; </script>";
+    } elseif (isset($_POST['publicidad'])) {
+        $_SESSION['tipoFactura'] = 5;
+        include 'restaurante/factuPublicidad.php';
+        echo "<script type='text/javascript'> $('navFacturacion').style.background = 'black'; </script>";
+    } elseif (isset($_POST['servicios'])) {
+        $_SESSION['tipoFactura'] = 6;
+        include 'restaurante/factuServicios.php';
+        echo "<script type='text/javascript'> $('navFacturacion').style.background = 'black'; </script>";
     } elseif (isset($_POST['carta'])) {
         include 'restaurante/menuCategorias.php';
         echo "<script type='text/javascript'> $('navCarta').style.background = 'black'; </script>";
@@ -112,13 +137,6 @@ if (isset($_SESSION['user'])) {
         echo "<script type='text/javascript'>
             swal('Guardado!', 'Plato guardado correctamente', 'success');
         </script>";
-    } elseif ($_POST['cerrarComanda'] = "cerrarComanda" && isset ($_POST['idTicketPlato'])) {
-        Ticket::cerrarComanda($_POST['idTicketPlato']);
-        include 'restaurante/home.php';
-        echo "<script type='text/javascript'> $('navHome').style.background = 'black'; </script>";
-        echo "<script type='text/javascript'>
-           swal('Cerrado!', 'Comanda cerrado', 'success');
-        </script>";
     } elseif (isset($_POST['accionTicket']) && $_POST['accionTicket'] == 'cerrarTicket') {
         Ticket::cerrarTicket($_SESSION['ticketActual']);
         include 'restaurante/home.php';
@@ -127,8 +145,10 @@ if (isset($_SESSION['user'])) {
            swal('Cerrado!', 'Ticket cerrado', 'success');
         </script>";
     } elseif (isset($_POST['accionTicket']) && $_POST['accionTicket'] == 'mandarComanda') {
+        
         Ticket::mandarComanda($_SESSION['ticketActual']);
         include 'restaurante/home.php';
+        
         echo "<script type='text/javascript'> $('navHome').style.background = 'black'; </script>";
         echo "<script type='text/javascript'>
            swal('Enviada!', 'Comanda enviada', 'success');
@@ -140,10 +160,17 @@ if (isset($_SESSION['user'])) {
         echo "<script type='text/javascript'>
            swal('Anulado!', 'Ticket anulado', 'success');
         </script>";
-    }  elseif (isset($_POST['guardarProducto'])) {
+    } elseif ($_POST['cerrarComanda'] = "cerrarComanda" && isset ($_POST['idTicketPlato'])) {
+        Ticket::cerrarComanda($_POST['idTicketPlato']);
+        include 'restaurante/home.php';
+        echo "<script type='text/javascript'> $('navHome').style.background = 'black'; </script>";
+        echo "<script type='text/javascript'>
+           swal('Cerrado!', 'Comanda cerrado', 'success');
+        </script>";
+    }   elseif (isset($_POST['guardarProducto'])) {
         $esencial = (isset($_POST['newEsencial'])) ? 1 : 0;
         Producto:: guardarProducto($_POST['newEan'], $_POST['newNombre'], $_POST['newCantidad'], $_POST['newCaducidad']
-                , $_POST['newPrecio'], $esencial, $_POST['newMedida'], $_SESSION['user']['idRestaurante']);
+                , $_POST['newPrecio'], $esencial, $_POST['newMedida'],$_POST['newMerma'], $_SESSION['user']['idRestaurante']);
         if ($_POST['origenFormularioProducto'] == 'productos') {
             include 'restaurante/products.php';
             echo "<script type='text/javascript'> $('navProductos').style.background = 'black'; </script>";
@@ -157,6 +184,48 @@ if (isset($_SESSION['user'])) {
     } elseif (isset($_POST['sla'])) {
         include 'restaurante/sla.php';
         echo "<script type='text/javascript'> $('navSla').style.background = 'black'; </script>";
+    } elseif (isset($_POST['guardarNomina'])) {
+        Factura::guardarFactura($_POST['newNumRef'], $_POST['newPago'], $_POST['newFechaPago'], $_SESSION['tipoFactura'], $_SESSION['user']['idRestaurante']);
+        include 'restaurante/factuNominas.php';
+        echo "<script type='text/javascript'> $('navFacturacion').style.background = 'black'; </script>";
+        echo "<script type='text/javascript'>
+           swal('Guardado!', 'Nómina guardada', 'success');
+        </script>";
+    } elseif (isset($_POST['guardarLuz'])) {
+        Factura::guardarFactura($_POST['newNumRef'], $_POST['newPago'], $_POST['newFechaPago'], $_SESSION['tipoFactura'], $_SESSION['user']['idRestaurante']);
+        include 'restaurante/factuLuz.php';
+        echo "<script type='text/javascript'> $('navFacturacion').style.background = 'black'; </script>";
+        echo "<script type='text/javascript'>
+           swal('Guardado!', 'Factura luz guardada', 'success');
+        </script>";
+    } elseif (isset($_POST['guardarAgua'])) {
+        Factura::guardarFactura($_POST['newNumRef'], $_POST['newPago'], $_POST['newFechaPago'], $_SESSION['tipoFactura'], $_SESSION['user']['idRestaurante']);
+        include 'restaurante/factuAgua.php';
+        echo "<script type='text/javascript'> $('navFacturacion').style.background = 'black'; </script>";
+        echo "<script type='text/javascript'>
+           swal('Guardado!', 'Factura agua guardada', 'success');
+        </script>";
+    } elseif (isset($_POST['guardarGas'])) {
+        Factura::guardarFactura($_POST['newNumRef'], $_POST['newPago'], $_POST['newFechaPago'], $_SESSION['tipoFactura'], $_SESSION['user']['idRestaurante']);
+        include 'restaurante/factuGas.php';
+        echo "<script type='text/javascript'> $('navFacturacion').style.background = 'black'; </script>";
+        echo "<script type='text/javascript'>
+           swal('Guardado!', 'Factura gas guardada', 'success');
+        </script>";
+    } elseif (isset($_POST['guardarPublicidad'])) {
+        Factura::guardarFactura($_POST['newNumRef'], $_POST['newPago'], $_POST['newFechaPago'], $_SESSION['tipoFactura'], $_SESSION['user']['idRestaurante']);
+        include 'restaurante/factuPublicidad.php';
+        echo "<script type='text/javascript'> $('navFacturacion').style.background = 'black'; </script>";
+        echo "<script type='text/javascript'>
+           swal('Guardado!', 'Factura publicidad guardada', 'success');
+        </script>";
+    } elseif (isset($_POST['guardarServicio'])) {
+        Factura::guardarFactura($_POST['newNumRef'], $_POST['newPago'], $_POST['newFechaPago'], $_SESSION['tipoFactura'], $_SESSION['user']['idRestaurante']);
+        include 'restaurante/factuServicios.php';
+        echo "<script type='text/javascript'> $('navFacturacion').style.background = 'black'; </script>";
+        echo "<script type='text/javascript'>
+           swal('Guardado!', 'Factura servicio guardada', 'success');
+        </script>";
     } elseif (isset($_POST['guardarSla'])) {
         SLA::guardarSla($_POST['newNombreSla'], $_POST['newValorSla'], $_POST['newColorSla'], $_SESSION['user']['idRestaurante']);
         include 'restaurante/sla.php';
@@ -186,7 +255,7 @@ if (isset($_SESSION['user'])) {
            swal('Borrado!', 'Producto borrado', 'success');
         </script>";
     } elseif (isset($_POST['editarProductos']) && $_POST['productoBorrado'] == "") {
-        Producto::editarProductos($_POST['newIds'], $_POST['newEan'], $_POST['newNombre'], $_POST['newCantidad'], $_POST['newCaducidad'], $_POST['newPrecio'], $_POST['newMedida'], $_POST['newEsencial']);
+        Producto::editarProductos($_POST['newIds'], $_POST['newEan'], $_POST['newNombre'], $_POST['newCantidad'], $_POST['newCaducidad'], $_POST['newPrecio'], $_POST['newMedida'], $_POST['newMerma'], $_POST['newEsencial']);
         include 'restaurante/products.php';
         echo "<script type='text/javascript'> $('navProductos').style.background = 'black'; </script>";
         echo "<script type='text/javascript'>

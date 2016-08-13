@@ -58,6 +58,11 @@
                     <input name='newPrecio' id="newPrecio"  class='form-control' type='text' value='' required/>
 
                 </div>
+                <div class="col-xs-12 col-md-2">
+                    <label for="newPrecio">Merma</label>
+                    <input name='newMerma' id="newMerma"  class='form-control' type='text' value='' required/>
+
+                </div>
                  
                      <input id="origenFormularioProducto" type="hidden" name="origenFormularioProducto" value="">
             

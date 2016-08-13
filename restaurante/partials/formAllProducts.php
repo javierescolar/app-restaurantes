@@ -7,11 +7,12 @@
         <div class="form-group row cabeceraProductos">
             <label class="col-xs-12 col-md-1 text-center" for="productoBorrado"></label>
             <label class="col-xs-12 col-md-2 text-center" for="newEan">Ean</label>
-            <label class="col-xs-12 col-md-3 text-center" for="newNombre">Nombre</label>
+            <label class="col-xs-12 col-md-2 text-center" for="newNombre">Nombre</label>
             <label class="col-xs-12 col-md-1 text-center" for="newCantidad">Cantidad</label>
+            <label class="col-xs-12 col-md-1 text-center" for="newMedida">Medida</label>
             <label class="col-xs-12 col-md-2 text-center" for="newCaducidad">Caducidad</label>
             <label class="col-xs-12 col-md-1 text-center" for="newPrecio">Precio</label>
-            <label class="col-xs-12 col-md-1 text-center" for="newMedida">Medida</label>
+            <label class="col-xs-12 col-md-1 text-center" for="newMerma">Merma</label>
             <label class="col-xs-12 col-md-1 text-center" for="newEsencial">Esencial</label>
             
         </div>
@@ -28,19 +29,12 @@
                     <input name='<?php echo "newEan[$x]"; ?>' class='form-control' type='text' value="<?php echo $producto['ean'] ?>" required/>
                 </div>
 
-                <div class="col-xs-12 col-md-3">
+                <div class="col-xs-12 col-md-2">
                     <input name='<?php echo "newNombre[$x]"; ?>' class='form-control' type='text' value='<?php echo $producto['nombre'] ?>' required/>
                 </div>
                 <div class="col-xs-12 col-md-1">
                     <input name='<?php echo "newCantidad[$x]"; ?>' class='form-control' type='text' value='<?php echo $producto['cantidad'] ?>' required/>
                 </div>
-                <div class="col-xs-12 col-md-2">
-                    <input name='<?php echo "newCaducidad[$x]"; ?>' class='form-control' type='date' value='<?php echo $producto['caducidad'] ?>' required/>
-                </div>
-                <div class="col-xs-12 col-md-1">
-                    <input name='<?php echo "newPrecio[$x]"; ?>' class='form-control' type='text' value='<?php echo $producto['precio'] ?>' required/>
-                </div>
-
                 <div class="col-xs-12 col-md-1">                
                     <select name="<?php echo "newMedida[$x]"; ?>" class="form-control" required>
                         <option></option>
@@ -55,6 +49,17 @@
                         }
                         ?>
                     </select>
+                </div>
+                <div class="col-xs-12 col-md-2">
+                    <input name='<?php echo "newCaducidad[$x]"; ?>' class='form-control' type='date' value='<?php echo $producto['caducidad'] ?>' required/>
+                </div>
+                <div class="col-xs-12 col-md-1">
+                    <input name='<?php echo "newPrecio[$x]"; ?>' class='form-control' type='text' value='<?php echo $producto['precio'] ?>' required/>
+                </div>
+
+                
+                <div class="col-xs-12 col-md-1">
+                    <input name='<?php echo "newMerma[$x]"; ?>' class='form-control' <input type="text" value='<?php echo $producto['merma'] ?>' required/>
                 </div>
                 <div class="col-xs-12 col-md-1 text-center"> 
                     <?php

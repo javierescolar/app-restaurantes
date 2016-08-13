@@ -9,18 +9,18 @@
             <button id="guardarSla" type="submit" name="guardarSla" class="btn-link" value="Guardar SLA"><span class="save glyphicon glyphicon-floppy-saved"></span></button>
             
             <div class="form-group row col-md-12">
-                <div class="col-xs-12 col-md-3">
+                <div class="col-xs-12 col-md-4">
                     <label for="newNombreSla">Nombre</label>
                         <input name='newNombreSla' id="newNombreSla" class='form-control' type='text' value='' required/>
                 </div>
 
-                <div class="col-xs-12 col-md-3">
+                <div class="col-xs-12 col-md-4">
                     <label for="newValorSla">Valor</label>
                     <input name='newValorSla' id="newValorSla" class='form-control' type='number' value='' required/>
 
                 </div>
                 
-                <div class="col-xs-12 col-md-3">
+                <div class="col-xs-12 col-md-4">
                     <label for="newColorSla">Color</label>
                     <input name='newColorSla' id="newColorSla" class='form-control' type='text' required/>
 

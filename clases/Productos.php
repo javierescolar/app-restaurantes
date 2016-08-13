@@ -38,9 +38,9 @@ class Producto extends Restaurante{
         
     }
     
-    public function guardarProducto($ean,$nombre,$cantidad,$caducidad,$precio,$esencial,$medida,$idResturante){
+    public function guardarProducto($ean,$nombre,$cantidad,$caducidad,$precio,$esencial,$medida,$merma,$idResturante){
         $conexion = BD::getConexion();
-        $sentencia = $conexion->prepare('INSERT INTO productos(ean,nombre,cantidad,caducidad,precio,esencial,idMedida,idRestaurante) VALUES ('.$ean.',"'.$nombre.'",'.$cantidad.',"'.$caducidad.'",'.$precio.','.$esencial.','.$medida.','.$idResturante.')');
+        $sentencia = $conexion->prepare('INSERT INTO productos(ean,nombre,cantidad,caducidad,precio,esencial,idMedida,merma,idRestaurante) VALUES ('.$ean.',"'.$nombre.'",'.$cantidad.',"'.$caducidad.'",'.$precio.','.$esencial.','.$medida.','.$merma.','.$idResturante.')');
         $consulta = $sentencia->execute();
         return $consulta;
 
@@ -53,7 +53,7 @@ class Producto extends Restaurante{
         return $consulta;
     }
     
-    public function editarProductos($ids,$ean,$nombre,$cantidad,$caducidad,$precio,$medida,$esencial){
+    public function editarProductos($ids,$ean,$nombre,$cantidad,$caducidad,$precio,$medida,$merma,$esencial){
         
         foreach ($ids as $key=>$id){
             $conexion = BD::getConexion();
@@ -64,6 +64,7 @@ class Producto extends Restaurante{
                 . ",caducidad = '".$caducidad[$key]."'"
                 . ",precio = ".$precio[$key]
                 . ",idMedida = ".$medida[$key]
+                . ",merma = ".$merma[$key]
                 . " WHERE idProducto = ".$id;
               $sentencia = $conexion->prepare($select);
               $consulta = $sentencia->execute();

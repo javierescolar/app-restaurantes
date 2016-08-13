@@ -25,6 +25,21 @@
                         <button id="navCarta" type="submit" class="btn-link" name="carta">Carta platos</button>
                     </form>
                 </li>
+                <li>
+                    <form action="index.php" method="POST">
+                        <button id="navPlatos" type="submit" class="btn-link" name="platos">Platos</button>
+                    </form>
+                </li>
+                <li>
+                    <form action="index.php" method="POST">
+                        <button id="navProductos" type="submit" class="btn-link" name="productos">Ingredientes</button>
+                    </form>
+                </li>
+                <li>
+                    <form action="index.php" method="POST">
+                        <button id="navCalculadora" type="submit" class="btn-link" name="calculadora">Calculadora escandayo</button>
+                    </form>
+                </li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <!--<form class="navbar-form navbar-left" id="search"role="search">
