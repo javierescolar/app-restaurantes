@@ -4,7 +4,7 @@
     <head>
         <?php
         include 'restaurante/partials/head.php';
-       ?>
+        ?>
     </head>
 
     <body>
@@ -28,7 +28,7 @@
                     <div class="col-md-12 col-xs-12">
                         <?php
                         $plato = Plato::muestraPlatoId($_POST['idPlato']);
-                        $ingredientesPlato = Producto::muestraProductosPlato($plato['ingredientes']);
+                        $ingredientesPlato = Producto::muestraProductosPlato($_POST['idPlato']);
                         ;
                         echo "<h1 class='text-center'>" . $plato['nombre'] . "</h1>";
                         ?>
@@ -39,18 +39,26 @@
                             echo "<img src='img/" . $plato["imagen"] . "' class='img-responsive platoFoto'></img>";
                             echo "<h4>Ingredientes</h4>";
                             foreach ($ingredientesPlato as $ingrediente) {
-                                echo '<div class="checkbox">';
-                                echo "<label><input type='checkbox' name='ingrediente[" . $ingrediente['idProducto'] . "]' value='" . $ingrediente['idProducto'] . "'> " . $ingrediente['nombre'] . "</label>";
-                                echo "</div>";
+                                if ($_SESSION['user']['idPerfil'] == 3 && isset($_SESSION['ticketActual'])) {
+                                    if ($ingrediente['esencial'] == 0) {
+                                        echo '<div class="checkbox">';
+                                        echo "<label><input type='checkbox' name='ingrediente[" . $ingrediente['idProducto'] . "]' value='" . $ingrediente['idProducto'] . "'> " . $ingrediente['nombre'] . " - " . $ingrediente['cantidad'] . " " . $ingrediente['medida'] . "</label>";
+                                        echo "</div>";
+                                    }
+                                } else {
+                                    echo '<div class="checkbox">';
+                                    echo "<label>". $ingrediente['nombre'] . " - " . $ingrediente['cantidad']. "</label>";
+                                    echo "</div>";
+                                }
                             }
                             echo "<p class='textDescripcion'>" . $plato["descripcion"] . "</p>";
                             ?>
                         </div>
 
                     </div>
-                    <?php
-                    if (isset($_SESSION['ticketActual'])) {
-                        ?>
+<?php
+if (isset($_SESSION['ticketActual'])) {
+    ?>
                         <div class="row col-md-12 col-xs-12">
 
                             <input type='hidden' name='idPlato' value='<?php echo $plato["idPlato"]; ?>'/>;

@@ -36,7 +36,8 @@ $datosPlatosTickets = Ticket::muestraPlatosTickets($_SESSION['ticketActual']);
                     echo '<div class="form-group col-xs-7 col-md-6 col-md-offset-1">';
                         echo  '<input type="text" name="plato" class="form-control" required disabled value="'.$plato['nombre'].'">';
                         if($plato['ordenEspecial'] !== "" ){
-                            $ingredientes = Producto::muestraProductosPlato($plato['ordenEspecial']);
+                           
+                            $ingredientes = Producto::muestraProductosOrdenEspecial($plato['ordenEspecial']);
                             foreach ($ingredientes as $ingrediente){
                               echo '<input type="text" name="orden" class="form-control col-md-offset-1 col-xs-offset-1 ordenEspecial" required disabled value="Sin '.$ingrediente['nombre'].'">';  
                             }    

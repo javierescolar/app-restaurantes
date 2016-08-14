@@ -11,7 +11,7 @@
             <label class="col-xs-12 col-md-1 text-center" for="newCantidad">Cantidad</label>
             <label class="col-xs-12 col-md-1 text-center" for="newMedida">Medida</label>
             <label class="col-xs-12 col-md-2 text-center" for="newCaducidad">Caducidad</label>
-            <label class="col-xs-12 col-md-1 text-center" for="newPrecio">Precio</label>
+            <label class="col-xs-12 col-md-1 text-center" for="newPrecio">Precio(und)</label>
             <label class="col-xs-12 col-md-1 text-center" for="newMerma">Merma</label>
             <label class="col-xs-12 col-md-1 text-center" for="newEsencial">Esencial</label>
             

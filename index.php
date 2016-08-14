@@ -19,17 +19,17 @@ $mensajeLogin = "";
 $numeroMesas = 10;
 
 if (isset($_SESSION['user'])) {
-    if (isset($_POST['cerrarSesion'])) { 
+    if (isset($_POST['cerrarSesion'])) {
         unset($_SESSION['user']);
         session_destroy();
         include 'restaurante/login.php';
         echo '<script type="text/javascript">
                 responsiveVoice.pause();
             </script>';
-    } elseif ( isset($_POST['idPlatoEnElTicket']) && $_POST['idPlatoEnElTicket'] != "" ) {
-      Ticket::marcarPlatoTerminado($_POST['idPlatoEnElTicket']);
-      include 'restaurante/home.php';
-      echo "<script type='text/javascript'> $('navHome').style.background = 'black'; </script>";
+    } elseif (isset($_POST['idPlatoEnElTicket']) && $_POST['idPlatoEnElTicket'] != "") {
+        Ticket::marcarPlatoTerminado($_POST['idPlatoEnElTicket']);
+        include 'restaurante/home.php';
+        echo "<script type='text/javascript'> $('navHome').style.background = 'black'; </script>";
     } elseif (isset($_POST['datosUsuario'])) {
         include 'restaurante/editProfile.php';
     } elseif (isset($_POST['nominas'])) {
@@ -118,20 +118,12 @@ if (isset($_SESSION['user'])) {
         echo "<script type='text/javascript'> $('navPlatos').style.background = 'black'; "
         . " origenFormProductos('platos'); </script>";
     } elseif (isset($_POST['guardarPlatos'])) {
-        $productosEsenciales = "";
-        if (isset($_POST["newIngredientesEsenciales"])) {
-            foreach ($_POST["newIngredientesEsenciales"] as $producto) {
-                $productosEsenciales = $productosEsenciales . $producto . ",";
-            }
-            if (isset($_POST["newIngredientesSimples"])) {
-                foreach ($_POST["newIngredientesSimples"] as $producto) {
-                    $productosSimples = $productosSimples . $producto . ",";
-                }
-            }
-            $productos = $productosEsenciales . $productosSimples;
-            move_uploaded_file($_FILES['newImagen']['tmp_name'], 'img/' . $_FILES['newImagen']['name']);
-            Plato::guardarPlato($_POST['newNombre'], $_POST['newPrecio'], $productos, $_POST['newDescripcion'], $_FILES['newImagen']['name'], 1, $_POST['newCategoria'], $_SESSION['user']['idRestaurante']);
-        }
+        $ingredientesEsenciales = (isset($_POST["newIngredientesEsenciales"]))? $_POST["newIngredientesEsenciales"]: "";
+        $ingredientesSimples =  (isset($_POST["newIngredientesSimples"]))? $_POST["newIngredientesSimples"]: "";      
+        move_uploaded_file($_FILES['newImagen']['tmp_name'], 'img/' . $_FILES['newImagen']['name']);
+        Plato::guardarPlato($_POST['newNombre'], $_POST['newPrecio'], $ingredientesEsenciales, $ingredientesSimples,
+                $_POST["newCantidadEsenciales"], $_POST["newCantidadSimples"], $_POST['newDescripcion'], $_FILES['newImagen']['name'],
+                1, $_POST['newCategoria'], $_SESSION['user']['idRestaurante']);
         include 'restaurante/platos.php';
         echo "<script type='text/javascript'> $('navPlatos').style.background = 'black'; </script>";
         echo "<script type='text/javascript'>
@@ -145,10 +137,8 @@ if (isset($_SESSION['user'])) {
            swal('Cerrado!', 'Ticket cerrado', 'success');
         </script>";
     } elseif (isset($_POST['accionTicket']) && $_POST['accionTicket'] == 'mandarComanda') {
-        
         Ticket::mandarComanda($_SESSION['ticketActual']);
         include 'restaurante/home.php';
-        
         echo "<script type='text/javascript'> $('navHome').style.background = 'black'; </script>";
         echo "<script type='text/javascript'>
            swal('Enviada!', 'Comanda enviada', 'success');
@@ -160,17 +150,17 @@ if (isset($_SESSION['user'])) {
         echo "<script type='text/javascript'>
            swal('Anulado!', 'Ticket anulado', 'success');
         </script>";
-    } elseif ($_POST['cerrarComanda'] = "cerrarComanda" && isset ($_POST['idTicketPlato'])) {
+    } elseif ($_POST['cerrarComanda'] = "cerrarComanda" && isset($_POST['idTicketPlato'])) {
         Ticket::cerrarComanda($_POST['idTicketPlato']);
         include 'restaurante/home.php';
         echo "<script type='text/javascript'> $('navHome').style.background = 'black'; </script>";
         echo "<script type='text/javascript'>
            swal('Cerrado!', 'Comanda cerrado', 'success');
         </script>";
-    }   elseif (isset($_POST['guardarProducto'])) {
+    } elseif (isset($_POST['guardarProducto'])) {
         $esencial = (isset($_POST['newEsencial'])) ? 1 : 0;
         Producto:: guardarProducto($_POST['newEan'], $_POST['newNombre'], $_POST['newCantidad'], $_POST['newCaducidad']
-                , $_POST['newPrecio'], $esencial, $_POST['newMedida'],$_POST['newMerma'], $_SESSION['user']['idRestaurante']);
+                , $_POST['newPrecio'], $esencial, $_POST['newMedida'], $_POST['newMerma'], $_SESSION['user']['idRestaurante']);
         if ($_POST['origenFormularioProducto'] == 'productos') {
             include 'restaurante/products.php';
             echo "<script type='text/javascript'> $('navProductos').style.background = 'black'; </script>";
