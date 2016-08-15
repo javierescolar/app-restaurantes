@@ -122,7 +122,7 @@ function validatePrecio(cantidad) {
 }
 
 function validateMerma(merma) {
-    var pattern =/^(?=.*[1-9])\d{0,2}(?:\.\d{0,2})?$/;
+    var pattern = /^(?=.*[1-9])\d{0,2}(?:\.\d{0,2})?$/;
     return pattern.test(merma);
 }
 function validateValorSLA(valor) {
@@ -149,147 +149,289 @@ function borrarSla(boton) {
     $('slaBorrado').value = boton;
 }
 
-function preparado(check){
- 
-  check.value = (check.checked == true)? "terminado" : "noTerminado";
-  document.getElementById('idPlatoEnElTicket').value = check.getAttribute('data-id');
-  check.form.submit();
+function preparado(check) {
+
+    check.value = (check.checked == true) ? "terminado" : "noTerminado";
+    document.getElementById('idPlatoEnElTicket').value = check.getAttribute('data-id');
+    check.form.submit();
 
 }
-    if ($('home')) {
-        setTimeout("location.reload()", 30000);
-    }
-    var nuevoProducto = 0;
-    if ($('formLogin')) {
-        $('formLogin').addEventListener("submit", function (event) {
-            if (validateEmail($('email').value) && validatePassword($('password').value)) {
-                true;
-            } else {
-                event.preventDefault();
-                swal("Atención", "Los datos introducidos no son válidos", "warning");
-            }
-        });
-    }
-
-
-    if ($('formEditProfile')) {
-        $('formEditProfile').addEventListener("submit", function (event) {
-            if (validateEmail($('newEmail').value) && validateDni($('newDni').value)
-                    && validateName($('newNombre').value) && validateLastNames($('newApellidos').value)
-                    && validatePhone($('newTelefono').value)) {
-                true;
-            } else {
-                event.preventDefault();
-                swal("Atención", "Los datos introducidos no son válidos", "warning");
-            }
-
-        });
-    }
-    if ($('formNuevoProducto')) {
-        $('formNuevoProducto').addEventListener("submit", function (event) {
-            if (validateEan($('newEan').value) && validateNombreProducto($('newNombreProducto').value)
-                    && validateCantidad($('newCantidad').value)
-                    && validatePrecio($('newPrecio').value)
-                    && validateMerma($('newMerma').value)) {
-                true;
-            } else {
-                event.preventDefault();
-                swal("Atención", "Los datos introducidos no son válidos", "warning");
-            }
-        });
-    }
-    if ($('formNuevoSla')) {
-        $('formNuevoSla').addEventListener("submit", function (event) {
-            if (validateName($('newNombreSla').value) && validateColorSLA($('newColorSla').value)
-                    && validateValorSLA($('newValorSla').value)) {
-                true;
-            } else {
-                event.preventDefault();
-                swal("Atención", "Los datos introducidos no son válidos", "warning");
-            }
-        });
-    }
-    
-    if ($('cerrarTicket')) {
-        $('cerrarTicket').addEventListener("click", function (event) {
+if ($('home')) {
+    setTimeout("location.reload()", 30000);
+}
+var nuevoProducto = 0;
+if ($('formLogin')) {
+    $('formLogin').addEventListener("submit", function (event) {
+        if (validateEmail($('email').value) && validatePassword($('password').value)) {
+            true;
+        } else {
             event.preventDefault();
-            var boton = $('cerrarTicket');
-            swal({title: "¿Estás seguro?", text: "¿quieres cerrar el ticket?", type: "warning", showCancelButton: true, confirmButtonColor: "#DD6B55", confirmButtonText: "Sí", cancelButtonText: "No", closeOnConfirm: false, closeOnCancel: false}, function (isConfirm) {
-                if (isConfirm) {
-                    $('accionTicket').value = "cerrarTicket";
-                    boton.value = "cerrarTicket";
-                    boton.parentElement.parentElement.parentElement.submit();
-                } else {
-                    swal("Cancelado", "No se cerro el ticket", "error");
-                }
-            });
-        });
-    }
-    if ($('anularTicket')) {
-        $('anularTicket').addEventListener("click", function (event) {
+            swal("Atención", "Los datos introducidos no son válidos", "warning");
+        }
+    });
+}
+
+
+if ($('formEditProfile')) {
+    $('formEditProfile').addEventListener("submit", function (event) {
+        if (validateEmail($('newEmail').value) && validateDni($('newDni').value)
+                && validateName($('newNombre').value) && validateLastNames($('newApellidos').value)
+                && validatePhone($('newTelefono').value)) {
+            true;
+        } else {
             event.preventDefault();
-            var boton = $('anularTicket');
-            swal({title: "¿Estás seguro?", text: "¿quieres anular el ticket?", type: "warning", showCancelButton: true, confirmButtonColor: "#DD6B55", confirmButtonText: "Sí", cancelButtonText: "No", closeOnConfirm: false, closeOnCancel: false}, function (isConfirm) {
-                if (isConfirm) {
-                    $('accionTicket').value = "anularTicket";
-                    boton.value = "anularTicket";
-                    boton.parentElement.parentElement.parentElement.submit();
-                } else {
-                    swal("Cancelado", "No se anulo el ticket", "error");
-                }
-            });
-        });
-    }
+            swal("Atención", "Los datos introducidos no son válidos", "warning");
+            if(!validateEmail($('newEmail').value)){
+                $('newEmail').style.border = 'solid #F7BE81 0.1em';
+                $('newEmail').style.boxShadow = '0em 0em 0.5em #FE9A2E';  
+            }
+            if(!validateDni($('newDni').value)){
+                $('newDni').style.border = 'solid #F7BE81 0.1em';
+                $('newDni').style.boxShadow = '0em 0em 0.5em #FE9A2E';  
+            }
+            if(!validateName($('newNombre').value)){
+                $('newNombre').style.border = 'solid #F7BE81 0.1em';
+                $('newNombre').style.boxShadow = '0em 0em 0.5em #FE9A2E';  
+            }
+            if(!validateLastNames($('newApellidos').value)){
+                $('newApellidos').style.border = 'solid #F7BE81 0.1em';
+                $('newApellidos').style.boxShadow = '0em 0em 0.5em #FE9A2E';  
+            }
+            if(!validatePhone($('newTelefono').value)){
+                $('newTelefono').style.border = 'solid #F7BE81 0.1em';
+                $('newTelefono').style.boxShadow = '0em 0em 0.5em #FE9A2E';  
+            }
+        }
 
-    if ($('mandarComanda')) {
-        $('mandarComanda').addEventListener("click", function (event) {
+    });
+}
+if ($('formNuevoProducto')) {
+    $('formNuevoProducto').addEventListener("submit", function (event) {
+        if (validateEan($('newEan').value) && validateNombreProducto($('newNombreProducto').value)
+                && validateCantidad($('newCantidad').value)
+                && validatePrecio($('newPrecio').value)
+                && validateMerma($('newMerma').value)) {
+            true;
+        } else {
             event.preventDefault();
-            var boton = $('mandarComanda');
-            swal({title: "¿Estás seguro?", text: "¿quieres mandar la comanda?", type: "warning", showCancelButton: true, confirmButtonColor: "#DD6B55", confirmButtonText: "Sí", cancelButtonText: "No", closeOnConfirm: false, closeOnCancel: false}, function (isConfirm) {
-                if (isConfirm) {
-                    $('accionTicket').value = "mandarComanda";
-                    boton.value = "mandarComanda";
-                    boton.parentElement.parentElement.parentElement.submit();
-                } else {
-                    swal("Cancelado", "No se cerro la comanda", "error");
-                }
-            });
-        });
-    }
-    if ($('activarFromProductos')) {
-        $('activarFromProductos').addEventListener("click", function () {
-            $('formFlotante').style.display = 'block';
-        });
-    }
-    if ($('desactivarFromProductos')) {
-        $('desactivarFromProductos').addEventListener("click", function () {
-            $('formFlotante').style.display = 'none';
-        });
-    }
+            swal("Atención", "Los datos introducidos no son válidos", "warning");
+            if (!validateEan($('newEan').value)) {
+                $('newEan').style.border = 'solid #F7BE81 0.1em';
+                $('newEan').style.boxShadow = '0em 0em 0.5em #FE9A2E';
+            }
+            if (!validateNombreProducto($('newNombreProducto').value)) {
+                $('newNombreProducto').style.border = 'solid #F7BE81 0.1em';
+                $('newNombreProducto').style.boxShadow = '0em 0em 0.5em #FE9A2E';
+            }
+            if (!validateCantidad($('newCantidad').value)) {
+                $('newCantidad').style.border = 'solid #F7BE81 0.1em';
+                $('newCantidad').style.boxShadow = '0em 0em 0.5em #FE9A2E';
+            }
+            if (!validatePrecio($('newPrecio').value)) {
+                $('newPrecio').style.border = 'solid #F7BE81 0.1em';
+                $('newPrecio').style.boxShadow = '0em 0em 0.5em #FE9A2E';
+            }
+            if (!validateMerma($('newMerma').value)) {
+                $('newMerma').style.border = 'solid #F7BE81 0.1em';
+                $('newMerma').style.boxShadow = '0em 0em 0.5em #FE9A2E';
+            }
+        }
+    });
+}
+if ($('formNuevoSla')) {
+    $('formNuevoSla').addEventListener("submit", function (event) {
+        if (validateName($('newNombreSla').value) && validateColorSLA($('newColorSla').value)
+                && validateValorSLA($('newValorSla').value)) {
+            true;
+        } else {
+            event.preventDefault();
+            swal("Atención", "Los datos introducidos no son válidos", "warning");
+            if (!validateName($('newNombreSla').value)) {
+                $('newNombreSla').style.border = 'solid #F7BE81 0.1em';
+                $('newNombreSla').style.boxShadow = '0em 0em 0.5em #FE9A2E';
+            }
+            if (!validateColorSLA($('newColorSla').value)) {
+                $('newColorSla').style.border = 'solid #F7BE81 0.1em';
+               $('newColorSla').style.boxShadow = '0em 0em 0.5em #FE9A2E';
+            }
+            if (!validateValorSLA($('newValorSla').value)) {
+                $('newValorSla').style.border = 'solid #F7BE81 0.1em';
+                $('newValorSla').style.boxShadow = '0em 0em 0.5em #FE9A2E';
+            }
+        }
+    });
+}
 
-    if ($('activarFormSla')) {
-        $('activarFormSla').addEventListener("click", function () {
-            $('formFlotante').style.display = 'block';
+if ($('cerrarTicket')) {
+    $('cerrarTicket').addEventListener("click", function (event) {
+        event.preventDefault();
+        var boton = $('cerrarTicket');
+        swal({title: "¿Estás seguro?", text: "¿quieres cerrar el ticket?", type: "warning", showCancelButton: true, confirmButtonColor: "#DD6B55", confirmButtonText: "Sí", cancelButtonText: "No", closeOnConfirm: false, closeOnCancel: false}, function (isConfirm) {
+            if (isConfirm) {
+                $('accionTicket').value = "cerrarTicket";
+                boton.value = "cerrarTicket";
+                boton.parentElement.parentElement.parentElement.submit();
+            } else {
+                swal("Cancelado", "No se cerro el ticket", "error");
+            }
         });
-    }
-    if ($('desactivarFormSla')) {
-        $('desactivarFormSla').addEventListener("click", function () {
-            $('formFlotante').style.display = 'none';
+    });
+}
+if ($('anularTicket')) {
+    $('anularTicket').addEventListener("click", function (event) {
+        event.preventDefault();
+        var boton = $('anularTicket');
+        swal({title: "¿Estás seguro?", text: "¿quieres anular el ticket?", type: "warning", showCancelButton: true, confirmButtonColor: "#DD6B55", confirmButtonText: "Sí", cancelButtonText: "No", closeOnConfirm: false, closeOnCancel: false}, function (isConfirm) {
+            if (isConfirm) {
+                $('accionTicket').value = "anularTicket";
+                boton.value = "anularTicket";
+                boton.parentElement.parentElement.parentElement.submit();
+            } else {
+                swal("Cancelado", "No se anulo el ticket", "error");
+            }
         });
-    }
-    
-    if ($('activarFromFacturas')) {
-        $('activarFromFacturas').addEventListener("click", function () {
-            $('formFlotante').style.display = 'block';
+    });
+}
+
+if ($('mandarComanda')) {
+    $('mandarComanda').addEventListener("click", function (event) {
+        event.preventDefault();
+        var boton = $('mandarComanda');
+        swal({title: "¿Estás seguro?", text: "¿quieres mandar la comanda?", type: "warning", showCancelButton: true, confirmButtonColor: "#DD6B55", confirmButtonText: "Sí", cancelButtonText: "No", closeOnConfirm: false, closeOnCancel: false}, function (isConfirm) {
+            if (isConfirm) {
+                $('accionTicket').value = "mandarComanda";
+                boton.value = "mandarComanda";
+                boton.parentElement.parentElement.parentElement.submit();
+            } else {
+                swal("Cancelado", "No se cerro la comanda", "error");
+            }
         });
-    }
-    if ($('desactivarFromFacturas')) {
-        $('desactivarFromFacturas').addEventListener("click", function () {
-            $('formFlotante').style.display = 'none';
-        });
-    }
+    });
+}
+if ($('activarFromProductos')) {
+    $('activarFromProductos').addEventListener("click", function () {
+        $('formFlotante').style.display = 'block';
+    });
+}
+if ($('desactivarFromProductos')) {
+    $('desactivarFromProductos').addEventListener("click", function () {
+        $('formFlotante').style.display = 'none';
+    });
+}
 
+if ($('activarFormSla')) {
+    $('activarFormSla').addEventListener("click", function () {
+        $('formFlotante').style.display = 'block';
+    });
+}
+if ($('desactivarFormSla')) {
+    $('desactivarFormSla').addEventListener("click", function () {
+        $('formFlotante').style.display = 'none';
+    });
+}
 
+if ($('activarFromFacturas')) {
+    $('activarFromFacturas').addEventListener("click", function () {
+        $('formFlotante').style.display = 'block';
+    });
+}
+if ($('desactivarFromFacturas')) {
+    $('desactivarFromFacturas').addEventListener("click", function () {
+        $('formFlotante').style.display = 'none';
+    });
+}
 
+if ($('formAgua')) {
+    $('formAgua').addEventListener("submit", function (event) {
+        if (validatePrecio($('newPago').value)) {
+            true;
+        } else {
+            event.preventDefault();
+            swal("Atención", "Los datos introducidos no son válidos", "warning");
+            if (!validatePrecio($('newPago').value)) {
+                $('newPago').style.border = 'solid #F7BE81 0.1em';
+                $('newPago').style.boxShadow = '0em 0em 0.5em #FE9A2E';
+            }
 
+        }
+    });
+}
 
+if ($('formGas')) {
+    $('formGas').addEventListener("submit", function (event) {
+        if (validatePrecio($('newPago').value)) {
+            true;
+        } else {
+            event.preventDefault();
+            swal("Atención", "Los datos introducidos no son válidos", "warning");
+            if (!validatePrecio($('newPago').value)) {
+                $('newPago').style.border = 'solid #F7BE81 0.1em';
+                $('newPago').style.boxShadow = '0em 0em 0.5em #FE9A2E';
+            }
+
+        }
+    });
+}
+
+if ($('formLuz')) {
+    $('formLuz').addEventListener("submit", function (event) {
+        if (validatePrecio($('newPago').value)) {
+            true;
+        } else {
+            event.preventDefault();
+            swal("Atención", "Los datos introducidos no son válidos", "warning");
+            if (!validatePrecio($('newPago').value)) {
+                $('newPago').style.border = 'solid #F7BE81 0.1em';
+                $('newPago').style.boxShadow = '0em 0em 0.5em #FE9A2E';
+            }
+
+        }
+    });
+}
+if ($('formPubicidad')) {
+    $('formPublicidad').addEventListener("submit", function (event) {
+        if (validatePrecio($('newPago').value)) {
+            true;
+        } else {
+            event.preventDefault();
+            swal("Atención", "Los datos introducidos no son válidos", "warning");
+            if (!validatePrecio($('newPago').value)) {
+                $('newPago').style.border = 'solid #F7BE81 0.1em';
+                $('newPago').style.boxShadow = '0em 0em 0.5em #FE9A2E';
+            }
+
+        }
+    });
+}
+
+if ($('formServicio')) {
+    $('formServicio').addEventListener("submit", function (event) {
+        if (validatePrecio($('newPago').value)) {
+            true;
+        } else {
+            event.preventDefault();
+            swal("Atención", "Los datos introducidos no son válidos", "warning");
+            if (!validatePrecio($('newPago').value)) {
+                $('newPago').style.border = 'solid #F7BE81 0.1em';
+                $('newPago').style.boxShadow = '0em 0em 0.5em #FE9A2E';
+            }
+
+        }
+    });
+}
+
+if ($('formNomina')) {
+    $('formNomina').addEventListener("submit", function (event) {
+        if (validatePrecio($('newPago').value)) {
+            true;
+        } else {
+            event.preventDefault();
+            swal("Atención", "Los datos introducidos no son válidos", "warning");
+            if (!validatePrecio($('newPago').value)) {
+                $('newPago').style.border = 'solid #F7BE81 0.2em';
+                $('newPago').style.boxShadow = '0em 0em 0.5em #FE9A2E';
+            }
+
+        }
+    });
+}

@@ -5,7 +5,7 @@
 
         <div class="text-center cabeceraForm">Nuevo Factura</div>
          <button class="col-md-offset-11 col-xs-offset-10 drop btn-link" id="desactivarFromFacturas"><span class="drop glyphicon glyphicon-remove"></span></button>
-        <form action='index.php' method='POST' id="formNuevoSla">
+        <form action='index.php' method='POST' id="formAgua">
             <button id="guardarAgua" type="submit" name="guardarAgua" class="btn-link" value="Guardar Agua"><span class="save glyphicon glyphicon-floppy-saved"></span></button>
             
             <div class="form-group row col-md-12">
@@ -22,7 +22,7 @@
                 
                 <div class="col-xs-12 col-md-4">
                     <label for="newFechaPago">Fecha Pago</label>
-                    <input name='newFechaPago' id="newFechaPago" class='form-control' type='date' required/>
+                    <input name='newFechaPago' id="newFechaPago" class='form-control' type='date'  min="<?php echo date("Y-m-d"); ?>" required/>
 
                 </div>
                 

@@ -5,7 +5,7 @@
 
         <div class="text-center cabeceraForm">Nuevo Factura</div>
          <button class="col-md-offset-11 col-xs-offset-10 drop btn-link" id="desactivarFromFacturas"><span class="drop glyphicon glyphicon-remove"></span></button>
-        <form action='index.php' method='POST' id="formNuevoSla">
+        <form action='index.php' method='POST' id="formGas">
             <button id="guardarGas" type="submit" name="guardarGas" class="btn-link" value="Guardar Gas"><span class="save glyphicon glyphicon-floppy-saved"></span></button>
             
             <div class="form-group row col-md-12">
