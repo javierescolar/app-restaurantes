@@ -47,7 +47,7 @@
                                     }
                                 } else {
                                     echo '<div class="checkbox">';
-                                    echo "<label>". $ingrediente['nombre'] . " - " . $ingrediente['cantidad']. "</label>";
+                                    echo "<label>". $ingrediente['nombre'] . " - " . $ingrediente['cantidad']." ". $ingrediente['medida']."</label>";
                                     echo "</div>";
                                 }
                             }
