@@ -2,6 +2,7 @@
     <select name="mesa" class="form-control col-md-offset-9" required>
         <option></option>
         <?php
+        $numeroMesas = Restaurante::cargarMesas($_SESSION['user']['idRestaurante']);
         $mesasOcupadas = Ticket::mesasOcupadas($_SESSION['user']['idRestaurante']);
         for ($i = 1; $i <= $numeroMesas; $i++) {
             $ocupada = false;

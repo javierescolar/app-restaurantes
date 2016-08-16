@@ -150,11 +150,16 @@ function borrarSla(boton) {
 }
 
 function preparado(check) {
-
-    check.value = (check.checked == true) ? "terminado" : "noTerminado";
+    check.value = (check.checked === true) ? "terminado" : "noTerminado";
     document.getElementById('idPlatoEnElTicket').value = check.getAttribute('data-id');
-    check.form.submit();
-
+    swal({title: "¿Estás seguro?", text: "Si confirma se restarán los ingredientes del inventario", type: "warning", showCancelButton: true, confirmButtonColor: "#DD6B55", confirmButtonText: "Sí", cancelButtonText: "No", closeOnConfirm: false, closeOnCancel: false}, function (isConfirm) {
+            if (isConfirm) {
+                check.form.submit();
+            } else {
+                swal("Cancelado", "No marco como preparado", "error");
+                check.checked = false;
+            }
+        });
 }
 if ($('home')) {
     setTimeout("location.reload()", 30000);

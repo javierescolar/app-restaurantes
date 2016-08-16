@@ -16,7 +16,7 @@ require_once('clases/Facturas.php');
 session_start();
 //variables
 $mensajeLogin = "";
-$numeroMesas = 10;
+
 
 if (isset($_SESSION['user'])) {
     if (isset($_POST['cerrarSesion'])) {
@@ -28,6 +28,7 @@ if (isset($_SESSION['user'])) {
             </script>';
     } elseif (isset($_POST['idPlatoEnElTicket']) && $_POST['idPlatoEnElTicket'] != "") {
         Ticket::marcarPlatoTerminado($_POST['idPlatoEnElTicket']);
+        Producto::restarProductosPlato($_POST['idPlatoEnElTicket']);
         include 'restaurante/home.php';
         echo "<script type='text/javascript'> $('navHome').style.background = 'black'; </script>";
     } elseif (isset($_POST['datosUsuario'])) {
@@ -128,6 +129,13 @@ if (isset($_SESSION['user'])) {
         echo "<script type='text/javascript'> $('navPlatos').style.background = 'black'; </script>";
         echo "<script type='text/javascript'>
             swal('Guardado!', 'Plato guardado correctamente', 'success');
+        </script>";
+    } elseif (isset($_POST['mesa']) && $_POST['accionTicket'] == '') {
+        Ticket::cambiarMesaTicket($_SESSION['ticketActual'],$_POST['mesa']);
+        include 'restaurante/ticket.php';
+        echo "<script type='text/javascript'> $('navHome').style.background = 'black'; </script>";
+        echo "<script type='text/javascript'>
+           swal('Cambiada!', 'Mesa cambiada', 'success');
         </script>";
     } elseif (isset($_POST['accionTicket']) && $_POST['accionTicket'] == 'cerrarTicket') {
         Ticket::cerrarTicket($_SESSION['ticketActual']);

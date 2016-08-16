@@ -30,7 +30,7 @@ class Producto extends Restaurante {
         $bd = BD::getConexion();
         $select = 'SELECT productos.*,medidas.nombre as nombreMedida FROM productos 
                     inner join medidas on medidas.idMedida = productos.idMedida
-                    WHERE esencial='.$esencial;
+                    WHERE esencial=' . $esencial;
         $sentencia = $bd->prepare($select);
         $sentencia->execute();
         $sentencia->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'productos');
@@ -85,31 +85,47 @@ class Producto extends Restaurante {
         $select = 'SELECT platosproductos.*,productos.nombre,platosproductos.cantidad,medidas.nombre as medida,productos.esencial FROM platosproductos 
                     inner join productos on productos.idProducto = platosproductos.idProducto
                     inner join medidas on productos.idMedida = medidas.idMedida
-                    WHERE platosproductos.idPlato = '.$idPlato;
+                    WHERE platosproductos.idPlato = ' . $idPlato;
         $sentencia = $bd->prepare($select);
         $sentencia->execute();
         //$sentencia->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'platosproductos');
         $productos = $sentencia->fetchAll();
         return $productos;
     }
-    
-    public function  muestraProductosOrdenEspecial($productos) {
+
+    public function muestraProductosOrdenEspecial($productos) {
         $bd = BD::getConexion();
-        $productos = substr($productos, 0,strlen($productos)-1);
-        $arrayProductos = explode(",",$productos );
+        $productos = substr($productos, 0, strlen($productos) - 1);
+        $arrayProductos = explode(",", $productos);
         $select = 'SELECT * FROM productos WHERE idProducto in (';
-        foreach ($arrayProductos as $producto){
-            $select = $select . $producto.",";
+        foreach ($arrayProductos as $producto) {
+            $select = $select . $producto . ",";
         }
-        $select = substr($select, 0,strlen($select)-1);
-        $select = $select.")";
+        $select = substr($select, 0, strlen($select) - 1);
+        $select = $select . ")";
         $sentencia = $bd->prepare($select);
         $sentencia->execute();
         //$sentencia->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'platosproductos');
         $resul = $sentencia->fetchAll();
         return $resul;
     }
-   
+
+    public function restarProductosPlato($idTicketPlato) {
+        $bd = BD::getConexion();
+        $select = 'SELECT platosproductos.* FROM platosproductos
+                    INNER JOIN ticketsplatos on ticketsplatos.idPlato = platosproductos.idPlato
+                    WHERE ticketsplatos.idTicketPlato =  ' . $idTicketPlato;
+        $sentencia = $bd->prepare($select);
+        $sentencia->execute();
+        $sentencia->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'platosproductos');
+        $productos = $sentencia->fetchAll();
+        foreach ($productos as $producto) {
+            $select2 = 'UPDATE productos SET cantidad = (cantidad - ' . $producto['cantidad'] . ') WHERE idProducto = ' . $producto['idProducto'];
+            $sentencia2 = $bd->prepare($select2);
+            $sentencia2->execute();
+        }
+    }
+
     function getIdProducto() {
         return $this->idProducto;
     }
