@@ -3,7 +3,7 @@
 
     <div class="text-center cabeceraForm">Facturas Gas</div>
     <form action='index.php' method='POST' id="formProductos" class="listado">
-        <button id="editarGas" type="submit" name="editarGas" class="btn-link" value='guardar'><span class="save glyphicon glyphicon-floppy-saved"></span></button>
+        <button id="editarGas" type="submit" name="editarFacturas" class="btn-link" value='guardar'><span class="save glyphicon glyphicon-floppy-saved"></span></button>
         <div class="form-group row cabeceraProductos">
             <label class="col-xs-12 col-md-1 text-center" for="productoBorrado"></label>
             <label class="col-xs-12 col-md-4 text-center" for="newEan">Nº Ref.</label>
@@ -17,7 +17,7 @@
             ?>
             <div class="form-group row">
                 <div class="col-xs-12 col-md-1 text-center"> 
-                    <button type="submit" onclick="borrarIngrediente(this.getAttribute('data-facturaborrado'));"  data-productoborrado="<?php echo $factura['idFactura'] ?>" class="btn-link"><span class="drop glyphicon glyphicon-trash drops"></span></button>
+                  <button type="submit" onclick="borrarFactura(this.getAttribute('data-facturaborrado'));"  data-facturaborrado="<?php echo $factura['idFactura'] ?>" class="btn-link"><span class="drop glyphicon glyphicon-trash drops"></span></button>
                 </div>
                 <input name='<?php echo "newIds[$x]"; ?>' type='hidden' value="<?php echo $factura['idFactura'] ?>"/>
                 <div class="col-xs-12 col-md-4">

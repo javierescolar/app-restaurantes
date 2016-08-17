@@ -23,7 +23,7 @@ class Factura extends Restaurante{
         $this->idRestaurante = $idRestaurante;
     }
     
-    
+   
     public function muestraFacturas($tipoFacura,$idRestaurante) {
         $bd = BD::getConexion();
         $select = 'SELECT * FROM facturacion WHERE idTipoFactura = '.$tipoFacura.' AND idRestaurante ='.$idRestaurante;
@@ -57,7 +57,7 @@ class Factura extends Restaurante{
                 . "SET numReferencia = '".$numReferencia[$key]."'"
                 . ",pago = ".$pago[$key]
                 . ",fechaPago = '".$fechaPago[$key]."'"
-                . " WHERE id = ".$id;
+                . " WHERE idFactura = ".$id;
               $sentencia = $conexion->prepare($select);
               $consulta = $sentencia->execute();
              

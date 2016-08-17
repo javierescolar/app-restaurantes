@@ -40,7 +40,7 @@
     $slas = SLA::muestraSla($_SESSION['user']['idRestaurante']);
     $tickets = Ticket::muestraTickets($_SESSION['user']['idUsuario']);
     if (count($tickets) !== 0) {
-        echo '<div style="background-color:white" class="form-group row formTickets">';
+        echo '<div style="background-color:#FAFAFA" class="form-group row">';
 
         echo '<div class="col-xs-3 col-md-3 text-center"></div>';
         echo '<div class="col-xs-3 col-md-3 text-center"></div>';

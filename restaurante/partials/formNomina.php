@@ -22,7 +22,7 @@
                 
                 <div class="col-xs-12 col-md-4">
                     <label for="newFechaPago">Fecha Pago</label>
-                    <input name='newFechaPago' id="newFechaPago" class='form-control' type='date' required/>
+                    <input name='newFechaPago' id="newFechaPago" class='form-control' type='date'  min="<?php echo date("Y-m-d"); ?>" required/>
 
                 </div>
                 

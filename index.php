@@ -259,6 +259,75 @@ if (isset($_SESSION['user'])) {
         echo "<script type='text/javascript'>
            swal('Guardado!', 'Productos guardados', 'success');
         </script>";
+    } elseif (isset($_POST['facturaBorrado']) && $_POST['facturaBorrado'] != "") {
+        Factura::borrarFactura($_POST['facturaBorrado']);
+        switch ($_SESSION['tipoFactura']){
+            case 1:
+                include 'restaurante/factuNominas.php';
+                echo "<script type='text/javascript'> $('navFacturacion').style.background = 'black'; </script>";
+                break;
+            case 2:
+                include 'restaurante/factuLuz.php';
+                echo "<script type='text/javascript'> $('navFacturacion').style.background = 'black'; </script>";
+                break;
+            case 3:
+                include 'restaurante/factuAgua.php';
+                echo "<script type='text/javascript'> $('navFacturacion').style.background = 'black'; </script>";
+                break;
+            case 4:
+                include 'restaurante/factuGas.php';
+                echo "<script type='text/javascript'> $('navFacturacion').style.background = 'black'; </script>";
+                break;
+            case 5:
+                include 'restaurante/factuPublicidad.php';
+                echo "<script type='text/javascript'> $('navFacturacion').style.background = 'black'; </script>";
+                break;
+            case 6:
+                include 'restaurante/factuServicios.php';
+                echo "<script type='text/javascript'> $('navFacturacion').style.background = 'black'; </script>";
+                break;
+            default :
+                include 'restaurante/home.php';
+        }
+        
+        
+        echo "<script type='text/javascript'>
+           swal('Borrada!', 'Factura borrada', 'success');
+        </script>";
+    } elseif (isset($_POST['editarFacturas']) && $_POST['facturaBorrado'] == "") {
+        Factura::editarFacturas($_POST['newIds'],$_POST['newNumRef'],$_POST['newPago'],$_POST['newFechaPago']);
+        switch ($_SESSION['tipoFactura']){
+            case 1:
+                include 'restaurante/factuNominas.php';
+                echo "<script type='text/javascript'> $('navFacturacion').style.background = 'black'; </script>";
+                break;
+            case 2:
+                include 'restaurante/factuLuz.php';
+                echo "<script type='text/javascript'> $('navFacturacion').style.background = 'black'; </script>";
+                break;
+            case 3:
+                include 'restaurante/factuAgua.php';
+                echo "<script type='text/javascript'> $('navFacturacion').style.background = 'black'; </script>";
+                break;
+            case 4:
+                include 'restaurante/factuGas.php';
+                echo "<script type='text/javascript'> $('navFacturacion').style.background = 'black'; </script>";
+                break;
+            case 5:
+                include 'restaurante/factuPublicidad.php';
+                echo "<script type='text/javascript'> $('navFacturacion').style.background = 'black'; </script>";
+                break;
+            case 6:
+                include 'restaurante/factuServicios.php';
+                echo "<script type='text/javascript'> $('navFacturacion').style.background = 'black'; </script>";
+                break;
+            default :
+                include 'restaurante/home.php';
+        }
+
+        echo "<script type='text/javascript'>
+           swal('Editadas!', 'Factura editadas correctamente', 'success');
+        </script>";
     } else {
         unset($_SESSION['ticketActual']);
         unset($_SESSION['categoriaSeleccionada']);

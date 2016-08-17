@@ -145,6 +145,11 @@ function editarIngrediente(boton) {
 function borrarIngrediente(boton) {
     $('productoBorrado').value = boton;
 }
+
+function borrarFactura(boton) {
+    $('facturaBorrado').value = boton;
+}
+
 function borrarSla(boton) {
     $('slaBorrado').value = boton;
 }
