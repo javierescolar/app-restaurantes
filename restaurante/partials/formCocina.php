@@ -20,7 +20,7 @@ if (count($tickets) !== 0) {
                         </div>
                         <div class="form-group col-xs-3 col-md-3">
                             <label for="mesa" class="col-md-offset-6 col-xs-1 col-md-1 form-control-label">Mesa:</label>
-                            <input type="text" name="mesa" class="form-control col-md-offset-9" required value="<?php echo $datosTicket['mesa'] ?>">
+                            <input type="text"  class="form-control col-md-offset-9" readonly required value="<?php echo $datosTicket['mesa'] ?>">
                         </div>
 
                         <hr>
@@ -51,7 +51,7 @@ if (count($tickets) !== 0) {
                         if ($plato['preparado'] == 0) {
                             echo "<input onClick='preparado(this)' data-id='". $plato['idTicketPlato']."' type='checkbox' name='terminado[$i]' class='form-control checks' value='terminado'>";
                         } else {
-                            echo "<input onClick='preparado(this)' data-id='". $plato['idTicketPlato']."' checked type='checkbox' name='terminado[$i]' class='form-control checks' value='terminado'>";
+                            echo "<input onClick='preparado(this)' data-id='". $plato['idTicketPlato']."' checked disabled type='checkbox' name='terminado[$i]' class='form-control checks' value='terminado'>";
                         }
                         echo '</div>';
 

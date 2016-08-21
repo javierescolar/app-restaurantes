@@ -22,7 +22,15 @@
                 
                 <div class="col-xs-12 col-md-4">
                     <label for="newColorSla">Color</label>
-                    <input name='newColorSla' id="newColorSla" class='form-control' type='text' required/>
+                     <select name='newColorSla' id="newColorSla" class='form-control' required>
+                        <?php
+                          foreach ($paletaColores as $color){
+                              echo "<option style='background:".$color['valorHex']."' value='".$color['valorHex']."'>".$color['nombre']."</option>";
+
+                          }
+                        ?>
+                    </select>
+                
 
                 </div>
                 

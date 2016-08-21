@@ -57,6 +57,10 @@ if (isset($_SESSION['user'])) {
         $_SESSION['tipoFactura'] = 6;
         include 'restaurante/factuServicios.php';
         echo "<script type='text/javascript'> $('navFacturacion').style.background = 'black'; </script>";
+    }  elseif (isset($_POST['impuestos'])) {
+        $_SESSION['tipoFactura'] = 7;
+        include 'restaurante/factuImpuestos.php';
+        echo "<script type='text/javascript'> $('navFacturacion').style.background = 'black'; </script>";
     } elseif (isset($_POST['carta'])) {
         include 'restaurante/menuCategorias.php';
         echo "<script type='text/javascript'> $('navCarta').style.background = 'black'; </script>";
@@ -223,6 +227,13 @@ if (isset($_SESSION['user'])) {
         echo "<script type='text/javascript'> $('navFacturacion').style.background = 'black'; </script>";
         echo "<script type='text/javascript'>
            swal('Guardado!', 'Factura servicio guardada', 'success');
+        </script>";
+    } elseif (isset($_POST['guardarImpuesto'])) {
+        Factura::guardarFactura($_POST['newNumRef'], $_POST['newPago'], $_POST['newFechaPago'], $_SESSION['tipoFactura'], $_SESSION['user']['idRestaurante']);
+        include 'restaurante/factuImpuestos.php';
+        echo "<script type='text/javascript'> $('navFacturacion').style.background = 'black'; </script>";
+        echo "<script type='text/javascript'>
+           swal('Guardado!', 'Factura Impuestos guardada', 'success');
         </script>";
     } elseif (isset($_POST['guardarSla'])) {
         SLA::guardarSla($_POST['newNombreSla'], $_POST['newValorSla'], $_POST['newColorSla'], $_SESSION['user']['idRestaurante']);

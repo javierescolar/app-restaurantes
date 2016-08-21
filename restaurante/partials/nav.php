@@ -68,6 +68,14 @@
                             </form>
                         </li>
                         </div>
+                        <div class="divDownMenu">
+                        <li>
+                            <form action="index.php" method="POST">
+                                <button class="btn-link" type="submit" name="impuestos">Impuestos<i class="fa fa-money" aria-hidden="true"></i></button>
+                            </form>
+  
+                        </li>
+                        </div>
                     </ul>
                 </li>
                 <li>

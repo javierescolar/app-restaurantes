@@ -20,7 +20,15 @@ class SLA extends Restaurante{
         $this->color = $color;
         $this->idRestaurante = $idRestaurante;
     }
-    
+    public function cargarPaletaSla() {
+        $bd = BD::getConexion();
+        $select = 'SELECT * FROM coloressla';
+        $sentencia = $bd->prepare($select);
+        $sentencia->execute();
+        $sentencia->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'coloressla');
+        $datosPaleta = $sentencia->fetchAll();
+        return $datosPaleta;
+    }
     
     public function muestraSla($idRestaurante) {
         $bd = BD::getConexion();

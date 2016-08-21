@@ -250,8 +250,8 @@ input[type=text].ordenEspecial{
 }
 
 #editarProductos,#guardarPlatos,#guardarSlas,#editarPerfil,#guardarProducto,#guardarSla,
-#guardarNomina, #guardarLuz, #guardarAgua, #guardarGas, #guardarPublicidad, #guardarServicio,
-#editarNominas,#editarLuz,#editarAgua,#editarGas,#editarPublicidad,#editarServicios{
+#guardarNomina, #guardarLuz, #guardarAgua, #guardarGas, #guardarPublicidad, #guardarServicio,#guardarImpuesto,
+#editarNominas,#editarLuz,#editarAgua,#editarGas,#editarPublicidad,#editarServicios,#editarImpuestos{
     position:absolute;
     margin-top:-3.7em;
     right:2em;

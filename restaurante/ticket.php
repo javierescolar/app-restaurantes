@@ -29,7 +29,7 @@
                 if($_SESSION['user']['idPerfil'] == 3){
                 include 'restaurante/partials/formTicket.php';
             } else if($_SESSION['user']['idPerfil'] == 4){
-                 include 'restaurante/partials/formComandaTicket.php';
+                 include 'restaurante/partials/formCocina.php';
             }
                 ?>
             </section>

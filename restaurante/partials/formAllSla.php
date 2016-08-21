@@ -1,4 +1,7 @@
-<?php $slas = SLA::muestraSla($_SESSION['user']['idRestaurante']); ?>
+<?php 
+    $slas = SLA::muestraSla($_SESSION['user']['idRestaurante']); 
+    $paletaColores = SLA::cargarPaletaSla(); 
+?>
 <div class="formularios row col-xs-12 col-md-10 col-md-offset-1">
 
     <div class="text-center cabeceraForm">SLA´s</div>
@@ -28,7 +31,21 @@
                 </div>
 
                 <div class="col-xs-12 col-md-4">
-                    <input name='<?php echo "newColor[$x]"; ?>' class='form-control' type='text' value='<?php echo $sla->getColor(); ?>' required/>
+                    <select name='<?php echo "newColor[$x]"; ?>' class='form-control' required>
+      
+                        <?php
+                          foreach ($paletaColores as $color){
+                              if($sla->getColor() == $color['valorHex']){
+                                   echo "<option style='background:".$color['valorHex']."' selected value='".$color['valor']."'>".$color['nombre']."</option>";
+                              } else {
+                                   echo "<option style='background:".$color['valorHex']."' value='".$color['valorHex']."'>".$color['nombre']."</option>";
+                              }
+                              
+                          }
+                           
+                        ?>
+                    </select>
+                    
                 </div>
             </div>
             <?php

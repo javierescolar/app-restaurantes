@@ -176,7 +176,17 @@ if ($('formLogin')) {
             true;
         } else {
             event.preventDefault();
-            swal("Atención", "Los datos introducidos no son válidos", "warning");
+            if(!validateEmail($('email').value)){
+                $('email').style.border = 'solid #F7BE81 0.1em';
+                $('email').style.boxShadow = '0em 0em 0.5em #FE9A2E';  
+            } else {
+                  $('email').style.border = '1px solid #ccc';
+                   $('email').style.boxShadow = '0em 0em 0em #FE9A2E';
+            }
+            if(!validatePassword($('password').value)){
+                $('password').style.border = 'solid #F7BE81 0.1em';
+                $('password').style.boxShadow = '0em 0em 0.5em #FE9A2E';  
+            }
         }
     });
 }
@@ -432,6 +442,21 @@ if ($('formServicio')) {
 
 if ($('formNomina')) {
     $('formNomina').addEventListener("submit", function (event) {
+        if (validatePrecio($('newPago').value)) {
+            true;
+        } else {
+            event.preventDefault();
+            swal("Atención", "Los datos introducidos no son válidos", "warning");
+            if (!validatePrecio($('newPago').value)) {
+                $('newPago').style.border = 'solid #F7BE81 0.2em';
+                $('newPago').style.boxShadow = '0em 0em 0.5em #FE9A2E';
+            }
+
+        }
+    });
+}
+    if ($('formImpuesto')) {
+    $('formImpuesto').addEventListener("submit", function (event) {
         if (validatePrecio($('newPago').value)) {
             true;
         } else {
