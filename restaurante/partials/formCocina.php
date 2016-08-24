@@ -41,9 +41,10 @@ if (count($tickets) !== 0) {
                         echo '<div class="form-group col-xs-7 col-md-6 col-md-offset-1">';
                         echo '<input type="text" name="plato" class="form-control" required disabled value="' . $plato['nombre'] . '">';
                         if ($plato['ordenEspecial'] !== "") {
-                            $ingredientes = Producto::muestraProductosPlato($plato['ordenEspecial']);
-                            foreach ($ingredientes as $ingrediente) {
-                                echo '<input type="text" name="orden" class="form-control col-md-offset-1 col-xs-offset-1 ordenEspecial" required disabled value="Sin ' . $ingrediente['nombre'] . '">';
+
+                        $ingredientes = Producto::muestraProductosOrdenEspecial($plato['ordenEspecial']);
+                        foreach ($ingredientes as $ingrediente) {
+                            echo '<input type="text" name="orden" class="form-control col-md-offset-1 col-xs-offset-1 ordenEspecial" required disabled value="Sin ' . $ingrediente['nombre'] . '">';
                             }
                         }
                         echo '</div>';
@@ -61,8 +62,9 @@ if (count($tickets) !== 0) {
                         $i++;
                         $mensajeVoz = $mensajeVoz.$plato['nombre'].",";
                     }
-                    echo '<input type="hidden" id="idPlatoEnElTicket" name="idPlatoEnElTicket" value="">';
+                    echo '<input type="hidden" class="idPlatoEnElTicket" name="idPlatoEnElTicket" value="">';
                     echo '<input type="hidden" name="idTicketPlato" value="' . $ticket['idTicket'] . '">';
+                    
                     ?>
                     <hr>
 

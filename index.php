@@ -26,7 +26,7 @@ if (isset($_SESSION['user'])) {
         echo '<script type="text/javascript">
                 responsiveVoice.pause();
             </script>';
-    } elseif (isset($_POST['idPlatoEnElTicket']) && $_POST['idPlatoEnElTicket'] != "") {
+    } elseif (isset($_POST['idPlatoEnElTicket']) && $_POST['idPlatoEnElTicket'] != "" && isset($_POST['terminado'])) {
         Ticket::marcarPlatoTerminado($_POST['idPlatoEnElTicket']);
         Producto::restarProductosPlato($_POST['idPlatoEnElTicket']);
         include 'restaurante/home.php';
@@ -162,7 +162,7 @@ if (isset($_SESSION['user'])) {
         echo "<script type='text/javascript'>
            swal('Anulado!', 'Ticket anulado', 'success');
         </script>";
-    } elseif ($_POST['cerrarComanda'] = "cerrarComanda" && isset($_POST['idTicketPlato'])) {
+    } elseif (isset($_POST['idTicketPlato']) && isset($_POST['idPlatoEnElTicket']) && $_POST['idPlatoEnElTicket'] == '') {
         Ticket::cerrarComanda($_POST['idTicketPlato']);
         include 'restaurante/home.php';
         echo "<script type='text/javascript'> $('navHome').style.background = 'black'; </script>";

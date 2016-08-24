@@ -128,14 +128,8 @@ class Ticket extends Plato {
 
     public function marcarPlatoTerminado($idTicketPlato) {
         $conexion = BD::getConexion();
-        $consulta2 = $conexion->prepare('SELECT * FROM ticketsplatos WHERE idTicketPlato =' . $idTicketPlato);
-        $consulta2->execute();
-        $consulta2->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'ticketsplatos');
-        $registro = $consulta2->fetch();
-        $terminado = ($registro['preparado'] == 0) ? 1 : 0;
-        $select = 'UPDATE ticketsplatos SET preparado = ' . $terminado . ' WHERE idTicketPlato =' . $idTicketPlato;
+        $select = 'UPDATE ticketsplatos SET preparado = 1 WHERE idTicketPlato =' . $idTicketPlato;
         $consulta = $conexion->prepare($select);
-
         return $consulta->execute();
     }
 
