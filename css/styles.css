@@ -90,19 +90,16 @@ ul .dropdown-menu form button span{
 
 .cabeceraForm{
     font-size:1.2em;
-    border-radius:2em 2em 0em 0em;
     margin-bottom:2em;
-    margin:0em -0.75em 1.25em -0.75em;
+    margin:0em -0.90em 1.25em -0.90em;
 }
 
 .formularios, .formulariosComandas{
-    border-radius:3em 3em 2em 2em;
     border:solid 0.1em #BDBDBD;
     margin-top:2em;
     -webkit-box-shadow: 10px 10px 12px -5px rgba(0,0,0,0.45);
     -moz-box-shadow: 10px 10px 12px -5px rgba(0,0,0,0.45);
     box-shadow: 10px 10px 12px -5px rgba(0,0,0,0.45);
-    background-color: #FAFAFA;
 }
 
 
@@ -155,7 +152,10 @@ ul .dropdown-menu form button span{
 .platoMenu img{
     margin-top:1em;
 }
-
+.platoMenu h4{
+    margin-top:1em;
+    color:black;
+}
 .platoMenu:hover{
     border:solid #c9302c 0.1em;
 }
@@ -175,6 +175,7 @@ ul .dropdown-menu form button span{
     height:2em !important;
 
 }
+
 input[type=checkbox]{
 
     height:1.1em !important;
@@ -186,6 +187,12 @@ input[type=checkbox]{
 .categoria{
     margin-left:5.4em;
     margin-top:2em;
+    height:5em;
+}
+
+.categoria h4{
+    margin-top:0.7em;
+    color:white;
 }
 
 .subNav{

@@ -33,6 +33,6 @@
     <script type="text/javascript" src="js/main.js"></script>
     <script type="text/javascript" src="js/mainJquery.js"></script>
     <script type="text/javascript" src="js/sweetalert.min.js"></script>
-
+    <script type="text/javascript" src="js/ajax.js"></script>
 </html>
 

@@ -1,4 +1,5 @@
 <div class="formularios row col-xs-12 col-xs-12 col-md-10 col-md-offset-1">
+
     <div class="text-center cabeceraForm">Nuevo Plato</div>
     <form action="index.php" method="POST" class="form col-xs-12 col-md-12 " id="formPlatos" role="form" enctype="multipart/form-data">
         <button id="guardarPlatos" type="submit" name="guardarPlatos" class="btn-link" value="Guardar Plato"><span class="save glyphicon glyphicon-floppy-saved"></span></button>
@@ -38,14 +39,14 @@
             foreach ($productos as $producto) {
                 echo '<div class="form-group col-md-6 col-md-offset-1">';
                 echo '<label class = "custom-control custom-checkbox">';
-                echo "<input name='newIngredientesEsenciales[$i]' type = 'checkbox'class ='custom-control-input' value='".$producto["idProducto"]."'>";
+                echo "<input name='newIngredientesEsenciales[$i]' type ='checkbox' class ='custom-control-input IngredientesEsenciales' value='" . $producto["idProducto"] . "'>";
                 echo '<span class = "custom-control-indicator"></span>';
-                echo '<span class = "custom-control-description"> ' . $producto['nombre'] .'</span>';
+                echo '<span class = "custom-control-description"> ' . $producto['nombre'] . '</span>';
                 echo '</label>';
                 //echo "<input type='checkbox' name='newIngredientesEsenciales[$i]' class='form-control' value='" . $producto["idProducto"] . "'>";
                 echo '</div>';
                 echo '<div class="form-group col-md-3">';
-                echo "<input type='number' name='newCantidadEsenciales[$i]' class='form-control' value=''>";
+                echo "<input type='number' name='newCantidadEsenciales[$i]' class='form-control CantidadEsenciales' value=''>";
                 echo '</div>';
                 echo '<div class="form-group col-md-2">';
                 echo "<input type='text'  class='form-control' value='" . $producto['nombreMedida'] . "' readonly>";
@@ -66,14 +67,14 @@
             foreach ($productos as $producto) {
                 echo '<div class="form-group col-md-6 col-md-offset-1">';
                 echo '<label class = "custom-control custom-checkbox">';
-                echo "<input name='newIngredientesSimples[$i]' type = 'checkbox'class ='custom-control-input' value='".$producto["idProducto"]."'>";
+                echo "<input name='newIngredientesSimples[$i]' type ='checkbox' class ='custom-control-input IngredientesSimples' value='" . $producto["idProducto"] . "'>";
                 echo '<span class = "custom-control-indicator"></span>';
-                echo '<span class = "custom-control-description"> '. $producto['nombre'] .'</span>';
+                echo '<span class = "custom-control-description"> ' . $producto['nombre'] . '</span>';
                 echo '</label>';
-               // echo "<label>" . $producto['nombre'] . "</label><input type='checkbox' name='newIngredientesSimples[$i]' class='form-control' value='" . $producto["idProducto"] . "'>";
+                // echo "<label>" . $producto['nombre'] . "</label><input type='checkbox' name='newIngredientesSimples[$i]' class='form-control' value='" . $producto["idProducto"] . "'>";
                 echo '</div>';
                 echo '<div class="form-group col-md-3">';
-                echo "<input type='number' name='newCantidadSimples[$i]' class='form-control' value=''>";
+                echo "<input type='number' name='newCantidadSimples[$i]' class='form-control CantidadSimples' value=''>";
                 echo '</div>';
                 echo '<div class="form-group col-md-2">';
                 echo "<input type='text'  class='form-control' value='" . $producto['nombreMedida'] . "' readonly>";
@@ -104,10 +105,11 @@
 
             </div>
             <div class="form-group">
+
                 <label for="newPrecio" class="col-xs-1 col-md-6 form-control-label">Precio Recomendado:</label>
 
                 <input type="text" id="precioEscandayoRecomendado" class="form-control" value="" readonly>
-
+                <p onclick="postEscandayo()" class="btn btn-primary">Calcular</p>
             </div>
 
 

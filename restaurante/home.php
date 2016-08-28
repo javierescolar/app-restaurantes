@@ -30,6 +30,8 @@
                 include 'restaurante/partials/formHome.php';
             } else if($_SESSION['user']['idPerfil'] == 4){
                  include 'restaurante/partials/formCocina.php';
+            } else if($_SESSION['user']['idPerfil'] == 2){
+                 include 'restaurante/partials/formGraficas.php';
             }
                
             ?>
