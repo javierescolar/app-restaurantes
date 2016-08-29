@@ -2,12 +2,13 @@
 
 if (isset($_POST['postproductos']) && isset($_POST['postcantidades']) && isset($_POST['postganancias'])) {
     //echo 999999;
-    calculadoraEscandayo($_POST['postproductos'], $_POST['postcantidades'], $_POST['postganancias']);
+    echo calculadoraEscandayo($_POST['postproductos'], $_POST['postcantidades'], $_POST['postganancias']);
 } else {
     die("Solicitud no válida.");
 }
 
 function calculadoraEscandayo($productos, $cantidades, $multiploGanancia) {
+    
     $escandayoIngredientes = 0;
     $valorNomina = 0;
     $valorLuz = 0;
@@ -164,7 +165,8 @@ function calculadoraEscandayo($productos, $cantidades, $multiploGanancia) {
     $escandayoSinIVA = ($valorNomina + $valorLuz + $valorAgua + $valorGas + $valorPublicidad + $valorServicios + $escandayoIngredientes) * $multiploGanancia;
     $escandayo = $escandayoSinIVA * $IVA;
 
-
+       
+   
     return $escandayo;
 }
 

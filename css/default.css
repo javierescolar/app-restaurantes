@@ -70,3 +70,28 @@ box-shadow: 10px 10px 12px -7px rgba(0,0,0,0.33);
 .dropdown-menu button{
     color:white !important;
 }
+
+.btnCategorias:hover{
+    background-color:#1c6abd;
+    color:white;
+    background: rgba(73,155,234,1);
+    background: -moz-linear-gradient(top, rgba(73,155,234,1) 0%, rgba(28,106,189,1) 66%, rgba(24,94,163,1) 100%);
+    background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(73,155,234,1)), color-stop(66%, rgba(28,106,189,1)), color-stop(100%, rgba(24,94,163,1)));
+    background: -webkit-linear-gradient(top, rgba(73,155,234,1) 0%, rgba(28,106,189,1) 66%, rgba(24,94,163,1) 100%);
+    background: -o-linear-gradient(top, rgba(73,155,234,1) 0%, rgba(28,106,189,1) 66%, rgba(24,94,163,1) 100%);
+    background: -ms-linear-gradient(top, rgba(73,155,234,1) 0%, rgba(28,106,189,1) 66%, rgba(24,94,163,1) 100%);
+    background: linear-gradient(to bottom, rgba(73,155,234,1) 0%, rgba(28,106,189,1) 66%, rgba(24,94,163,1) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#499bea', endColorstr='#185ea3', GradientType=0 );
+}
+
+.btnCategorias{
+  background: rgba(69,217,222,1);
+background: -moz-linear-gradient(top, rgba(69,217,222,1) 0%, rgba(94,196,209,1) 44%, rgba(59,164,199,1) 100%);
+background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(69,217,222,1)), color-stop(44%, rgba(94,196,209,1)), color-stop(100%, rgba(59,164,199,1)));
+background: -webkit-linear-gradient(top, rgba(69,217,222,1) 0%, rgba(94,196,209,1) 44%, rgba(59,164,199,1) 100%);
+background: -o-linear-gradient(top, rgba(69,217,222,1) 0%, rgba(94,196,209,1) 44%, rgba(59,164,199,1) 100%);
+background: -ms-linear-gradient(top, rgba(69,217,222,1) 0%, rgba(94,196,209,1) 44%, rgba(59,164,199,1) 100%);
+background: linear-gradient(to bottom, rgba(69,217,222,1) 0%, rgba(94,196,209,1) 44%, rgba(59,164,199,1) 100%);
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#45d9de', endColorstr='#3ba4c7', GradientType=0 );
+color:lightgray;
+}

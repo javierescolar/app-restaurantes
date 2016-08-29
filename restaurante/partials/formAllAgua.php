@@ -2,7 +2,7 @@
 <div class="formularios row col-xs-12 col-md-10 col-md-offset-1">
 
     <div class="text-center cabeceraForm">Facturas Agua</div>
-    <form action='index.php' method='POST' id="formProductos" class="listado">
+    <form action='index.php' method='POST' id="formFacturas" class="listado">
         <button id="editarAgua" type="submit" name="editarFacturas" class="btn-link" value='guardar'><span class="save glyphicon glyphicon-floppy-saved"></span></button>
         <div class="form-group row cabeceraProductos">
             <label class="col-xs-12 col-md-1 text-center" for="productoBorrado"></label>

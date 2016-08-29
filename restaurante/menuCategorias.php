@@ -27,11 +27,11 @@
             <section class="cuerpo">
 
                 <?php
-                $colores = ["", "btn-primary", "btn-success", "btn-info", "btn-warning", "btn-default", "btn-default"];
+                
                 $categorias = Categoria::muestraCategorias();
                 foreach ($categorias as $key => $categoria) {
                     echo '<form action="index.php" method="POST">';
-                    echo '<button type=submit name="seleccionCategoria" class="categoria col-md-5 col-xs-5 col-xs-6 text-center btn ' . $colores[$categoria['idCategoria']] . '">';
+                    echo '<button type=submit name="seleccionCategoria" class="categoria col-md-5 col-xs-5 col-xs-6 text-center btn btnCategorias">';
                     echo '<h4>' . $categoria['nombre'] . '</h4>';
                     echo '</button>';
                     echo '<input type="hidden" name="categoriaSeleccionada" value="' . $categoria['idCategoria'] . '"/>';

@@ -98,19 +98,20 @@
                 <label for="newImagen" class="col-xs-1 col-md-1 form-control-label">Imagen:</label>
                 <input type="file" id="newImagen" name="newImagen" accept="imagen/*" class="form-control" required/>
             </div>
-            <div class="form-group">
-                <label for="newPrecio" class="col-xs-1 col-md-1 form-control-label">Precio:</label>
+            <div class="form-group col-md-6">
 
-                <input type="text" name="newPrecio" class="form-control" required value="">
-
-            </div>
-            <div class="form-group">
-
-                <label for="newPrecio" class="col-xs-1 col-md-6 form-control-label">Precio Recomendado:</label>
+                <label for="newPrecio" class="col-xs-1 form-control-label">Precio Recomendado:</label>
 
                 <input type="text" id="precioEscandayoRecomendado" class="form-control" value="" readonly>
                 <p onclick="postEscandayo()" class="btn btn-primary">Calcular</p>
             </div>
+            <div class="form-group col-md-6">
+                <label for="newPrecio" class="col-xs-1 form-control-label">Precio Total:</label>
+
+                <input type="text" name="newPrecio" class="form-control" required value="">
+
+            </div>
+            
 
 
 
