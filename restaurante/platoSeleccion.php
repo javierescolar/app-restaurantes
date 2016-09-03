@@ -31,11 +31,16 @@
                         $ingredientesPlato = Producto::muestraProductosPlato($_POST['idPlato']);
                         ;
                         echo "<h1 class='text-center'>" . $plato['nombre'] . "</h1>";
+                        if($_SESSION['user']['idPerfil'] == 2 || $_SESSION['user']['idPerfil'] == 4){
+                            echo "<input type='hidden' name='idPlatoBorrar' value='".$plato['idPlato']."'/>";
+                            echo "<input id='eliminarPlato' type='submit' name='eliminarPlatoSeleccion' value='Eliminar Plato' class='btn btn-default btn-sm  col-md-offset-10 col-md-2 col-xs-offset-1 col-xs-11'/>";
+                        }
                         ?>
-
+                        
                         <div class="col-md-12 col-xs-12">
 
                             <?php
+                        
                             echo "<img src='img/" . $plato["imagen"] . "' class='img-responsive platoFoto'></img>";
                             echo "<h4>Ingredientes</h4>";
                             foreach ($ingredientesPlato as $ingrediente) {
@@ -47,7 +52,7 @@
                                     }
                                 } else {
                                     echo '<div class="checkbox">';
-                                    echo "<label>". $ingrediente['nombre'] . " - " . $ingrediente['cantidad']." ". $ingrediente['medida']."</label>";
+                                    echo "<label>" . $ingrediente['nombre'] . " - " . $ingrediente['cantidad'] . " " . $ingrediente['medida'] . "</label>";
                                     echo "</div>";
                                 }
                             }
@@ -56,18 +61,18 @@
                         </div>
 
                     </div>
-<?php
-if (isset($_SESSION['ticketActual'])) {
-    ?>
+                    <?php
+                    if (isset($_SESSION['ticketActual'])) {
+                        ?>
                         <div class="row col-md-12 col-xs-12">
 
                             <input type='hidden' name='idPlato' value='<?php echo $plato["idPlato"]; ?>'/>;
                             <input type="submit" name="anadirPlatoSeleccion" value="Añadir al ticket" class="btn btn-default btn-sm  col-md-offset-10 col-md-2 col-xs-offset-1 col-xs-11"/>
 
                         </div>
-    <?php
-}
-?>
+                        <?php
+                    }
+                    ?>
                 </form>
             </section>
 

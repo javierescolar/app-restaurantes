@@ -40,7 +40,15 @@ class Plato extends Restaurante {
             $sentencia2->execute();
         }
     }
-
+    
+     public function borrarPlato($idPlato) {
+          $bd = BD::getConexion();
+          $sentencia = $bd->prepare("DELETE FROM platos WHERE idPlato = " . $idPlato);
+          $sentencia->execute();
+          $sentencia2 = $bd->prepare("DELETE FROM platosproductos WHERE idPlato = " . $idPlato);
+          $sentencia2->execute();
+     }
+    
     public function muestraPlatos() {
 
 

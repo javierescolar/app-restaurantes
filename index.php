@@ -17,8 +17,9 @@ session_start();
 //variables
 $mensajeLogin = "";
 
-
+//Si hay session del usuario
 if (isset($_SESSION['user'])) {
+    /*cerrar session del usuario se destruye la session*/
     if (isset($_POST['cerrarSesion'])) {
         unset($_SESSION['user']);
         session_destroy();
@@ -26,45 +27,56 @@ if (isset($_SESSION['user'])) {
         echo '<script type="text/javascript">
                 responsiveVoice.pause();
             </script>';
-    } elseif (isset($_POST['idPlatoEnElTicket']) && $_POST['idPlatoEnElTicket'] != "" && isset($_POST['terminado'])) {
+    } //Si se marca plato como preparado se actualiza y se resta de la BD las cantidades del plato
+    elseif (isset($_POST['idPlatoEnElTicket']) && $_POST['idPlatoEnElTicket'] != "" && isset($_POST['terminado'])) {
         Ticket::marcarPlatoTerminado($_POST['idPlatoEnElTicket']);
         Producto::restarProductosPlato($_POST['idPlatoEnElTicket']);
         include 'restaurante/home.php';
         echo "<script type='text/javascript'> $('navHome').style.background = 'black'; </script>";
-    } elseif (isset($_POST['datosUsuario'])) {
+    } //navegación hacía el formulario de datos de usuario
+    elseif (isset($_POST['datosUsuario'])) {
         include 'restaurante/editProfile.php';
-    } elseif (isset($_POST['nominas'])) {
+    } //navegación hacía formulario nominas
+    elseif (isset($_POST['nominas'])) {
         $_SESSION['tipoFactura'] = 1;
         include 'restaurante/factuNominas.php';
         echo "<script type='text/javascript'> $('navFacturacion').style.background = 'black'; </script>";
-    } elseif (isset($_POST['luz'])) {
+    } //navegación hacía formulario luz
+    elseif (isset($_POST['luz'])) {
         $_SESSION['tipoFactura'] = 2;
         include 'restaurante/factuLuz.php';
         echo "<script type='text/javascript'> $('navFacturacion').style.background = 'black'; </script>";
-    } elseif (isset($_POST['agua'])) {
+    } //navegación hacía formulario agua
+    elseif (isset($_POST['agua'])) {
         $_SESSION['tipoFactura'] = 3;
         include 'restaurante/factuAgua.php';
         echo "<script type='text/javascript'> $('navFacturacion').style.background = 'black'; </script>";
-    } elseif (isset($_POST['gas'])) {
+    } //navegación hacía formulario gas
+    elseif (isset($_POST['gas'])) {
         $_SESSION['tipoFactura'] = 4;
         include 'restaurante/factuGas.php';
         echo "<script type='text/javascript'> $('navFacturacion').style.background = 'black'; </script>";
-    } elseif (isset($_POST['publicidad'])) {
+    } //navegación hacía formulario publicidad
+    elseif (isset($_POST['publicidad'])) {
         $_SESSION['tipoFactura'] = 5;
         include 'restaurante/factuPublicidad.php';
         echo "<script type='text/javascript'> $('navFacturacion').style.background = 'black'; </script>";
-    } elseif (isset($_POST['servicios'])) {
+    } //navegación hacía formulario servicios
+    elseif (isset($_POST['servicios'])) {
         $_SESSION['tipoFactura'] = 6;
         include 'restaurante/factuServicios.php';
         echo "<script type='text/javascript'> $('navFacturacion').style.background = 'black'; </script>";
-    }  elseif (isset($_POST['impuestos'])) {
+    } //navegación hacía formulario impuestos
+    elseif (isset($_POST['impuestos'])) {
         $_SESSION['tipoFactura'] = 7;
         include 'restaurante/factuImpuestos.php';
         echo "<script type='text/javascript'> $('navFacturacion').style.background = 'black'; </script>";
-    } elseif (isset($_POST['carta'])) {
+    } //navegación hacía formulario carta de platos(por categorias)
+    elseif (isset($_POST['carta'])) {
         include 'restaurante/menuCategorias.php';
         echo "<script type='text/javascript'> $('navCarta').style.background = 'black'; </script>";
-    } elseif (isset($_POST['editarPerfil'])) {
+    } //edición de los datos del usuario conectado
+    elseif (isset($_POST['editarPerfil'])) {
         $_SESSION['user'] = Usuario::editarUsuario($_POST['newDni'], $_POST['newNombre'], $_POST['newApellidos'], $_POST['newTelefono'], $_POST['newEmail'], $_SESSION['user']['idRestaurante'], $_SESSION['user']['idUsuario']);
         include 'restaurante/editProfile.php';
         echo "<script type='text/javascript'>
@@ -133,6 +145,13 @@ if (isset($_SESSION['user'])) {
         echo "<script type='text/javascript'> $('navPlatos').style.background = 'black'; </script>";
         echo "<script type='text/javascript'>
             swal('Guardado!', 'Plato guardado correctamente', 'success');
+        </script>";
+    }elseif (isset($_POST['idPlatoBorrar'])) {
+        Plato::borrarPlato($_POST['idPlatoBorrar']);
+        include 'restaurante/menu.php';
+        echo "<script type='text/javascript'> $('navPlatos').style.background = 'black'; </script>";
+        echo "<script type='text/javascript'>
+           swal('Eliminado!', 'Plato Eliminado', 'success');
         </script>";
     } elseif (isset($_POST['mesa']) && $_POST['accionTicket'] == '') {
         Ticket::cambiarMesaTicket($_SESSION['ticketActual'],$_POST['mesa']);
@@ -297,6 +316,10 @@ if (isset($_SESSION['user'])) {
                 include 'restaurante/factuServicios.php';
                 echo "<script type='text/javascript'> $('navFacturacion').style.background = 'black'; </script>";
                 break;
+            case 7:
+                include 'restaurante/factuImpuestos.php';
+                echo "<script type='text/javascript'> $('navFacturacion').style.background = 'black'; </script>";
+                break;
             default :
                 include 'restaurante/home.php';
         }
@@ -332,8 +355,13 @@ if (isset($_SESSION['user'])) {
                 include 'restaurante/factuServicios.php';
                 echo "<script type='text/javascript'> $('navFacturacion').style.background = 'black'; </script>";
                 break;
+            case 7:
+                include 'restaurante/factuImpuestos.php';
+                echo "<script type='text/javascript'> $('navFacturacion').style.background = 'black'; </script>";
+                break;
             default :
                 include 'restaurante/home.php';
+                echo "<script type='text/javascript'> $('navHome').style.background = 'black'; </script>";
         }
 
         echo "<script type='text/javascript'>
@@ -351,6 +379,7 @@ if (isset($_SESSION['user'])) {
         if ($usuario) {
             $_SESSION['user'] = $usuario;
             include 'restaurante/home.php';
+            echo "<script type='text/javascript'> $('navHome').style.background = 'black'; </script>";
         } else {
             echo $usuario;
             $mensajeLogin = "<p style='color:red'>EL usuario no existe en la base de datos o no está habilitado</p>";

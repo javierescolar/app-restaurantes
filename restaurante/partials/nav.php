@@ -22,7 +22,12 @@
                 </li>
                 <li>
                     <form action="index.php" method="POST">
-                        <button id="navPlatos" type="submit" class="btn-link" name="platos">Platos</button>
+                        <button id="navPlatos" type="submit" class="btn-link" name="platos">Alta Plato</button>
+                    </form>
+                </li>
+                <li>
+                    <form action="index.php" method="POST">
+                        <button id="navCarta" type="submit" class="btn-link" name="carta">Carta platos</button>
                     </form>
                 </li>
                 <li>

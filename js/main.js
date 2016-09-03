@@ -181,7 +181,7 @@ function preparado(check) {
         });
 }
 if ($('home')) {
-    //setTimeout("location.reload()", 30000);
+    setTimeout("location.reload()", 30000);
 }
 var nuevoProducto = 0;
 if ($('formLogin')) {
@@ -342,6 +342,22 @@ if ($('mandarComanda')) {
         });
     });
 }
+
+if ($('eliminarPlato')) {
+    $('eliminarPlato').addEventListener("click", function (event) {
+        event.preventDefault();
+        var boton = $('eliminarPlato');
+        swal({title: "¿Estás seguro?", text: "¿quieres eliminar el plato?", type: "warning", showCancelButton: true, confirmButtonColor: "#DD6B55", confirmButtonText: "Sí", cancelButtonText: "No", closeOnConfirm: false, closeOnCancel: false}, function (isConfirm) {
+            if (isConfirm) {
+                true;
+                boton.parentElement.parentElement.submit();
+            } else {
+                swal("Cancelado", "No se elimino el plato", "error");
+            }
+        });
+    });
+}
+
 if ($('activarFromProductos')) {
     $('activarFromProductos').addEventListener("click", function () {
         $('formFlotante').style.display = 'block';

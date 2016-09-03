@@ -23,29 +23,29 @@ function calculadoraEscandayo($productos, $cantidades, $multiploGanancia) {
     $bd = BD::getConexion();
 
 
-    foreach ($productos as $producto) {
-        foreach ($cantidades as $cantidad) {
-            $select = "SELECT * FROM productos WHERE idProducto = $producto";
+    foreach ($productos as $key=>$idProducto) {
+        
+            $select = "SELECT * FROM productos WHERE idProducto = $idProducto";
             $sentencia = $bd->prepare($select);
             $sentencia->execute();
             $sentencia->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'productos');
             $producto = $sentencia->fetch();
-            $merma = ($producto["merma"] * $cantidad ) / 100;
-            $escandayoIngredientes += $escandayoIngredientes + ($cantidad * $producto["precio"] - $merma);
-        }
+            $merma = ($producto["merma"] * $cantidades[$key] ) / 100;
+            $escandayoIngredientes += $escandayoIngredientes + ($cantidades[$key] * $producto["precio"] - $merma);
+        
     }
     // Cálculo de gasto de nominas mensual.
     $mes = date("m");
     $anio = date("y");
 
     if ($mes != 02) {
-        $select = "SELECT * FROM facturacion WHERE idTipoFactura = 1 AND fechaPago BETWEEN $anio-$mes-01 AND $anio-$mes-30";
+        $select = "SELECT * FROM facturacion WHERE idTipoFactura = 1 AND fechaPago BETWEEN '$anio-$mes-01' AND '$anio-$mes-30'";
         $sentencia = $bd->prepare($select);
         $sentencia->execute();
         $sentencia->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'facturacion');
         $nominas = $sentencia->fetchAll();
     } else {
-        $select = "SELECT * FROM facturacion WHERE idTipoFactura = 1 AND fechaPago BETWEEN $anio-$mes-01 AND $anio-$mes-28";
+        $select = "SELECT * FROM facturacion WHERE idTipoFactura = 1 AND fechaPago BETWEEN '$anio-$mes-01' AND '$anio-$mes-28'";
         $sentencia = $bd->prepare($select);
         $sentencia->execute();
         $sentencia->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'facturacion');
@@ -62,13 +62,13 @@ function calculadoraEscandayo($productos, $cantidades, $multiploGanancia) {
     // Cálculo de gasto de Luz mensual.
 
     if ($mes != 02) {
-        $select = "SELECT * FROM facturacion WHERE idTipoFactura = 2 AND fechaPago BETWEEN $anio-$mes-01 AND $anio-$mes-30";
+        $select = "SELECT * FROM facturacion WHERE idTipoFactura = 2 AND fechaPago BETWEEN '$anio-$mes-01' AND '$anio-$mes-30'";
         $sentencia = $bd->prepare($select);
         $sentencia->execute();
         $sentencia->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'facturacion');
         $facturasLuz = $sentencia->fetchAll();
     } else {
-        $select = "SELECT * FROM facturacion WHERE idTipoFactura = 2 AND fechaPago BETWEEN $anio-$mes-01 AND $anio-$mes-28";
+        $select = "SELECT * FROM facturacion WHERE idTipoFactura = 2 AND fechaPago BETWEEN '$anio-$mes-01' AND '$anio-$mes-28'";
         $sentencia = $bd->prepare($select);
         $sentencia->execute();
         $sentencia->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'facturacion');
@@ -83,13 +83,13 @@ function calculadoraEscandayo($productos, $cantidades, $multiploGanancia) {
     // Cálculo de gasto de Agua mensual.
 
     if ($mes != 02) {
-        $select = "SELECT * FROM facturacion WHERE idTipoFactura = 3 AND fechaPago BETWEEN $anio-$mes-01 AND $anio-$mes-30";
+        $select = "SELECT * FROM facturacion WHERE idTipoFactura = 3 AND fechaPago BETWEEN '$anio-$mes-01' AND '$anio-$mes-30'";
         $sentencia = $bd->prepare($select);
         $sentencia->execute();
         $sentencia->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'facturacion');
         $facturasAgua = $sentencia->fetchAll();
     } else {
-        $select = "SELECT * FROM facturacion WHERE idTipoFactura = 3 AND fechaPago BETWEEN $anio-$mes-01 AND $anio-$mes-28";
+        $select = "SELECT * FROM facturacion WHERE idTipoFactura = 3 AND fechaPago BETWEEN '$anio-$mes-01' AND '$anio-$mes-28'";
         $sentencia = $bd->prepare($select);
         $sentencia->execute();
         $sentencia->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'facturacion');
@@ -103,13 +103,13 @@ function calculadoraEscandayo($productos, $cantidades, $multiploGanancia) {
     // Cálculo de gasto de Gas mensual.
 
     if ($mes != 02) {
-        $select = "SELECT * FROM facturacion WHERE idTipoFactura = 4 AND fechaPago BETWEEN $anio-$mes-01 AND $anio-$mes-30";
+        $select = "SELECT * FROM facturacion WHERE idTipoFactura = 4 AND fechaPago BETWEEN '$anio-$mes-01' AND '$anio-$mes-30'";
         $sentencia = $bd->prepare($select);
         $sentencia->execute();
         $sentencia->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'facturacion');
         $facturasGas = $sentencia->fetchAll();
     } else {
-        $select = "SELECT * FROM facturacion WHERE idTipoFactura = 4 AND fechaPago BETWEEN $anio-$mes-01 AND $anio-$mes-28";
+        $select = "SELECT * FROM facturacion WHERE idTipoFactura = 4 AND fechaPago BETWEEN '$anio-$mes-01' AND '$anio-$mes-28'";
         $sentencia = $bd->prepare($select);
         $sentencia->execute();
         $sentencia->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'facturacion');
@@ -123,13 +123,13 @@ function calculadoraEscandayo($productos, $cantidades, $multiploGanancia) {
     // Cálculo de gasto de Publicidad mensual.
 
     if ($mes != 02) {
-        $select = "SELECT * FROM facturacion WHERE idTipoFactura = 5 AND fechaPago BETWEEN $anio-$mes-01 AND $anio-$mes-30";
+        $select = "SELECT * FROM facturacion WHERE idTipoFactura = 5 AND fechaPago BETWEEN '$anio-$mes-01' AND '$anio-$mes-30'";
         $sentencia = $bd->prepare($select);
         $sentencia->execute();
         $sentencia->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'facturacion');
         $facturasPublicidad = $sentencia->fetchAll();
     } else {
-        $select = "SELECT * FROM facturacion WHERE idTipoFactura = 5 AND fechaPago BETWEEN $anio-$mes-01 AND $anio-$mes-28";
+        $select = "SELECT * FROM facturacion WHERE idTipoFactura = 5 AND fechaPago BETWEEN '$anio-$mes-01' AND '$anio-$mes-28'";
         $sentencia = $bd->prepare($select);
         $sentencia->execute();
         $sentencia->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'facturacion');
@@ -143,13 +143,13 @@ function calculadoraEscandayo($productos, $cantidades, $multiploGanancia) {
     // Cálculo de gasto de Servicios mensual.
 
     if ($mes != 02) {
-        $select = "SELECT * FROM facturacion WHERE idTipoFactura = 6 AND fechaPago BETWEEN $anio-$mes-01 AND $anio-$mes-30";
+        $select = "SELECT * FROM facturacion WHERE idTipoFactura = 6 AND fechaPago BETWEEN '$anio-$mes-01' AND '$anio-$mes-30'";
         $sentencia = $bd->prepare($select);
         $sentencia->execute();
         $sentencia->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'facturacion');
         $facturasServicios = $sentencia->fetchAll();
     } else {
-        $select = "SELECT * FROM facturacion WHERE idTipoFactura = 6 AND fechaPago BETWEEN $anio-$mes-01 AND $anio-$mes-28";
+        $select = "SELECT * FROM facturacion WHERE idTipoFactura = 6 AND fechaPago BETWEEN '$anio-$mes-01' AND '$anio-$mes-28'";
         $sentencia = $bd->prepare($select);
         $sentencia->execute();
         $sentencia->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'facturacion');
@@ -167,7 +167,7 @@ function calculadoraEscandayo($productos, $cantidades, $multiploGanancia) {
 
        
    
-    return $escandayo;
+    return  number_format($escandayo,2,'.',',');
 }
 
 

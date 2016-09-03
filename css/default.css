@@ -95,3 +95,7 @@ background: linear-gradient(to bottom, rgba(69,217,222,1) 0%, rgba(94,196,209,1)
 filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#45d9de', endColorstr='#3ba4c7', GradientType=0 );
 color:lightgray;
 }
+
+.platoMenu:hover{
+    border:solid #1c6abd 0.1em;
+}
