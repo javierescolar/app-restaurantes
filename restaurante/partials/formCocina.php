@@ -7,6 +7,7 @@ if (count($tickets) !== 0) {
     foreach ($tickets as $ticket) {
         $datosTicket = Ticket::muestraTicketId($ticket['idTicket']);
         $datosPlatosTickets = Ticket::muestraPlatosTickets($ticket['idTicket']);
+        $leido = Ticket::comprobarLeido($ticket['idTicket']);
         ?>
         <div class="formulariosComandas row col-xs-12 col-md-offset-1 col-md-5">
 
@@ -34,7 +35,9 @@ if (count($tickets) !== 0) {
                     </div>
                     <?php
                     $i = 0;
-                    $mensajeVoz = $mensajeVoz."Ticket ".$ticket['idTicket'].",";
+                    if($leido == 0){
+                        $mensajeVoz = $mensajeVoz."Ticket ".$ticket['idTicket'].",";
+                    }
                     foreach ($datosPlatosTickets as $plato) {
 
                         echo '<div class="form-group row">';
@@ -60,7 +63,9 @@ if (count($tickets) !== 0) {
                         
 
                         $i++;
-                        $mensajeVoz = $mensajeVoz.$plato['nombre'].",";
+                        if($leido == 0 && $plato['preparado'] == 0){
+                            $mensajeVoz = $mensajeVoz.$plato['nombre'].",";
+                        }
                     }
                     echo '<input type="hidden" class="idPlatoEnElTicket" name="idPlatoEnElTicket" value="">';
                     echo '<input type="hidden" name="idTicketPlato" value="' . $ticket['idTicket'] . '">';
@@ -76,7 +81,10 @@ if (count($tickets) !== 0) {
         </div>
         <?php
         $x++;
-         $mensajeVoz = $mensajeVoz.".";
+        if($leido == 0 && $plato['preparado'] == 0){
+            $mensajeVoz = $mensajeVoz.".";
+        }
+         
     }
 } else {
     echo "<br><br><h5 class='text-center'>No tienes comandas pedidas.<h5>";

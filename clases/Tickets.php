@@ -142,12 +142,38 @@ class Ticket extends Plato {
         return $registros;
     }
 
-    public function cambiarMesaTicket($idTicket,$mesa) {
+    public function cambiarMesaTicket($idTicket, $mesa) {
         $conexion = BD::getConexion();
         $select = 'UPDATE tickets SET mesa = :mesa WHERE idTicket = :idTicket';
         $consulta = $conexion->prepare($select);
-        return $consulta->execute([":idTicket" => $idTicket , ":mesa" => $mesa]);
-        
+        return $consulta->execute([":idTicket" => $idTicket, ":mesa" => $mesa]);
+    }
+
+    public function comprobarLeido($idTicket) {
+        $result = 1;
+        $conexion = BD::getConexion();
+        $select = "SELECT count(*) as lista FROM ticketsplatos WHERE idTicket = :idTicket AND isnull(preparado) = 0";
+        $consulta = $conexion->prepare($select);
+        $consulta->execute([":idTicket" => $idTicket]);
+        $consulta->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'tickets');
+        $registro = $consulta->fetch();
+        if ($registro['lista'] > 0) {
+            $result = Ticket::comprobarPreparados($idTicket);
+        }
+        $select3 = 'UPDATE tickets SET leido = 1 WHERE idTicket = :idTicket';
+        $consulta3 = $conexion->prepare($select3);
+        $consulta3->execute([":idTicket" => $idTicket]);
+        return $result;
+    }
+
+    public function comprobarPreparados($idTicket) {
+        $conexion = BD::getConexion();
+        $select = 'SELECT leido FROM tickets WHERE idTicket = :idTicket';
+        $consulta = $conexion->prepare($select);
+        $consulta->execute([":idTicket" => $idTicket]);
+        $consulta->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'tickets');
+        $registro = $consulta->fetch();
+        return $registro['leido'];
     }
 
     public function getMesa() {

@@ -18,6 +18,9 @@
 
     #formFlotanteCaja{ 
         min-height:34em;
+         border-radius:0;
+        width:20em;
+        margin-left:2em;
     }
     #formFlotanteCaja span{
         font-size:1.2em;
@@ -32,9 +35,23 @@
 
     .formularios{
         margin:auto;
+        width:20em;
     }
     .divDownMenu form{
     display:block;
-}
+    }
+    nav button{
+        width:100%;
+    }
+    .navbar-toggle{
+        width:90%;
+    }
+    nav a{
+        text-align:center;
+    }
+
+    
+
+   
 
 }

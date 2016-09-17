@@ -7,7 +7,7 @@
 <link rel="stylesheet" href="css/font-awesome.min.css" type="text/css" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css" type="text/css" />
 <link rel="stylesheet" href="css/<?php echo Restaurante::cargarCSS($_SESSION['user']['idRestaurante'])?>" type="text/css" />
-<script type="text/javascript" src="js/jquery-1.12.1.min.js"></script>
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
 
 <script src="https://code.highcharts.com/highcharts.js"></script>
 <script src="https://code.highcharts.com/highcharts-3d.js"></script>

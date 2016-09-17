@@ -1,4 +1,4 @@
-/*global $*/
+﻿/*global $*/
 function $(id) {
     return document.getElementById(id);
 }
@@ -192,14 +192,14 @@ if ($('formLogin')) {
             event.preventDefault();
             if(!validateEmail($('email').value)){
                 $('email').style.border = 'solid #F7BE81 0.1em';
-                $('email').style.boxShadow = '0em 0em 0.5em #FE9A2E';  
+                $('email').style.boxShadow = '0em 0em 0.5em #FE9A2E';
             } else {
                   $('email').style.border = '1px solid #ccc';
                    $('email').style.boxShadow = '0em 0em 0em #FE9A2E';
             }
             if(!validatePassword($('password').value)){
                 $('password').style.border = 'solid #F7BE81 0.1em';
-                $('password').style.boxShadow = '0em 0em 0.5em #FE9A2E';  
+                $('password').style.boxShadow = '0em 0em 0.5em #FE9A2E';
             }
         }
     });
@@ -217,23 +217,23 @@ if ($('formEditProfile')) {
             swal("Atención", "Los datos introducidos no son válidos", "warning");
             if(!validateEmail($('newEmail').value)){
                 $('newEmail').style.border = 'solid #F7BE81 0.1em';
-                $('newEmail').style.boxShadow = '0em 0em 0.5em #FE9A2E';  
+                $('newEmail').style.boxShadow = '0em 0em 0.5em #FE9A2E';
             }
             if(!validateDni($('newDni').value)){
                 $('newDni').style.border = 'solid #F7BE81 0.1em';
-                $('newDni').style.boxShadow = '0em 0em 0.5em #FE9A2E';  
+                $('newDni').style.boxShadow = '0em 0em 0.5em #FE9A2E';
             }
             if(!validateName($('newNombre').value)){
                 $('newNombre').style.border = 'solid #F7BE81 0.1em';
-                $('newNombre').style.boxShadow = '0em 0em 0.5em #FE9A2E';  
+                $('newNombre').style.boxShadow = '0em 0em 0.5em #FE9A2E';
             }
             if(!validateLastNames($('newApellidos').value)){
                 $('newApellidos').style.border = 'solid #F7BE81 0.1em';
-                $('newApellidos').style.boxShadow = '0em 0em 0.5em #FE9A2E';  
+                $('newApellidos').style.boxShadow = '0em 0em 0.5em #FE9A2E';
             }
             if(!validatePhone($('newTelefono').value)){
                 $('newTelefono').style.border = 'solid #F7BE81 0.1em';
-                $('newTelefono').style.boxShadow = '0em 0em 0.5em #FE9A2E';  
+                $('newTelefono').style.boxShadow = '0em 0em 0.5em #FE9A2E';
             }
         }
 
@@ -361,6 +361,7 @@ if ($('eliminarPlato')) {
 if ($('activarFromProductos')) {
     $('activarFromProductos').addEventListener("click", function () {
         $('formFlotante').style.display = 'block';
+        window.scrollTo(0, 0);
     });
 }
 if ($('desactivarFromProductos')) {
@@ -372,6 +373,7 @@ if ($('desactivarFromProductos')) {
 if ($('activarFormSla')) {
     $('activarFormSla').addEventListener("click", function () {
         $('formFlotante').style.display = 'block';
+          window.scrollTo(0, 0);
     });
 }
 if ($('desactivarFormSla')) {
@@ -383,6 +385,7 @@ if ($('desactivarFormSla')) {
 if ($('activarFromFacturas')) {
     $('activarFromFacturas').addEventListener("click", function () {
         $('formFlotante').style.display = 'block';
+          window.scrollTo(0, 0);
     });
 }
 if ($('desactivarFromFacturas')) {
