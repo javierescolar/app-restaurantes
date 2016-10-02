@@ -24,6 +24,7 @@ class Plato extends Restaurante {
 
     public function guardarPlato($nombre, $precio, $ingredientesEsenciales, $ingredientesSimples, $cantidadEsenciales, $cantidadSimples, $descripcion, $imagen, $valoracion, $idCategoria, $idRestaurante) {
         $bd = BD::getConexion();
+        $precio = str_replace(",",".",$precio);
         $select = 'INSERT INTO platos(nombre,precio,descripcion,imagen,valoracion,idCategoria,idRestaurante) '
                 . ' VALUES ("' . $nombre . '",' . $precio . ',"' . $descripcion . '","' . $imagen . '",' . $valoracion . ',' . $idCategoria . ',' . $idRestaurante . ')';
         $sentencia = $bd->prepare($select);

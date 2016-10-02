@@ -36,6 +36,7 @@ class Factura extends Restaurante{
     
     public function guardarFactura($numReferencia,$pago,$fechaPago,$idtipoFactura,$idRestaurante){
         $conexion = BD::getConexion();
+        $pago = str_replace(",",".",$pago);
         $sentencia = $conexion->prepare('INSERT INTO facturacion(numReferencia,pago,fechaPago,idTipoFactura,idRestaurante) VALUES ("'.$numReferencia.'",'.$pago.',"'.$fechaPago.'",'.$idtipoFactura.','.$idRestaurante.')');
         $consulta = $sentencia->execute();
         return $consulta;
@@ -55,7 +56,7 @@ class Factura extends Restaurante{
             $conexion = BD::getConexion();
              $select = "UPDATE facturacion "
                 . "SET numReferencia = '".$numReferencia[$key]."'"
-                . ",pago = ".$pago[$key]
+                . ",pago = ".str_replace(",",".",$pago[$key])
                 . ",fechaPago = '".$fechaPago[$key]."'"
                 . " WHERE idFactura = ".$id;
               $sentencia = $conexion->prepare($select);

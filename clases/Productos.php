@@ -40,6 +40,7 @@ class Producto extends Restaurante {
 
     public function guardarProducto($ean, $nombre, $cantidad, $caducidad, $precio, $esencial, $medida, $merma, $idResturante) {
         $conexion = BD::getConexion();
+        $precio = str_replace(",",".",$precio);
         $sentencia = $conexion->prepare('INSERT INTO productos(ean,nombre,cantidad,caducidad,precio,esencial,idMedida,merma,idRestaurante) VALUES (' . $ean . ',"' . $nombre . '",' . $cantidad . ',"' . $caducidad . '",' . $precio . ',' . $esencial . ',' . $medida . ',' . $merma . ',' . $idResturante . ')');
         $consulta = $sentencia->execute();
         return $consulta;
@@ -61,7 +62,7 @@ class Producto extends Restaurante {
                     . ",nombre = '" . $nombre[$key] . "'"
                     . ",cantidad = " . $cantidad[$key]
                     . ",caducidad = '" . $caducidad[$key] . "'"
-                    . ",precio = " . $precio[$key]
+                    . ",precio = " . str_replace(",",".",$precio[$key])
                     . ",idMedida = " . $medida[$key]
                     . ",merma = " . $merma[$key]
                     . " WHERE idProducto = " . $id;

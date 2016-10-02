@@ -84,6 +84,7 @@
             ?>
 
         </div>
+        <div class="row"></div>
         <div class="form-group row col-md-6 col-xs-12">
             <div class="form-group col-xs-12 col-md-12">
                 <label for="newDescripcion" class="col-xs-1 col-md-1 form-control-label">Descripción:</label>
